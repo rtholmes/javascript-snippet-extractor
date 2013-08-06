@@ -51,15 +51,13 @@ function analyzeCode(code)
 			}
 			console.log(newFunc);
 		}
-
-
 		else if(node.type === 'AssignmentExpression')
 		{
 			try
 			{
 				if(node.right.type === 'FunctionExpression')    
 				{
-					console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
+					//console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
 					var newFunc = {};
 					for(var key in node.right)
 					{
@@ -69,13 +67,16 @@ function analyzeCode(code)
 								newFunc[key]=node.right[key];
 						}
 					}
+					if(node.left.type === 'MemberExpression')    
+					{
+						//console.log('+++++++++++++++++++++++++',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
+						newFunc['id'] = node.left.object.name+'.'+node.left.property.name;
+					}
+
 					console.log(newFunc);
 				}
 				
-				if(node.right.type === 'MemberExpression')    
-				{
-					console.log('+++++++++++++++++++++++++',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
-				}
+				
 			}
 			catch(err)
 			{
@@ -92,7 +93,18 @@ function analyzeCode(code)
 				{
 					if(declaration.init.type === 'FunctionExpression')
 					{
-						console.log('fu-fu-fu-fu-fu-fu-fu---------------',declaration.id.name, ':', declaration.init.params);
+						var newFunc = {};
+						for(var key in declaration.init)
+						{
+							if (declaration.init.hasOwnProperty(key))
+							{	
+								if(key !== 'body')
+									newFunc[key]=declaration.init[key];
+							}
+						}
+						newFunc['id'] = declaration.id.name;
+						console.log(newFunc);
+						//console.log('fu-fu-fu-fu-fu-fu-fu---------------',declaration.id.name, ':', declaration.init.params);
 					}
 				}
 				catch(err)
