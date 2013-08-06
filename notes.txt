@@ -1,0 +1,74 @@
+-- GOAL: Create an oracle
+
+
+
+-- Find all Identifier.Property nodes
+-- Find all function calls
+-- Find all other object properties
+
+
+FunctionDeclaration
+
+
+either: 
+
+var Events = Backbone.Events ---->  VariableDeclaration -- id 
+-- init
+--
+
+
+
+-------------------------------------------------------
+{                                                
+"type": "FunctionDeclaration",
+"id": {
+"type": "Identifier",
+"name": "processResults"
+},
+"params": [
+{
+"type": "Identifier",
+"name": "results"
+}
+],
+"defaults": [],
+"body": {
+"type": "BlockStatement",
+"body": []
+},
+"rest": null,
+"generator": false,
+"expression": false
+}
+-------------------------------------------------------
+{
+"type": "FunctionExpression",
+"id": null,
+"params": [
+{
+"type": "Identifier",
+"name": "node"
+}
+],
+"defaults": [],
+"body": {
+"type": "BlockStatement",
+"body": []
+},
+"rest": null,
+"generator": false,
+"expression": false
+}
+----------------------------------------------------------
+{
+"type": "MemberExpression",
+"computed": true,
+"object": {
+"type": "Identifier",
+"name": "functionsStats"
+},
+"property": {
+"type": "Identifier",
+"name": "funcName"
+}
+}
