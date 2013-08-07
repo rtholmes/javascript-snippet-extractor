@@ -1,8 +1,21 @@
-function traverse(node, func) 
+var types = [];
+
+function traverse(node, performAtNode, itemsVisited) 
 {
-	func(node);
+	performAtNode(node);
+	if(types.indexOf(node.type) === -1)
+	{
+		types[types.length]=node.type;
+	}
+	//console.log(itemsVisited);
+	//console.log('------------------------------------');
 	for (var key in node) 
 	{
+		if(node.hasOwnProperty('id') && node.id!== null)
+		{
+			if(node.id.hasOwnProperty('name'))
+				itemsVisited[itemsVisited.length]=node.id.name;
+		}
 		if (node.hasOwnProperty(key)) 
 		{
 			var child = node[key];
@@ -12,31 +25,27 @@ function traverse(node, func)
 				{
 					child.forEach(function(node) 
 					{
-						traverse(node, func);
+						traverse(node, performAtNode, itemsVisited);
 					});
 				} 
 				else 
 				{
-					traverse(child, func);
+					traverse(child, performAtNode, itemsVisited);
 				}
 			}
 		}
 	}
 }
 
+var assignmentChain = [];
+var knownFunctions = {};
+
+
 function analyzeCode(code) 
 {
 	var ast = esprima.parse(code);
-	var functionsStats = {};
-	var addStatsEntry = function(funcName) 
-	{
-		if (!functionsStats[funcName]) 
-		{
-			functionsStats[funcName] = {calls: 0, declarations:0};
-		}
-	};
+	var performAtNode = function(node){
 
-	traverse(ast, function(node){
 		if (node.type === 'FunctionDeclaration') 
 		{
 			//console.log('f-f-f-f-f-f-f---------------',node.id.name, ':', node.params);
@@ -50,12 +59,19 @@ function analyzeCode(code)
 				}
 			}
 			console.log(newFunc);
+			knownFunctions[newFunc.id.name]=newFunc;
+			
 		}
 		else if(node.type === 'AssignmentExpression')
 		{
 			try
 			{
-				if(node.right.type === 'FunctionExpression')    
+				if(node.right.type === 'AssignmentExpression')
+				{
+					assignmentChain[assignmentChain.length] = node.left;
+				}
+
+				else if(node.right.type === 'FunctionExpression')    
 				{
 					//console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
 					var newFunc = {};
@@ -69,12 +85,61 @@ function analyzeCode(code)
 					}
 					if(node.left.type === 'MemberExpression')    
 					{
-						//console.log('+++++++++++++++++++++++++',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
-						newFunc['id'] = node.left.object.name+'.'+node.left.property.name;
+						var obj = {};
+						obj['type'] = 'Identifier';
+						obj['name'] = node.left.object.name+'.'+node.left.property.name;
+						newFunc.id=obj;
+						//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+						knownFunctions[newFunc.id.name]=newFunc;
 					}
-
+					for(var j=0; j<assignmentChain.length;j++)
+					{
+						console.log(JSON.stringify(assignmentChain[j])+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+					}
 					console.log(newFunc);
+					assignmentChain=[];
 				}
+				else if(node.right.type='Identifier')
+				{
+					if(knownFunctions.hasOwnProperty(node.right.name))
+					{
+						//console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+						var newFunc = knownFunctions[node.right.name];
+						if(node.left.type === 'MemberExpression')    
+						{
+							var obj = {};
+							obj['type'] = 'Identifier';
+							obj['name'] = node.left.object.name+'.'+node.left.property.name;
+							newFunc.id=obj;
+							//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+							knownFunctions[newFunc.id.name]=newFunc;
+						}
+						for(var j=0; j<assignmentChain.length;j++)
+						{
+							console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+							if(assignmentChain[j].type === 'MemberExpression')    
+							{
+								var obj = {};
+								obj['type'] = 'Identifier';
+								obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
+								newFunc.id=obj;
+								//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+								knownFunctions[newFunc.id.name]=newFunc;
+							}
+							/*else if(assignmentChain[j].type === 'VariableDeclarator')
+							{
+								var obj = {};
+								obj['type'] = 'Identifier';
+								obj['name']= assignmentChain[j].name;
+								newFunc.id = obj;
+								knownFunctions[newFunc.id.name]=newFunc;
+								//console.log(newFunc);
+							}*/
+						}
+					}
+					assignmentChain=[];
+				}
+				
 				
 				
 			}
@@ -102,7 +167,11 @@ function analyzeCode(code)
 									newFunc[key]=declaration.init[key];
 							}
 						}
-						newFunc['id'] = declaration.id.name;
+						var obj = {};
+						obj['type'] = 'Identifier';
+						obj['name']= declaration.id.name;
+						newFunc.id = obj;
+						knownFunctions[newFunc.id.name]=newFunc;
 						console.log(newFunc);
 						//console.log('fu-fu-fu-fu-fu-fu-fu---------------',declaration.id.name, ':', declaration.init.params);
 					}
@@ -113,11 +182,12 @@ function analyzeCode(code)
 				}
 			}
 		}
-	}
-	);
+	};
+	var itemsVisited = [];
+	traverse(ast, performAtNode, itemsVisited);
 }
 
-function processResults(results) 
+/*function processResults(results) 
 {
 	for (var name in results) 
 	{
@@ -138,7 +208,7 @@ function processResults(results)
 			}
 		}
 	}
-}
+}*/
 
 
 if (process.argv.length < 3)
@@ -154,4 +224,8 @@ var data = fs.readFileSync(filename);
 
 var esprima = require('esprima');
 	//console.log(esprima.parse(data));
-	analyzeCode(data);
+analyzeCode(data);
+console.log(types.sort());
+for(key in knownFunctions)
+	console.log(key);
+

@@ -72,3 +72,38 @@ var Events = Backbone.Events ---->  VariableDeclaration -- id
 "name": "funcName"
 }
 }
+
+
+-----------***********************------------------------
+  'ArrayExpression',
+  'AssignmentExpression',
+  'BinaryExpression',
+  'BlockStatement',
+  'CallExpression',
+  'ConditionalExpression',
+  'ContinueStatement',
+  'ExpressionStatement',
+  'ForInStatement',
+  'ForStatement',
+  'FunctionExpression',
+  'Identifier',
+  'IfStatement',
+  'Literal',
+  'LogicalExpression',
+  'MemberExpression',
+  'NewExpression',
+  'ObjectExpression',
+  'Program',
+  'Property',
+  'ReturnStatement',
+  'SequenceExpression',
+  'SwitchCase',
+  'SwitchStatement',
+  'ThisExpression',
+  'ThrowStatement',
+  'UnaryExpression',
+  'UpdateExpression',
+  'VariableDeclaration',
+  'VariableDeclarator',
+  'WhileStatement',
+  undefined 
