@@ -37,17 +37,17 @@ function traverse(node, performAtNode, itemsVisited)
 	}
 }
 
-var assignmentChain = [];
-var knownFunctions = {};
-var nonFunctionProperties = {};
 
-function analyzeCode(code) 
+var performAtNode = function(node)
 {
-	var ast = esprima.parse(code);
-	var performAtNode = function(node){
 
-		if (node.type === 'FunctionDeclaration') 
-		{
+
+	if(node.hasOwnProperty('type') === false)
+	{
+		return;
+	}
+	else if (node.type === 'FunctionDeclaration') 
+	{
 			//console.log('f-f-f-f-f-f-f---------------',node.id.name, ':', node.params);
 			var newFunc = {};
 			for(var key in node)
@@ -64,13 +64,17 @@ function analyzeCode(code)
 		}
 		else if(node.type === 'AssignmentExpression')
 		{
-				if(node.right.type === 'AssignmentExpression')
-				{
-					assignmentChain[assignmentChain.length] = node.left;
-				}
+			if(node.right.hasOwnProperty('type') === false)
+			{
+				//return;
+			}
+			else if(node.right.type === 'AssignmentExpression')
+			{
+				assignmentChain[assignmentChain.length] = node.left;
+			}
 
-				else if(node.right.type === 'FunctionExpression')    
-				{
+			else if(node.right.type === 'FunctionExpression')    
+			{
 					//console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
 					var newFunc = {};
 					for(var key in node.right)
@@ -81,86 +85,120 @@ function analyzeCode(code)
 								newFunc[key]=node.right[key];
 						}
 					}
-					var obj = {};
-					obj['type'] = 'Identifier';
-					if(node.left.type === 'MemberExpression')    
+					
+					if(node.left.hasOwnProperty('type') === false)  
 					{
+						//return;
+					}
+					else if(node.left.type === 'MemberExpression')    
+					{
+						var obj = {};
+						obj['type'] = 'Identifier';
 						obj['name'] = node.left.object.name+'.'+node.left.property.name;
+						newFunc.id=obj;
+						knownFunctions[newFunc.id.name]=newFunc;
 					}
 					else if(node.left.type === 'Identifier')    
 					{
-						obj['name'] = node.left.name;
-					}
-					newFunc.id=obj;
-					knownFunctions[newFunc.id.name]=newFunc;
-					for(var j=0; j<assignmentChain.length;j++)
-					{
-						console.log(JSON.stringify(assignmentChain[j])+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++');
 						var obj = {};
 						obj['type'] = 'Identifier';
-						if(assignmentChain[j].type === 'MemberExpression')    
-							{
-								obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
-							}
-							else if(assignmentChain[j].type === 'Identifier')
-							{
-								obj['name']= assignmentChain[j].name;
-							}
+						obj['name'] = node.left.name;
+						newFunc.id=obj;
+						knownFunctions[newFunc.id.name]=newFunc;
+					}
+					
+					for(var j=0; j<assignmentChain.length;j++)
+					{
+						//console.log(JSON.stringify(assignmentChain[j])+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+						if(assignmentChain[j].hasOwnProperty('type') === false)
+						{
+
+						}
+						else if(assignmentChain[j].type === 'MemberExpression')    
+						{
+							var obj = {};
+							obj['type'] = 'Identifier';
+							obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
 							newFunc.id=obj;
 							knownFunctions[newFunc.id.name]=newFunc;
+						}
+						else if(assignmentChain[j].type === 'Identifier')
+						{
+							var obj = {};
+							obj['type'] = 'Identifier';
+							obj['name']= assignmentChain[j].name;
+							newFunc.id=obj;
+							knownFunctions[newFunc.id.name]=newFunc;
+						}
 					}
-
 					//console.log(newFunc);
 					assignmentChain=[];
 				}
+
 				else if(node.right.type==='Identifier')
 				{
 					if(knownFunctions.hasOwnProperty(node.right.name))
 					{
-						//console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
 						var newFunc = knownFunctions[node.right.name];
 						var obj = {};
 						obj['type'] = 'Identifier';
-						if(node.left.type === 'MemberExpression')    
+						if(node.left.hasOwnProperty('type') === false)
+						{
+
+						}
+						else if(node.left.type === 'MemberExpression')    
 						{
 							
 							obj['name'] = node.left.object.name+'.'+node.left.property.name;
-							//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+							newFunc.id=obj;
+							knownFunctions[newFunc.id.name]=newFunc;
 						}
 						else if(node.left.type === 'Identifier')    
 						{
+							
 							obj['name'] = node.left.name;
-							//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+							newFunc.id=obj;
+							knownFunctions[newFunc.id.name]=newFunc;
 						}
-						newFunc.id=obj;
-						knownFunctions[newFunc.id.name]=newFunc;
+						
 
 						for(var j=0; j<assignmentChain.length;j++)
 						{
-							console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-							var obj = {};
-							obj['type'] = 'Identifier';
-							if(assignmentChain[j].type === 'MemberExpression')    
+							//console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+							if(assignmentChain[j].hasOwnProperty('type') === false)
 							{
-								
+
+							}
+							else if(assignmentChain[j].type === 'MemberExpression')    
+							{
+								var obj = {};
+								obj['type'] = 'Identifier';
 								obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
+								newFunc.id=obj;
+								knownFunctions[newFunc.id.name]=newFunc;
 								
 							}
 							else if(assignmentChain[j].type === 'Identifier')
 							{
+								var obj = {};
+								obj['type'] = 'Identifier';
 								obj['name']= assignmentChain[j].name;
+								newFunc.id=obj;
+								knownFunctions[newFunc.id.name]=newFunc;
 							}
-							newFunc.id=obj;
-							knownFunctions[newFunc.id.name]=newFunc;
 						}
 					}
 					assignmentChain=[];
 				}
 				else if(node.right.type === 'ObjectExpression')
 				{
-					console.log('*********************************************************************************************');
+					//console.log('*********************************************************************************************');
 					var id;
-					if(node.left.type === 'MemberExpression')    
+					if(node.left.hasOwnProperty('type') === false)
+					{
+
+					}
+					else if(node.left.type === 'MemberExpression')    
 					{
 						id = node.left.object.name+'.'+node.left.property.name;
 					}
@@ -169,29 +207,32 @@ function analyzeCode(code)
 						id = node.left.name;
 					}
 					
-						for(var i=0; i<node.right.properties.length;i++)
+					for(var i=0; i<node.right.properties.length;i++)
+					{
+						var property = node.right.properties[i];
+						if(property.value.hasOwnProperty('type') === false)
 						{
-							var property = node.right.properties[i];
-							if(property.value.type === 'Identifier')
+							//return;
+						}
+						else if(property.value.type === 'Identifier')
+						{
+							if(knownFunctions.hasOwnProperty(property.value.name))
 							{
-								if(knownFunctions.hasOwnProperty(property.value.name))
+								var newFunc = knownFunctions[property.value.name];
+								var obj = {};
+								obj['type'] = 'Identifier';
+								obj['name'] = id + '.' + property.key.name;
+								newFunc.id = obj;
+								knownFunctions[newFunc.id.name] = newFunc;
+								for(var j=0; j<assignmentChain.length;j++)
 								{
-									var newFunc = knownFunctions[property.value.name];
-									var obj = {};
-									obj['type'] = 'Identifier';
-									obj['name'] = id + '.' + property.key.name;
-									newFunc.id = obj;
-									knownFunctions[newFunc.id.name] = newFunc;
-									for(var j=0; j<assignmentChain.length;j++)
-									{
-										console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+										//console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
 										var obj = {};
 										obj['type'] = 'Identifier';
 										if(assignmentChain[j].type === 'MemberExpression')    
 										{
-								
 											obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name+'.'+property.key.name;
-										
+
 										}
 										else if(assignmentChain[j].type === 'Identifier')
 										{
@@ -225,14 +266,16 @@ function analyzeCode(code)
 								knownFunctions[newFunc.id.name]=newFunc;
 								for(var j=0; j<assignmentChain.length;j++)
 								{
-									console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+									//console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
 									var obj = {};
 									obj['type'] = 'Identifier';
-									if(assignmentChain[j].type === 'MemberExpression')    
+									if(assignmentChain[j].hasOwnProperty('type') === false) 
 									{
-								
+
+									}
+									else if(assignmentChain[j].type === 'MemberExpression')    
+									{
 										obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name+'.'+property.key.name;
-										
 									}
 									else if(assignmentChain[j].type === 'Identifier')
 									{
@@ -245,144 +288,155 @@ function analyzeCode(code)
 
 						}
 						assignmentChain=[];
+					}
 				}
-
-		}
-		else if(node.type === 'VariableDeclaration')
-		{
-			for(var i=0; i<node.declarations.length;i++)
-			{
-				var declaration = node.declarations[i];
-				try
+				else if(node.type === 'VariableDeclaration')
 				{
-					if(declaration.init.type === 'AssignmentExpression')
+					//console.log(node.declarations.length);
+					for(var k=0; k<node.declarations.length;k++)
 					{
-						assignmentChain[assignmentChain.length] = node.left;
-					}
-					else if(declaration.init.type === 'FunctionExpression')
-					{
-						var newFunc = {};
-						for(var key in declaration.init)
+						var declaration = node.declarations[k];
+						//console.log(i+ ' ' +declaration.id.name);
+						if(declaration.hasOwnProperty('init') === false || declaration.init === null || declaration.init.hasOwnProperty('type') === false)
 						{
-							if (declaration.init.hasOwnProperty(key))
-							{	
-								if(key !== 'body')
-									newFunc[key]=declaration.init[key];
-							}
+
 						}
-						var obj = {};
-						obj['type'] = 'Identifier';
-						obj['name']= declaration.id.name;
-						newFunc.id = obj;
-						knownFunctions[newFunc.id.name]=newFunc;
-						//console.log(newFunc);
-						//console.log('fu-fu-fu-fu-fu-fu-fu---------------',declaration.id.name, ':', declaration.init.params);
-						assignmentChain=[];
-					}
-					else if(declaration.init.type === 'ObjectExpression')
-					{
-						var id = declaration.id.name;
-						console.log(JSON.stringify(declaration) + '^^^^^^^^^^^^^^^^^^^^');
-						/*for(var i=0; i<declaration.init.properties.length;i++)
+						else if(declaration.init.type === 'AssignmentExpression')
 						{
-							var property = declaration.init.properties[i];
-							if(property.value.type === 'Identifier')
+							assignmentChain[assignmentChain.length] = node.left;
+						}
+						else if(declaration.init.type === 'FunctionExpression')
+						{
+							var newFunc = {};
+							for(var key in declaration.init)
 							{
-								if(knownFunctions.hasOwnProperty(property.value.name))
-								{
-									var newFunc = knownFunctions[property.value.name];
-									var obj = {};
-									obj['type'] = 'Identifier';
-									obj['name'] = id + '.' + property.key.name;
-									newFunc.id = obj;
-									knownFunctions[newFunc.id.name] = newFunc;
-								}
-								else
-								{
-									nonFunctionProperties[nonFunctionProperties.length] = id + '.' + property.key.name;
+								if (declaration.init.hasOwnProperty(key))
+								{	
+									if(key !== 'body')
+										newFunc[key]=declaration.init[key];
 								}
 							}
-							else if (property.value.type === 'FunctionExpression') 
+							var obj = {};
+							obj['type'] = 'Identifier';
+							obj['name']= declaration.id.name;
+							newFunc.id = obj;
+							knownFunctions[newFunc.id.name]=newFunc;
+							//console.log(newFunc);
+							//console.log('fu-fu-fu-fu-fu-fu-fu---------------',declaration.id.name, ':', declaration.init.params);
+							assignmentChain=[];
+						}
+						else if(declaration.init.type === 'ObjectExpression')
+						{
+							var id = declaration.id.name;
+							//console.log(JSON.stringify(declaration) + '^^^^^^^^^^^^^^^^^^^^');
+							for(var i=0; i<declaration.init.properties.length;i++)
 							{
-								var newFunc = {};
-								for(var key in property.value)
+								var property = declaration.init.properties[i];
+								if(property.value.hasOwnProperty('type') === false)
 								{
-									if (property.value.hasOwnProperty(key))
-									{	
-										if(key !== 'body')
-											newFunc[key]=node.right[key];
+
+								}
+								else if(property.value.type === 'Identifier')
+								{
+									if(knownFunctions.hasOwnProperty(property.value.name))
+									{
+										var newFunc = knownFunctions[property.value.name];
+										var obj = {};
+										obj['type'] = 'Identifier';
+										obj['name'] = id + '.' + property.key.name;
+										newFunc.id = obj;
+										knownFunctions[newFunc.id.name] = newFunc;
+									}
+									else
+									{
+										nonFunctionProperties[nonFunctionProperties.length] = id + '.' + property.key.name;
 									}
 								}
-								var obj = {};
-								obj['type'] = 'Identifier';
-								obj['name'] = id+'.' + property.key.name;
-								newFunc.id=obj;
-								//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
-								knownFunctions[newFunc.id.name]=newFunc;
+								else if (property.value.type === 'FunctionExpression') 
+								{
+									var newFunc = {};
+									for(var key in property.value)
+									{
+										if (property.value.hasOwnProperty(key))
+										{	
+											if(key !== 'body')
+												newFunc[key]=property.value[key];
+										}
+									}
+									var obj = {};
+									obj['type'] = 'Identifier';
+									obj['name'] = id+'.' + property.key.name;
+									newFunc.id=obj;
+									//newFunc.id['name'] = node.left.object.name+'.'+node.left.property.name;
+									knownFunctions[newFunc.id.name]=newFunc;
+								}
 							}
+							assignmentChain=[];
+						}
 
-						}*/
-						assignmentChain=[];
 					}
+
 				}
-				catch(err)
-				{
-					var txt="Error description: " + err.message + "\n\n";
-					console.log(txt);
-				}
+
 			}
-		}
-		
-	};
-	var itemsVisited = [];
-	traverse(ast, performAtNode, itemsVisited);
-}
 
-/*function processResults(results) 
-{
-	for (var name in results) 
-	{
-		if (results.hasOwnProperty(name)) 
-		{
-			var stats = results[name];
-			if (stats.declarations === 0) 
+
+			var assignmentChain = [];
+			var knownFunctions = {};
+			var nonFunctionProperties= {};
+			var variableList = {};
+
+			function analyzeCode(code) 
 			{
-				console.log('Function', name, 'undeclared');
-			} 
-			else if (stats.declarations > 1) 
-			{
-				console.log('Function', name, 'decalred multiple times');
-			} 
-			else if (stats.calls === 0) 
-			{
-				console.log('Function', name, 'declared but not called');
+				var ast = esprima.parse(code, {loc : true});
+				var itemsVisited = [];
+				traverse(ast, performAtNode, itemsVisited);
 			}
-		}
-	}
-}*/
 
 
-if (process.argv.length < 3)
-{
-	console.log('Usage: analyze.js file.js');
-	process.exit(1);
-}
+			if (process.argv.length < 3)
+			{
+				console.log('Usage: analyze.js file.js');
+				process.exit(1);
+			}
 
 
-fs = require('fs');
-var filename = process.argv[2];
-var data = fs.readFileSync(filename);
+			fs = require('fs');
+			var filename = process.argv[2];
+			var data = fs.readFileSync(filename);
 
-var esprima = require('esprima');
+			var esprima = require('esprima');
 	//console.log(esprima.parse(data));
-	try{
-analyzeCode(data);
-}
-catch(err)
-				{
-					var txt="Error description: " + err.message + "\n\n";
-				}
-console.log(types.sort());
-for(key in knownFunctions)
-	console.log(key);
+	try
+	{
+		analyzeCode(data);
+	}
+	catch(err)
+	{
+		var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
+		dumpError(err);
+	}
+	console.log('------------------------------------------------');
+	console.log(types.sort());
+	console.log('------------------------------------------------');
+	for(key in knownFunctions)
+		console.log(key);
+	console.log('------------------------------------------------');
+	for(key in nonFunctionProperties)
+		console.log(key);
 
+
+function dumpError(err) {
+  if (typeof err === 'object') {
+    if (err.message) {
+      console.log('\nMessage: ' + err.message)
+    }
+    if (err.stack) {
+      console.log('\nStacktrace:')
+      console.log('====================')
+      console.log(err.stack);
+    }
+  } else {
+    console.log('dumpError :: argument is not an object');
+  }
+}
