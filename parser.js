@@ -1,5 +1,53 @@
 var types = [];
 
+var parentNodes = {};
+
+function visitMemberExpression(node, nameChain)
+{
+	if(node.object.type === 'Identifier')
+	{
+		var name = node.object.name+'.'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'ThisExpression')
+	{
+		//console.log('THIS');
+		var name = 'this'+'.'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'CallExpression')
+	{
+		var name = node.object.callee.name+'().'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'MemberExpression')
+	{
+		//console.log('YES');
+		nameChain[nameChain.length] = node.property.name;
+		//console.log('---' + node.property.name);
+		return visitMemberExpression(node.object, nameChain);
+	}
+}
+
+if (typeof String.prototype.startsWith != 'function') {
+  // see below for better implementation!
+  String.prototype.startsWith = function (str){
+    return this.indexOf(str) == 0;
+  };
+}
+
 function traverse(node, performAtNode, itemsVisited)
 {
 	performAtNode(node);
@@ -59,9 +107,9 @@ var performAtNode = function(node)
 			//console.log(newFunc);
 			knownFunctions[newFunc.id.name]=newFunc;
 			
-		}
-		else if(node.type === 'AssignmentExpression')
-		{
+	}
+	else if(node.type === 'AssignmentExpression')
+	{
 			if(node.right.hasOwnProperty('type') === false)
 			{
 				//return;
@@ -74,6 +122,8 @@ var performAtNode = function(node)
 			else if(node.right.type === 'FunctionExpression')    
 			{
 					//console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
+					//console.log(JSON.stringify(node.left));
+					//console.log(JSON.stringify(node.right));
 					var newFunc = {};
 					var obj = {};
 					obj['type'] = 'Identifier';
@@ -93,7 +143,7 @@ var performAtNode = function(node)
 					else if(node.left.type === 'MemberExpression')    
 					{
 						
-						obj['name'] = node.left.object.name+'.'+node.left.property.name;
+						obj['name'] = visitMemberExpression(node.left, []);
 						newFunc.id=obj;
 						knownFunctions[newFunc.id.name]=newFunc;
 					}
@@ -107,19 +157,25 @@ var performAtNode = function(node)
 					for(var j=0; j<assignmentChain.length;j++)
 					{
 						//console.log(JSON.stringify(assignmentChain[j])+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-						if(assignmentChain[j].hasOwnProperty('type') === false)
+						if(assignmentChain[j] != undefined || assignmentChain[j].hasOwnProperty('type') === false)
 						{
 
 						}
 						else if(assignmentChain[j].type === 'MemberExpression')    
 						{	
-							obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
+							obj['name'] = visitMemberExpression(assignmentChain[j], []);
 							newFunc.id=obj;
 							knownFunctions[newFunc.id.name]=newFunc;
 						}
 						else if(assignmentChain[j].type === 'Identifier')
 						{
 							obj['name']= assignmentChain[j].name;
+							newFunc.id=obj;
+							knownFunctions[newFunc.id.name]=newFunc;
+						}
+						else if(assignmentChain[j].type === 'VariableDeclarator')
+						{
+							obj['name']= assignmentChain[j].id.name;
 							newFunc.id=obj;
 							knownFunctions[newFunc.id.name]=newFunc;
 						}
@@ -141,7 +197,7 @@ var performAtNode = function(node)
 						}
 						else if(node.left.type === 'MemberExpression')    
 						{
-							obj['name'] = node.left.object.name+'.'+node.left.property.name;
+							obj['name'] = visitMemberExpression(node.left, []);
 							newFunc.id=obj;
 							knownFunctions[newFunc.id.name]=newFunc;
 						}
@@ -162,7 +218,7 @@ var performAtNode = function(node)
 							}
 							else if(assignmentChain[j].type === 'MemberExpression')    
 							{
-								obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name;
+								obj['name'] = visitMemberExpression(assignmentChain[j]);
 								newFunc.id=obj;
 								knownFunctions[newFunc.id.name]=newFunc;
 								
@@ -170,6 +226,12 @@ var performAtNode = function(node)
 							else if(assignmentChain[j].type === 'Identifier')
 							{
 								obj['name']= assignmentChain[j].name;
+								newFunc.id=obj;
+								knownFunctions[newFunc.id.name]=newFunc;
+							}
+							else if(assignmentChain[j].type === 'VariableDeclarator')
+							{
+								obj['name']= assignmentChain[j].id.name;
 								newFunc.id=obj;
 								knownFunctions[newFunc.id.name]=newFunc;
 							}
@@ -187,7 +249,7 @@ var performAtNode = function(node)
 					}
 					else if(node.left.type === 'MemberExpression')    
 					{
-						id = node.left.object.name+'.'+node.left.property.name;
+						id = visitMemberExpression(node.left, []);
 					}
 					else if(node.left.type === 'Identifier')    
 					{
@@ -214,17 +276,29 @@ var performAtNode = function(node)
 								for(var j=0; j<assignmentChain.length;j++)
 								{
 										//console.log(JSON.stringify(assignmentChain[j])+'^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-										if(assignmentChain[j].type === 'MemberExpression')    
+										if(assignmentChain[j].hasOwnProperty('type') === false)
 										{
-											obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name+'.'+property.key.name;
 
+										}
+										else if(assignmentChain[j].type === 'MemberExpression')    
+										{
+											obj['name'] = visitMemberExpression(assignmentChain[j], [])+'.'+property.key.name;
+											newFunc.id=obj;
+											knownFunctions[newFunc.id.name]=newFunc;
 										}
 										else if(assignmentChain[j].type === 'Identifier')
 										{
 											obj['name']= assignmentChain[j].name+'.'+property.key.name;
+											newFunc.id=obj;
+											knownFunctions[newFunc.id.name]=newFunc;
 										}
-										newFunc.id=obj;
-										knownFunctions[newFunc.id.name]=newFunc;
+										else if(assignmentChain[j].type === 'VariableDeclarator')
+										{
+											obj['name']= assignmentChain[j].id.name;
+											newFunc.id=obj;
+											knownFunctions[newFunc.id.name]=newFunc;
+										}
+										
 									}
 								}
 								else
@@ -260,23 +334,33 @@ var performAtNode = function(node)
 									}
 									else if(assignmentChain[j].type === 'MemberExpression')    
 									{
-										obj['name'] = assignmentChain[j].object.name+'.'+assignmentChain[j].property.name+'.'+property.key.name;
+										obj['name'] = visitMemberExpression(assignmentChain[j],[])+'.'+property.key.name;
+										newFunc.id=obj;
+										knownFunctions[newFunc.id.name]=newFunc;
 									}
 									else if(assignmentChain[j].type === 'Identifier')
 									{
 										obj['name']= assignmentChain[j].name+'.'+property.key.name;
+										newFunc.id=obj;
+										knownFunctions[newFunc.id.name]=newFunc;
 									}
-									newFunc.id=obj;
-									knownFunctions[newFunc.id.name]=newFunc;
+									else if(assignmentChain[j].type === 'VariableDeclarator')
+									{	
+										obj['name']= assignmentChain[j].id.name;
+										newFunc.id=obj;
+										knownFunctions[newFunc.id.name]=newFunc;
+									}
+									//newFunc.id=obj;
+									//knownFunctions[newFunc.id.name]=newFunc;
 								}
 							}
 
 						}
 						assignmentChain=[];
 					}
-				}
-				else if(node.type === 'VariableDeclaration')
-				{
+		}
+		else if(node.type === 'VariableDeclaration')
+		{
 					//console.log(node.declarations.length);
 					for(var k=0; k<node.declarations.length;k++)
 					{
@@ -288,7 +372,18 @@ var performAtNode = function(node)
 						}
 						else if(declaration.init.type === 'AssignmentExpression')
 						{
-							assignmentChain[assignmentChain.length] = node.left;
+							var obj = {};
+							//obj.type = declaration.type;
+							//obj.id = declaration.id;
+							for(var key2 in declaration)
+							{
+								if (declaration.hasOwnProperty(key2))
+								{
+									if(key!== 'init')	
+										obj[key2] = declaration[key2];
+								}
+							}
+							assignmentChain[assignmentChain.length] = obj;
 						}
 						else if(declaration.init.type === 'FunctionExpression')
 						{
@@ -361,28 +456,25 @@ var performAtNode = function(node)
 
 					}
 
-				}
+			}
 				else if(node.type === 'MemberExpression')    
 				{
-					id = node.object.name+'.'+node.property.name;
+					id = visitMemberExpression(node,[]);
 					if(nonFunctionProperties.indexOf(id) === -1)
 						nonFunctionProperties[nonFunctionProperties.length]=id;
 					
 				}
 
-			}
+}
 
 
-			var assignmentChain = [];
-			var knownFunctions = {};
-			var nonFunctionProperties= [];
-			var variableList = {};
-
+			
 			function analyzeCode(code) 
 			{
 				//var ast = esprima.parse(code, {loc : true});
 				var ast = esprima.parse(code);
 				var itemsVisited = [];
+				
 				traverse(ast, performAtNode, itemsVisited);
 			}
 
@@ -393,11 +485,13 @@ var performAtNode = function(node)
 				process.exit(1);
 			}
 
-
+			var assignmentChain = [];
+			var knownFunctions = {};
+			var nonFunctionProperties= [];
+			var variableList = {};
 			fs = require('fs');
 			var filename = process.argv[2];
 			var data = fs.readFileSync(filename);
-
 			var esprima = require('esprima');
 	//console.log(esprima.parse(data));
 	try
@@ -409,13 +503,14 @@ var performAtNode = function(node)
 		var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 		dumpError(err);
 	}
+
 	console.log('------------------------------------------------');
 	console.log(types.sort());
 	console.log('------------------------------------------------');
-	for(key in knownFunctions)
-		console.log(JSON.stringify(knownFunctions[key]));
+	var keys = Object.keys(knownFunctions);
+	console.log(keys.sort());
 	console.log('------------------------------------------------');
-	console.log(nonFunctionProperties.sort());
+	//console.log(nonFunctionProperties.sort());
 
 
 	function dumpError(err) {
