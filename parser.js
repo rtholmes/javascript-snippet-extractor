@@ -50,7 +50,7 @@ if (typeof String.prototype.startsWith != 'function') {
 
 function traverse(node, performAtNode, itemsVisited)
 {
-	performAtNode(node);
+	itemsVisited = performAtNode(node, itemsVisited);
 	if(types.indexOf(node.type) === -1)
 	{
 		types[types.length]=node.type;
@@ -59,10 +59,9 @@ function traverse(node, performAtNode, itemsVisited)
 	//console.log('------------------------------------');
 	for (var key in node) 
 	{
-		if(node.hasOwnProperty('id') && node.id!== null)
+		if(node.hasOwnProperty('type'))
 		{
-			if(node.id.hasOwnProperty('name'))
-				itemsVisited[itemsVisited.length]=node.id.name;
+				//itemsVisited[itemsVisited.length]=node.type;
 		}
 		if (node.hasOwnProperty(key)) 
 		{
@@ -86,8 +85,9 @@ function traverse(node, performAtNode, itemsVisited)
 }
 
 
-var performAtNode = function(node)
+var performAtNode = function(node, itemsVisited)
 {
+	//console.log(itemsVisited.length);
 	if(node.hasOwnProperty('type') === false)
 	{
 		return;
@@ -121,6 +121,7 @@ var performAtNode = function(node)
 
 			else if(node.right.type === 'FunctionExpression')    
 			{
+				//if(node.left.type === 'MemberExpression')
 					//console.log('f-f-f-f-f-f-f---------------',node.left.object.name, '.', node.left.property.name, ':', node.right.params);
 					//console.log(JSON.stringify(node.left));
 					//console.log(JSON.stringify(node.right));
@@ -145,6 +146,7 @@ var performAtNode = function(node)
 						
 						obj['name'] = visitMemberExpression(node.left, []);
 						newFunc.id=obj;
+						console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% '+ newFunc.id.name);
 						knownFunctions[newFunc.id.name]=newFunc;
 					}
 					else if(node.left.type === 'Identifier')    
@@ -218,7 +220,7 @@ var performAtNode = function(node)
 							}
 							else if(assignmentChain[j].type === 'MemberExpression')    
 							{
-								obj['name'] = visitMemberExpression(assignmentChain[j]);
+								obj['name'] = visitMemberExpression(assignmentChain[j],[]);
 								newFunc.id=obj;
 								knownFunctions[newFunc.id.name]=newFunc;
 								
@@ -457,14 +459,23 @@ var performAtNode = function(node)
 					}
 
 			}
-				else if(node.type === 'MemberExpression')    
-				{
+			else if(node.type === 'MemberExpression')    
+			{
 					id = visitMemberExpression(node,[]);
 					if(nonFunctionProperties.indexOf(id) === -1)
 						nonFunctionProperties[nonFunctionProperties.length]=id;
 					
-				}
+			}
+			else if(node.type === 'FunctionExpression')    
+			{
+					//id = visitMemberExpression(node,[]);
+					if(nonFunctionProperties.indexOf(id) === -1)
+						nonFunctionProperties[nonFunctionProperties.length]=id;
+					
+			}
 
+
+return itemsVisited;
 }
 
 
