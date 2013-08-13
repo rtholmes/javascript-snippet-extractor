@@ -2,6 +2,25 @@ var types = [];
 
 var parentNodes = {};
 
+/*function traverse2(obj,func, parent) {
+  for (i in obj){
+    func.apply(this,[i,obj[i],parent]);      
+    if (obj[i] instanceof Object && !(obj[i] instanceof Array)) {
+      traverse2(obj[i],func, i);
+    }
+  }
+}
+ 
+function getPropertyRecursive(obj, property){
+  var acc = [];
+  traverse2(obj, function(key, value, parent){
+    if(key === property){
+      acc.push({parent: parent, value: value});
+    }
+  });
+  return acc;
+}*/
+
 function visitMemberExpression(node, nameChain)
 {
 	if(node.object.type === 'Identifier')
@@ -50,19 +69,11 @@ if (typeof String.prototype.startsWith != 'function') {
 
 function traverse(node, performAtNode, itemsVisited)
 {
-	itemsVisited = performAtNode(node, itemsVisited);
-	if(types.indexOf(node.type) === -1)
-	{
-		types[types.length]=node.type;
-	}
-	//console.log(itemsVisited);
-	//console.log('------------------------------------');
+	performAtNode(node);
+	if(itemsVisited.length !=0 )
+		console.log(itemsVisited);
 	for (var key in node) 
 	{
-		if(node.hasOwnProperty('type'))
-		{
-				//itemsVisited[itemsVisited.length]=node.type;
-		}
 		if (node.hasOwnProperty(key)) 
 		{
 			var child = node[key];
@@ -72,12 +83,20 @@ function traverse(node, performAtNode, itemsVisited)
 				{
 					child.forEach(function(node) 
 					{
+						if(key === 'init')
+					{
+						var itemsVisited2 = itemsVisited;
+						itemsVisited2.push(node.id.name);
+						traverse(child, performAtNode, itemsVisited2);
+					}
 						traverse(node, performAtNode, itemsVisited);
 					});
-				} 
+				}
 				else 
 				{
-					traverse(child, performAtNode, itemsVisited);
+					
+					//else
+						traverse(child, performAtNode, itemsVisited);
 				}
 			}
 		}
@@ -85,7 +104,7 @@ function traverse(node, performAtNode, itemsVisited)
 }
 
 
-var performAtNode = function(node, itemsVisited)
+var performAtNode = function(node)
 {
 	//console.log(itemsVisited.length);
 	if(node.hasOwnProperty('type') === false)
@@ -146,7 +165,7 @@ var performAtNode = function(node, itemsVisited)
 						
 						obj['name'] = visitMemberExpression(node.left, []);
 						newFunc.id=obj;
-						console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% '+ newFunc.id.name);
+						//console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% '+ newFunc.id.name);
 						knownFunctions[newFunc.id.name]=newFunc;
 					}
 					else if(node.left.type === 'Identifier')    
@@ -473,9 +492,6 @@ var performAtNode = function(node, itemsVisited)
 						nonFunctionProperties[nonFunctionProperties.length]=id;
 					
 			}
-
-
-return itemsVisited;
 }
 
 
@@ -485,8 +501,49 @@ return itemsVisited;
 				//var ast = esprima.parse(code, {loc : true});
 				var ast = esprima.parse(code);
 				var itemsVisited = [];
-				
-				traverse(ast, performAtNode, itemsVisited);
+				//traverse(ast, performAtNode, itemsVisited);var st = require('./js/something');
+				//var jsonPath = require('./jsonpath.js');
+				var jsonpath = require('JSONPath').eval;
+				var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
+				var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
+				for(var l =0; l<res1.length;l++)
+				{
+					if(itemsVisited.indexOf(res1[l])==-1)
+						itemsVisited[itemsVisited.length]=res1[l];
+					console.log(res1[l] + ' : ' + res2[l] );
+				}
+				var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
+				var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
+				for(var l =0; l<res3.length;l++)
+				{
+					if(itemsVisited.indexOf(res3[l])==-1)
+						itemsVisited[itemsVisited.length]=res3[l];
+					console.log(res3[l] + ' : ' + res4[l] );
+				}
+				var res5 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"VALUE"});
+				var res6 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"PATH"});	
+				for(var l =0; l<res5.length;l++)
+				{
+					if(res5[l].type === 'MemberExpression')
+					{
+						var name = visitMemberExpression(res5[l], []);
+						if(itemsVisited.indexOf(name)==-1)
+							itemsVisited[itemsVisited.length]=name;
+						console.log( name + ' : '+ res6[l]);
+					}
+					else
+						console.log(res5[l] + ' : '+ res6[l]);
+				}
+				var res7 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
+				var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"PATH"});
+				for(var l =0; l<res8.length;l++)
+				{
+					if(itemsVisited.indexOf(res7[l])==-1)
+							itemsVisited[itemsVisited.length]=res7[l];
+					console.log(res7[l] + ' : '+ res8[l]);
+				}
+				console.log(res3.length + res2.length + res6.length + res7.length);
+				console.log(itemsVisited.length);
 			}
 
 

@@ -492,4 +492,4 @@ window.jQuery
   'window.callbackName',
   'winnow',
   'xhr.onreadystatechange',
-  'xhrCallbacks.handle' ]
+  'xhrCallbacks.handle' ]function
