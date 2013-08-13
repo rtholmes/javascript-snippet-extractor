@@ -500,19 +500,20 @@ var performAtNode = function(node)
 			{
 				//var ast = esprima.parse(code, {loc : true});
 				var ast = esprima.parse(code);
-				var itemsVisited = [];
-				//traverse(ast, performAtNode, itemsVisited);var st = require('./js/something');
+				//var itemsVisited = [];
+				//traverse(ast, performAtNode, itemsVisited);
 				//var jsonPath = require('./jsonpath.js');
 				var jsonpath = require('JSONPath').eval;
-				var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
+				//var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
 				var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
-				for(var l =0; l<res1.length;l++)
+				/*for(var l =0; l<res1.length;l++)
 				{
 					if(itemsVisited.indexOf(res1[l])==-1)
 						itemsVisited[itemsVisited.length]=res1[l];
 					console.log(res1[l] + ' : ' + res2[l] );
-				}
-				var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
+				}*/
+
+				/*var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
 				var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
 				for(var l =0; l<res3.length;l++)
 				{
@@ -542,8 +543,16 @@ var performAtNode = function(node)
 							itemsVisited[itemsVisited.length]=res7[l];
 					console.log(res7[l] + ' : '+ res8[l]);
 				}
-				console.log(res3.length + res2.length + res6.length + res7.length);
-				console.log(itemsVisited.length);
+				console.log(res3.length + res2.length + res6.length + res7.length);*/
+				//console.log(itemsVisited.length);
+				//var video = eval(JSON.stringify(res2[0]).replace('$','ast'));
+				//console.log(eval(video));
+				var test = JSON.stringify(res2[0]);
+				for(var key in test)
+				console.log(key);
+				//test.replace('$','ast');
+				//console.log(test);
+
 			}
 
 
