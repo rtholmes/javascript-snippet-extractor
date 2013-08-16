@@ -494,24 +494,27 @@ var performAtNode = function(node)
 			}
 }
 
-
+			function isInt(value) 
+			{
+    			return !isNaN(parseInt(value,10)) && (parseFloat(value,10) == parseInt(value,10)); 
+			}
 			
 			function analyzeCode(code) 
 			{
 				//var ast = esprima.parse(code, {loc : true});
 				var ast = esprima.parse(code);
-				//var itemsVisited = [];
+				var itemsVisited = [];
 				//traverse(ast, performAtNode, itemsVisited);
-				//var jsonPath = require('./jsonpath.js');
+
 				var jsonpath = require('JSONPath').eval;
-				//var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
+				var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
 				var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
-				/*for(var l =0; l<res1.length;l++)
+				for(var l =0; l<res1.length;l++)
 				{
 					if(itemsVisited.indexOf(res1[l])==-1)
 						itemsVisited[itemsVisited.length]=res1[l];
 					console.log(res1[l] + ' : ' + res2[l] );
-				}*/
+				}
 
 				/*var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
 				var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
@@ -544,14 +547,72 @@ var performAtNode = function(node)
 					console.log(res7[l] + ' : '+ res8[l]);
 				}
 				console.log(res3.length + res2.length + res6.length + res7.length);*/
-				//console.log(itemsVisited.length);
-				//var video = eval(JSON.stringify(res2[0]).replace('$','ast'));
-				//console.log(eval(video));
-				var test = JSON.stringify(res2[0]);
-				for(var key in test)
-				console.log(key);
-				//test.replace('$','ast');
-				//console.log(test);
+			console.log(itemsVisited.length);
+			for(item in res2)
+			{
+				console.log('------------------------------------------------------------------------------');
+				var test = res2[item];
+				test = test.slice(1);
+				console.log(test);
+				var array = test.split(']');
+				for(var item in array)
+				{
+					
+					if(isInt(array[item][1]))
+						array[item] = array[item].slice(1);
+					else
+						array[item] = array[item].slice(2, -1);
+				}
+				var astcopy = ast;
+				for(var item in array)
+				{
+					var node = astcopy[array[item]];
+					if(node !== undefined)
+					{
+						if(node.hasOwnProperty('type'))
+						{
+							console.log(node.type);
+							if(node.type === 'Identifier')
+							{
+								console.log('-------'+node.name);
+							}
+							else if(node.type === 'MemberExpression')
+							{
+								console.log('-------'+visitMemberExpression(node, []));
+							}
+							else if(node.type === 'FunctionDeclaration')
+							{
+								console.log('-------'+node.id.name);
+							}
+
+						}
+						if(node.hasOwnProperty('left'))
+						{
+							if(node.left.type === 'MemberExpression')    
+							{
+									
+								console.log('---'+visitMemberExpression(node.left, []));
+							}
+							else if(node.left.type === 'Identifier')    
+							{
+								console.log('---'+node.left.name);
+							}
+						}
+						if(node.type === 'VariableDeclarator')
+						{
+							console.log('---'+node.id.name);
+						}
+						if(node.type === 'Property')
+						{
+							console.log('---'+node.key.name);
+						}
+					}
+					astcopy = node;
+				}
+				//console.log(ast[array[0]]);
+			}
+				/*var video = eval(JSON.stringify(res2[0]).replace('$','ast'));
+				console.log(eval(eval(video)));*/
 
 			}
 
