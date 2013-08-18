@@ -104,8 +104,22 @@ var performAtNode = function(node)
 function analyzeCode(code) 
 {
 	var ast = esprima.parse(code);
-	var itemsVisited = [];
-	traverse(ast, performAtNode, itemsVisited);
+	var identifiedMethods = [];
+	var jsonpath = require('JSONPath').eval;
+
+	//traverse(ast, performAtNode, itemsVisited);
+/*
+	var res1  = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"VALUE"});
+	var res2 = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"PATH"});*/	
+
+	var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
+	var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
+
+	for(var item in res2)
+	{
+		console.log(res1[item] + ' : ' + res2[item]);
+	}
+
 }
 
 fs           = require('fs');
