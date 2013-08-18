@@ -26,7 +26,7 @@ function visitMemberExpression(node, nameChain)
 	if(node.object.type === 'Identifier')
 	{
 		var name = node.object.name;
-		if(node.property.name !== 'prototype')
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			name = name+'.'+node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
@@ -38,7 +38,7 @@ function visitMemberExpression(node, nameChain)
 	{
 		//console.log('THIS');
 		var name = 'this';
-		if(node.property.name !== 'prototype')
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			name = name +'.'+node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
@@ -58,7 +58,7 @@ function visitMemberExpression(node, nameChain)
 	else if(node.object.type === 'MemberExpression')
 	{
 		//console.log('YES');
-		if(node.property.name !== 'prototype')
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			nameChain[nameChain.length] = node.property.name;
 		//console.log('---' + node.property.name);
 		return visitMemberExpression(node.object, nameChain);
@@ -506,7 +506,7 @@ var performAtNode = function(node)
 					var newArray = [];
 					for(var i=0; i<value.length; i++)
 					{
-						if(value[i] == "prototype")
+						if(value[i] === 'prototype' ||  value[i] === 'self')
 						{
 
 						}
