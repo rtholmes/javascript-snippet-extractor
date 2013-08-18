@@ -25,7 +25,9 @@ function visitMemberExpression(node, nameChain)
 {
 	if(node.object.type === 'Identifier')
 	{
-		var name = node.object.name+'.'+node.property.name;
+		var name = node.object.name;
+		if(node.property.name !== 'prototype')
+			name = name+'.'+node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
 			name = name +'.'+nameChain[j];
@@ -35,7 +37,9 @@ function visitMemberExpression(node, nameChain)
 	else if(node.object.type === 'ThisExpression')
 	{
 		//console.log('THIS');
-		var name = 'this'+'.'+node.property.name;
+		var name = 'this';
+		if(node.property.name !== 'prototype')
+			name = name +'.'+node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
 			name = name +'.'+nameChain[j];
@@ -54,7 +58,8 @@ function visitMemberExpression(node, nameChain)
 	else if(node.object.type === 'MemberExpression')
 	{
 		//console.log('YES');
-		nameChain[nameChain.length] = node.property.name;
+		if(node.property.name !== 'prototype')
+			nameChain[nameChain.length] = node.property.name;
 		//console.log('---' + node.property.name);
 		return visitMemberExpression(node.object, nameChain);
 	}
@@ -693,7 +698,8 @@ var performAtNode = function(node)
 					console.log(leftNodes);
 					for(var item in leftNodes)
 					{
-						identifiedMethods[identifiedMethods.length] = leftNodes[item];
+						var functionId = leftNodes[item];
+						identifiedMethods[identifiedMethods.length] = functionId;
 					}
 					console.log('------------------------------------------------------------------------------');
 				}
