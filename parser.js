@@ -603,18 +603,30 @@ var performAtNode = function(node)
 				var res10_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 				console.log('done 5');
 				
+				Array.prototype.contains = function(obj) 
+				{
+ 			   		var i = this.length;
+    				while (i--) 
+    				{
+        				if (this[i] === obj) 
+        				{
+            				return true;
+        				}
+			   		 }
+				    return false;
+				}
+
 				var res9 = [];
 				var res10 = [];
 				for(var item in res9_temp)
 				{
-					var index = res2.indexOf(res9_temp[item]);
-					if(index !== -1)
+					if(res2.contains(res9_temp[item]))
 					{
 						res9[res9.length] = res9_temp[item];
 						res10[res10.length] = res10_temp[item];
 					}
 				}
-				
+
 				res2 = res2.concat(res4, res6, res8);	
 				res1 = res1.concat(res3, res5, res7);
 				console.log('done merging');
