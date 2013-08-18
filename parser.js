@@ -587,7 +587,7 @@ var performAtNode = function(node)
 				var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
 				console.log('done 1');
 
-				/*var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
+				var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
 				var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
 				console.log('done 2');				
 				
@@ -599,11 +599,12 @@ var performAtNode = function(node)
 				var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"PATH"});
 				console.log('done 4');
 
-				var res2 = res2.concat(res4, res6, res8);*/
 				var res9 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
 				var res10 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 				console.log('done 4');
-
+				
+				res2 = res2.concat(res4, res6, res8, res10);	
+				res1 = res1.concat(res3, res5, res7, res9);
 
 				console.log('done merging');
 
