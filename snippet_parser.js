@@ -203,7 +203,7 @@ function analyzeCode(code)
 			}
 			astcopy = node;
 		}
-		console.log(astcopy);
+		console.log(astcopy.type);
 		console.log('-------------------');
 	}
 }
