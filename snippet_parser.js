@@ -198,13 +198,13 @@ function analyzeCode(code)
 			{
 				if(node.hasOwnProperty('type'))
 				{
-					//console.log(node.type);
+					console.log(node.type);
 				}
 			}
 			astcopy = node;
 		}
-		console.log('-------------------');
 		console.log(astcopy);
+		console.log('-------------------');
 	}
 }
 
