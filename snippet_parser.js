@@ -175,34 +175,36 @@ function analyzeCode(code)
 	var res2 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"PATH"});	
 	console.log('done 3');
 
-		//console.log(res1[item] + ' : ' + res2[item]);
-		var breakFlag = 0;
-		for(item in res2)
+	//console.log(res1[item] + ' : ' + res2[item]);
+	var breakFlag = 0;
+	for(item in res2)
+	{
+		var test = res2[item];
+		test = test.slice(1);
+		var array = test.split(']');
+		for(var item in array)
 		{
-			var test = res2[item];
-			test = test.slice(1);
-			var array = test.split(']');
-			for(var item in array)
+			if(isInt(array[item][1]))
+				array[item] = array[item].slice(1);
+			else
+				array[item] = array[item].slice(2, -1);
+		}
+		var astcopy = ast;
+		var leftNodes = [];
+		for(var item in array)
+		{
+			var node = astcopy[array[item]];
+			if(node !== undefined)
 			{
-				if(isInt(array[item][1]))
-					array[item] = array[item].slice(1);
-				else
-					array[item] = array[item].slice(2, -1);
-			}
-			var astcopy = ast;
-			var leftNodes = [];
-			for(var item in array)
-			{
-				var node = astcopy[array[item]];
-				if(node !== undefined)
-				{
 				if(node.hasOwnProperty('type'))
 				{
-					console.log(node.type);
+					//console.log(node.type);
 				}
 			}
 			astcopy = node;
 		}
+		console.log('-------------------');
+		console.log(astcopy);
 	}
 }
 
