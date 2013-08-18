@@ -1,77 +1,3 @@
-function traverse(node, performAtNode, itemsVisited)
-{
-	performAtNode(node);
-	//console.log(itemsVisited);
-	//console.log('------------------------------------');
-	for (var key in node) 
-	{
-		if(node.hasOwnProperty('id') && node.id!== null)
-		{
-			if(node.id.hasOwnProperty('name'))
-				itemsVisited[itemsVisited.length]=node.id.name;
-		}
-		if (node.hasOwnProperty(key)) 
-		{
-			var child = node[key];
-			if (typeof child === 'object' && child !== null) 
-			{
-				if (Array.isArray(child)) 
-				{
-					child.forEach(function(node) 
-					{
-						traverse(node, performAtNode, itemsVisited);
-					});
-				} 
-				else 
-				{
-					traverse(child, performAtNode, itemsVisited);
-				}
-			}
-		}
-	}
-}
-
-var memberExpChain = [];
-
-function visitMemberExpression(node, nameChain)
-{
-	if(node.object.type === 'Identifier')
-	{
-		var name = node.object.name+'.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
-		{
-			name = name +'.'+nameChain[j];
-		}
-		return name;
-	}
-	else if(node.object.type === 'ThisExpression')
-	{
-		//console.log('THIS');
-		var name = 'this'+'.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
-		{
-			name = name +'.'+nameChain[j];
-		}
-		return name;
-	}
-	else if(node.object.type === 'CallExpression')
-	{
-		var name = node.object.callee.name+'().'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
-		{
-			name = name +'.'+nameChain[j];
-		}
-		return name;
-	}
-	else if(node.object.type === 'MemberExpression')
-	{
-		//console.log('YES');
-		nameChain[nameChain.length] = node.property.name;
-		//console.log('---' + node.property.name);
-		return visitMemberExpression(node.object, nameChain);
-	}
-}
-
 var performAtNode = function(node)
 {
 	if(node.hasOwnProperty('type') === false)
@@ -100,6 +26,140 @@ var performAtNode = function(node)
 	}
 
 }
+function visitMemberExpression(node, nameChain)
+{
+	if(node.object.type === 'Identifier')
+	{
+		var name = node.object.name;
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
+			name = name+'.'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'ThisExpression')
+	{
+		//console.log('THIS');
+		var name = 'this';
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
+			name = name +'.'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'CallExpression')
+	{
+		var name = node.object.callee.name+'().'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
+	else if(node.object.type === 'MemberExpression')
+	{
+		//console.log('YES');
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
+			nameChain[nameChain.length] = node.property.name;
+		//console.log('---' + node.property.name);
+		return visitMemberExpression(node.object, nameChain);
+	}
+}
+
+
+function dumpError(err) 
+{
+	if (typeof err === 'object') 
+	{
+		if (err.message) 
+		{
+			console.log('\nMessage: ' + err.message)
+		}
+		if (err.stack) 
+		{
+			console.log('\nStacktrace:')
+			console.log('====================')
+			console.log(err.stack);
+		}
+	} 
+	else 
+	{
+		console.log('dumpError :: argument is not an object');
+	}
+}
+
+function append(array, value)
+{
+	var newArray = [];
+	for(var i=0; i<value.length; i++)
+	{
+		if(value[i] === 'prototype' ||  value[i] === 'self')
+		{
+
+		}
+		else if(array.length === 0)
+		{
+			newArray[newArray.length] = value[i];
+		}
+		else
+		{
+			for(var j=0; j<array.length; j++)
+			{
+				newArray[newArray.length] = array[j].concat('.',value[i]);
+			}
+		}
+	}
+	return newArray;
+}
+
+function getAssignmentChain(assignmentChain)
+{
+	var array =[];
+	for(var j=0; j<assignmentChain.length;j++)
+	{
+		var name;
+		if(assignmentChain[j] === undefined || assignmentChain[j].hasOwnProperty('type') === false)
+		{
+
+		}
+		else if(assignmentChain[j].type === 'MemberExpression')    
+		{	
+			name = visitMemberExpression(assignmentChain[j], []);
+		}
+		else if(assignmentChain[j].type === 'Identifier')
+		{
+			name = assignmentChain[j].name;
+		}
+		else if(assignmentChain[j].type === 'VariableDeclarator')
+		{
+			name = assignmentChain[j].id.name;
+		}
+		array[array.length] = name;
+	}
+	return array;
+}
+
+function isInt(value) 
+{
+	return !isNaN(parseInt(value,10)) && (parseFloat(value,10) == parseInt(value,10)); 
+}
+
+function contains(a, obj) 
+{
+	var i = a.length;
+	while (i--) 
+	{
+		if (a[i] === obj) 
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 function analyzeCode(code) 
 {
@@ -107,7 +167,6 @@ function analyzeCode(code)
 	var identifiedMethods = [];
 	var jsonpath = require('JSONPath').eval;
 
-	//traverse(ast, performAtNode, itemsVisited);
 /*
 	var res1 = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"VALUE"});
 	var res2 = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"PATH"});*/	
@@ -160,21 +219,4 @@ catch(err)
 {
 	var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 	dumpError(err);
-}
-
-
-function dumpError(err) 
-{
-	if (typeof err === 'object') {
-		if (err.message) {
-			console.log('\nMessage: ' + err.message)
-		}
-		if (err.stack) {
-			console.log('\nStacktrace:')
-			console.log('====================')
-			console.log(err.stack);
-		}
-	} else {
-		console.log('dumpError :: argument is not an object');
-	}
 }
