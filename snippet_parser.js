@@ -200,8 +200,9 @@ function analyzeCode(code)
 				{
 					console.log(node.type);
 				}
+				astcopy = node;
 			}
-			astcopy = node;
+			
 		}
 		console.log(astcopy.type);
 		console.log('-------------------');
