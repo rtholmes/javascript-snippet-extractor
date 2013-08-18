@@ -600,7 +600,7 @@ var performAtNode = function(node)
 				console.log('done 4');
 
 				var res2 = res2.concat(res4, res6, res8);*/
-				var res9 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"VALUE"});
+				var res9 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
 				var res10 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 				console.log('done 4');
 
