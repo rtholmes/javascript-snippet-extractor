@@ -501,7 +501,11 @@ var performAtNode = function(node)
 					var newArray = [];
 					for(var i=0; i<value.length; i++)
 					{
-						if(array.length === 0)
+						if(value[i] === 'prototype')
+						{
+
+						}
+						else if(array.length === 0)
 						{
 							newArray[newArray.length] = value[i];
 						}
