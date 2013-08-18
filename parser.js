@@ -603,24 +603,24 @@ var performAtNode = function(node)
 				var res10_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 				console.log('done 5');
 				
-				Array.prototype.contains = function(obj) 
+				function contains(a, obj) 
 				{
- 			   		var i = this.length;
+    				var i = a.length;
     				while (i--) 
     				{
-        				if (this[i] === obj) 
-        				{
-            				return true;
-        				}
-			   		 }
-				    return false;
+       					if (a[i] === obj) 
+       					{
+           					return true;
+       					}
+    				}
+    				return false;
 				}
 
 				var res9 = [];
 				var res10 = [];
 				for(var item in res9_temp)
 				{
-					if(res2.contains(res9_temp[item]))
+					if(contains(res2, res9_temp[item]))
 					{
 						res9[res9.length] = res9_temp[item];
 						res10[res10.length] = res10_temp[item];
