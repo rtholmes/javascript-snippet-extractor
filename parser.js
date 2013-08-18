@@ -599,13 +599,24 @@ var performAtNode = function(node)
 				var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"PATH"});
 				console.log('done 4');
 
-				var res9 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
-				var res10 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
-				console.log('done 4');
+				var res9_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
+				var res10_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
+				console.log('done 5');
 				
-				res2 = res2.concat(res4, res6, res8, res10);	
-				res1 = res1.concat(res3, res5, res7, res9);
-
+				var res9 = [];
+				var res10 = [];
+				for(var item in res9_temp)
+				{
+					var index = res2.indexOf(res9_temp[item]);
+					if(index !== -1)
+					{
+						res9[res9.length] = res9_temp[item];
+						res10[res10.length] = res10_temp[item];
+					}
+				}
+				
+				res2 = res2.concat(res4, res6, res8);	
+				res1 = res1.concat(res3, res5, res7);
 				console.log('done merging');
 
 				var breakFlag = 0;
