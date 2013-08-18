@@ -629,8 +629,6 @@ var performAtNode = function(node)
 						res10[res10.length] = res10_temp[item];
 					}
 				}
-				console.log('wheeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
-				console.log(res9);
 				res2 = res2.concat(res10);	
 				res1 = res1.concat(res9);
 				console.log('done merging');
@@ -739,10 +737,10 @@ var performAtNode = function(node)
  			console.log(identifiedMethods.length);
 				/*var video = eval(JSON.stringify(res2[0]).replace('$','ast'));
 				console.log(eval(eval(video)));*/
-				for(var item in res9)
+				/*for(var item in res9)
 				{
 					console.log(res9[item] + " : " + res10[item]);
-				}
+				}*/
 		}
 
 
