@@ -1,31 +1,3 @@
-var performAtNode = function(node)
-{
-	if(node.hasOwnProperty('type') === false)
-	{
-
-	}
-	else if(node.type === 'CallExpression')
-	{
-		var callee = node.callee;
-		var name;
-		if(callee.type === 'MemberExpression')
-		{
-			name = visitMemberExpression(callee, []);
-			//console.log(name);
-		}
-		else if(callee.type === 'Identifier')
-		{
-			name = callee.name;
-			//console.log(name);
-		}
-		else if(true)
-		{
-
-		}
-		console.log(name + '  :  ' + node.arguments.length);
-	}
-
-}
 function visitMemberExpression(node, nameChain)
 {
 	if(node.object.type === 'Identifier')
@@ -204,7 +176,19 @@ function analyzeCode(code)
 			}
 			
 		}
-		console.log(astcopy.type);
+		if(astcopy.callee.type === 'Identifier')
+		{
+			console.log(astcopy.callee.name);
+		}
+		else if(astcopy.callee.type === 'MemberExpression')
+		{
+			console.log(visitMemberExpression(astcopy.callee, []));
+		}
+		else
+		{
+			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee);
+		}
+		//console.log(astcopy.type);
 		console.log('-------------------');
 	}
 }
