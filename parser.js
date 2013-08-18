@@ -501,7 +501,7 @@ var performAtNode = function(node)
 					var newArray = [];
 					for(var i=0; i<value.length; i++)
 					{
-						if(value[i] === 'prototype')
+						if(value[i] == "prototype")
 						{
 
 						}
