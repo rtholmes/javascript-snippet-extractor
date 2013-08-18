@@ -622,14 +622,15 @@ var performAtNode = function(node)
 				var res10 = [];
 				for(var item in res9_temp)
 				{
-					console.log(item);
+
 					if(contains(res1, res9_temp[item]) === true)
 					{
 						res9[res9.length] = res9_temp[item];
 						res10[res10.length] = res10_temp[item];
 					}
 				}
-
+				console.log('wheeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+				console.log(res9);
 				res2 = res2.concat(res10);	
 				res1 = res1.concat(res9);
 				console.log('done merging');
