@@ -615,20 +615,22 @@ var performAtNode = function(node)
     				}
     				return false;
 				}
+				res2 = res2.concat(res4, res6, res8);
+				res1 = res1.concat(res3, res5, res7);
 
 				var res9 = [];
 				var res10 = [];
 				for(var item in res9_temp)
 				{
-					if(contains(res2, res9_temp[item]) === true)
+					if(contains(res1, res9_temp[item]) === true)
 					{
 						res9[res9.length] = res9_temp[item];
 						res10[res10.length] = res10_temp[item];
 					}
 				}
 
-				res2 = res2.concat(res4, res6, res8, res10);	
-				res1 = res1.concat(res3, res5, res7, res9);
+				res2 = res2.concat(res10);	
+				res1 = res1.concat(res9);
 				console.log('done merging');
 
 				var breakFlag = 0;
