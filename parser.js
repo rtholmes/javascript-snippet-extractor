@@ -587,7 +587,7 @@ var performAtNode = function(node)
 				var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
 				console.log('done 1');
 
-				var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
+				/*var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
 				var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
 				console.log('done 2');				
 				
@@ -599,9 +599,12 @@ var performAtNode = function(node)
 				var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"PATH"});
 				console.log('done 4');
 
-		
+				var res2 = res2.concat(res4, res6, res8);*/
+				var res9 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"VALUE"});
+				var res10 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
+				console.log('done 4');
 
-				var res2 = res2.concat(res4, res6, res8);
+
 				console.log('done merging');
 
 				var breakFlag = 0;
@@ -650,7 +653,6 @@ var performAtNode = function(node)
 									//var nameOfME = visitMemberExpression(node.left, []);
 									//console.log('---AE--'+nameOfME);
 								}
-
 								else if(node.left.type === 'MemberExpression')    
 								{
 									assignmentChain[assignmentChain.length] = node.left;
@@ -709,7 +711,10 @@ var performAtNode = function(node)
  			console.log(identifiedMethods.length);
 				/*var video = eval(JSON.stringify(res2[0]).replace('$','ast'));
 				console.log(eval(eval(video)));*/
-
+				for(var item in res9)
+				{
+					console.log(res9[item] + " : " + res10[item]);
+				}
 		}
 
 
