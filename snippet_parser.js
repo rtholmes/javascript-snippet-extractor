@@ -170,7 +170,7 @@ function analyzeCode(code)
 			{
 				if(node.hasOwnProperty('type'))
 				{
-					console.log(node.type);
+					//console.log(node.type);
 				}
 				astcopy = node;
 			}
@@ -189,7 +189,7 @@ function analyzeCode(code)
 			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee);
 		}
 		//console.log(astcopy.type);
-		console.log('-------------------');
+		//console.log('-------------------');
 	}
 }
 
