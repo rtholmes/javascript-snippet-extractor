@@ -594,7 +594,7 @@ var performAtNode = function(node)
 
 				var res2 = res2.concat(res4, res6, res8);
 				console.log('done merging');
-				
+
 				var breakFlag = 0;
 				for(item in res2)
 				{
@@ -638,7 +638,7 @@ var performAtNode = function(node)
 								if(node.right.type === 'AssignmentExpression')
 								{
 									assignmentChain[assignmentChain.length] = node.left;
-									var nameOfME = visitMemberExpression(node.left, []);
+									//var nameOfME = visitMemberExpression(node.left, []);
 									//console.log('---AE--'+nameOfME);
 								}
 
