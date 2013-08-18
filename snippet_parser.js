@@ -178,11 +178,11 @@ function analyzeCode(code)
 		}
 		if(astcopy.callee.type === 'Identifier')
 		{
-			console.log(astcopy.callee.name);
+			console.log('id : ' + astcopy.callee.name);
 		}
 		else if(astcopy.callee.type === 'MemberExpression')
 		{
-			console.log(visitMemberExpression(astcopy.callee, []));
+			console.log('me : ' + visitMemberExpression(astcopy.callee, []));
 		}
 		else
 		{
