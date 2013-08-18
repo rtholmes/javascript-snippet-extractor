@@ -622,6 +622,7 @@ var performAtNode = function(node)
 				var res10 = [];
 				for(var item in res9_temp)
 				{
+					console.log(item);
 					if(contains(res1, res9_temp[item]) === true)
 					{
 						res9[res9.length] = res9_temp[item];
