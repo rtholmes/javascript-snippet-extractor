@@ -301,7 +301,7 @@ fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
-//console.log(files);
+console.log(files);
 for(var i=0; i<files.length; i++)
 {
 	var filename = files[i];
