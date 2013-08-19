@@ -143,23 +143,18 @@ function analyzeCode(code)
 
 	var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
 	var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')]", {resultType:"PATH"});	
-	console.log('done 1');
 
 	var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
 	var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')]", {resultType:"PATH"});	
-	console.log('done 2');				
 
 	var res5 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"VALUE"});
 	var res6 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )]", {resultType:"PATH"});	
-	console.log('done 3');
 
 	var res7 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
 	var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )]", {resultType:"PATH"});
-	console.log('done 4');
 
 	var res9_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
 	var res10_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
-	console.log('done 5');
 
 	
 	res2 = res2.concat(res4, res6, res8);
@@ -177,7 +172,7 @@ function analyzeCode(code)
 	}
 	res2 = res2.concat(res10);	
 	res1 = res1.concat(res9);
-	console.log('done merging');
+	//console.log('done merging');
 	var breakFlag = 0;
 	for(item in res2)
 	{
@@ -209,7 +204,7 @@ function analyzeCode(code)
 						callStatementCount++;
 						if(callStatementCount > 1)
 						{
-							console.log('Inaccessible!');
+							//console.log('Inaccessible!');
 							breakFlag =1;
 							break;
 						}
@@ -235,7 +230,7 @@ function analyzeCode(code)
 						var assignmentArray = [];
 						assignmentArray = getAssignmentChain(assignmentChain);
 						leftNodes = append(leftNodes, assignmentArray);
-						console.log('---'+node.left.name);
+						//console.log('---'+node.left.name);
 						assignmentChain = [];
 					}
 				}
@@ -256,7 +251,7 @@ function analyzeCode(code)
 						assignmentArray = getAssignmentChain(assignmentChain);
 						leftNodes = append(leftNodes, assignmentArray);
 						assignmentChain = [];
-						console.log('---'+node.id.name);
+						//console.log('---'+node.id.name);
 					}
 				}
 				if(node.type === 'Property')
@@ -264,14 +259,14 @@ function analyzeCode(code)
 					var tempArray = [];
 					tempArray[0]=node.key.name;
 					leftNodes = append(leftNodes, tempArray);
-					console.log('---'+node.key.name);
+					//console.log('---'+node.key.name);
 				}
 				if(node.type === 'FunctionDeclaration')
 				{
 					var tempArray = [];
 					tempArray[0]=node.id.name;
 					leftNodes = append(leftNodes, tempArray);
-					console.log('-------'+node.id.name);
+					//console.log('-------'+node.id.name);
 				}
 				astcopy = node;
 			}
@@ -286,10 +281,15 @@ function analyzeCode(code)
 			}
 			console.log('------------------------------------------------------------------------------');
 		}
- 	}
- 	for(var key in identifiedMethods)
- 		console.log(key + " : " + identifiedMethods[key]);
- 	console.log(identifiedMethods.length);
+	}
+	var count = 0;
+	for(var key in identifiedMethods)
+	{
+		console.log(key + " : " + identifiedMethods[key]);
+		count++;
+	}
+	console.log(count);
+	return identifiedMethods;
 }
 
 
@@ -302,7 +302,7 @@ fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
-console.log(files);
+//console.log(files);
 for(var i=0; i<files.length; i++)
 {
 	var filename = files[i];
