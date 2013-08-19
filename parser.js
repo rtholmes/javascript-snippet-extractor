@@ -306,7 +306,7 @@ console.log(files);
 for(var i=0; i<files.length; i++)
 {
 	var filename = files[i];
-	var data = fs.readFileSync(filename);
+	var data = fs.readFileSync(path + filename);
 	var esprima = require('esprima');
 	//console.log(esprima.parse(data));
 
