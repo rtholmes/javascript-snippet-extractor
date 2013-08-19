@@ -1,0 +1,839 @@
+done 1
+done 2
+done 3
+done 4
+done merging
+---jQuery
+[ 'jQuery' ]
+------------------------------------------------------------------------------
+---fcamelCase
+[ 'fcamelCase' ]
+------------------------------------------------------------------------------
+---completed
+[ 'completed' ]
+------------------------------------------------------------------------------
+---detach
+[ 'detach' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---fire
+[ 'jQuery.Callbacks.fire' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---add
+[ 'jQuery.param.add' ]
+------------------------------------------------------------------------------
+-------Animation
+---tick
+[ 'Animation.tick' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+---init
+[ 'jQuery.fn.init', 'jQuery.init' ]
+------------------------------------------------------------------------------
+---toArray
+[ 'jQuery.fn.toArray', 'jQuery.toArray' ]
+------------------------------------------------------------------------------
+---get
+[ 'jQuery.fn.get', 'jQuery.get' ]
+------------------------------------------------------------------------------
+---pushStack
+[ 'jQuery.fn.pushStack', 'jQuery.pushStack' ]
+------------------------------------------------------------------------------
+---each
+[ 'jQuery.fn.each', 'jQuery.each' ]
+------------------------------------------------------------------------------
+---ready
+[ 'jQuery.fn.ready', 'jQuery.ready' ]
+------------------------------------------------------------------------------
+---slice
+[ 'jQuery.fn.slice', 'jQuery.slice' ]
+------------------------------------------------------------------------------
+---first
+[ 'jQuery.fn.first', 'jQuery.first' ]
+------------------------------------------------------------------------------
+---last
+[ 'jQuery.fn.last', 'jQuery.last' ]
+------------------------------------------------------------------------------
+---eq
+[ 'jQuery.fn.eq', 'jQuery.eq' ]
+------------------------------------------------------------------------------
+---map
+[ 'jQuery.fn.map', 'jQuery.map' ]
+------------------------------------------------------------------------------
+---end
+[ 'jQuery.fn.end', 'jQuery.end' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---self
+---add
+[ 'add' ]
+------------------------------------------------------------------------------
+---self
+---remove
+[ 'remove' ]
+------------------------------------------------------------------------------
+---self
+---has
+[ 'has' ]
+------------------------------------------------------------------------------
+---self
+---empty
+[ 'empty' ]
+------------------------------------------------------------------------------
+---self
+---disable
+[ 'disable' ]
+------------------------------------------------------------------------------
+---self
+---disabled
+[ 'disabled' ]
+------------------------------------------------------------------------------
+---self
+---lock
+[ 'lock' ]
+------------------------------------------------------------------------------
+---self
+---locked
+[ 'locked' ]
+------------------------------------------------------------------------------
+---self
+---fireWith
+[ 'fireWith' ]
+------------------------------------------------------------------------------
+---self
+---fire
+[ 'fire' ]
+------------------------------------------------------------------------------
+---self
+---fired
+[ 'fired' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---boolHook
+---set
+[ 'boolHook.set' ]
+------------------------------------------------------------------------------
+---set
+[ 'jQuery.attrHooks.value.set' ]
+------------------------------------------------------------------------------
+---nodeHook
+---set
+[ 'nodeHook.set' ]
+------------------------------------------------------------------------------
+---get
+[ 'jQuery.valHooks.button.get' ]
+------------------------------------------------------------------------------
+---set
+[ 'jQuery.attrHooks.contenteditable.set' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+---get
+[ 'jQuery.attrHooks.style.get' ]
+------------------------------------------------------------------------------
+---set
+[ 'jQuery.attrHooks.style.set' ]
+------------------------------------------------------------------------------
+---get
+[ 'jQuery.propHooks.selected.get' ]
+------------------------------------------------------------------------------
+Inaccessible!
+---add
+[ 'jQuery.event.add' ]
+------------------------------------------------------------------------------
+---remove
+[ 'jQuery.event.remove' ]
+------------------------------------------------------------------------------
+---trigger
+[ 'jQuery.event.trigger' ]
+------------------------------------------------------------------------------
+---dispatch
+[ 'jQuery.event.dispatch' ]
+------------------------------------------------------------------------------
+---handlers
+[ 'jQuery.event.handlers' ]
+------------------------------------------------------------------------------
+---fix
+[ 'jQuery.event.fix' ]
+------------------------------------------------------------------------------
+---simulate
+[ 'jQuery.event.simulate' ]
+------------------------------------------------------------------------------
+---keyHooks
+---filter
+[ 'jQuery.event.keyHooks.filter' ]
+------------------------------------------------------------------------------
+---mouseHooks
+---filter
+[ 'jQuery.event.mouseHooks.filter' ]
+------------------------------------------------------------------------------
+---special
+---focus
+---trigger
+[ 'jQuery.event.special.focus.trigger' ]
+------------------------------------------------------------------------------
+---special
+---blur
+---trigger
+[ 'jQuery.event.special.blur.trigger' ]
+------------------------------------------------------------------------------
+---special
+---click
+---trigger
+[ 'jQuery.event.special.click.trigger' ]
+------------------------------------------------------------------------------
+---special
+---click
+---_default
+[ 'jQuery.event.special.click._default' ]
+------------------------------------------------------------------------------
+---special
+---beforeunload
+---postDispatch
+[ 'jQuery.event.special.beforeunload.postDispatch' ]
+------------------------------------------------------------------------------
+---preventDefault
+[ 'jQuery.Event.preventDefault' ]
+------------------------------------------------------------------------------
+---stopPropagation
+[ 'jQuery.Event.stopPropagation' ]
+------------------------------------------------------------------------------
+---stopImmediatePropagation
+[ 'jQuery.Event.stopImmediatePropagation' ]
+------------------------------------------------------------------------------
+Inaccessible!
+---setup
+[ 'jQuery.event.submit.special.setup' ]
+------------------------------------------------------------------------------
+---postDispatch
+[ 'jQuery.event.submit.special.postDispatch' ]
+------------------------------------------------------------------------------
+---teardown
+[ 'jQuery.event.submit.special.teardown' ]
+------------------------------------------------------------------------------
+---setup
+[ 'jQuery.event.change.special.setup' ]
+------------------------------------------------------------------------------
+---handle
+[ 'jQuery.event.change.special.handle' ]
+------------------------------------------------------------------------------
+---teardown
+[ 'jQuery.event.change.special.teardown' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---get
+[ 'jQuery.cssHooks.opacity.get' ]
+------------------------------------------------------------------------------
+---set
+[ 'jQuery.cssHooks.opacity.set' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+-------Animation
+---animation
+Inaccessible!
+-------Animation
+---animation
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---init
+[ 'Tween.init' ]
+------------------------------------------------------------------------------
+---cur
+[ 'Tween.cur' ]
+------------------------------------------------------------------------------
+---run
+[ 'Tween.run' ]
+------------------------------------------------------------------------------
+---_default
+---get
+[ 'Tween.propHooks._default.get' ]
+------------------------------------------------------------------------------
+---_default
+---set
+[ 'Tween.propHooks._default.set' ]
+------------------------------------------------------------------------------
+---set
+[ 'Tween.propHooks.scrollTop.set',
+  'Tween.propHooks.scrollLeft.set' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---linear
+[ 'jQuery.easing.linear' ]
+------------------------------------------------------------------------------
+---swing
+[ 'jQuery.easing.swing' ]
+------------------------------------------------------------------------------
+---setOffset
+[ 'jQuery.offset.setOffset' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+[ 'jQuery.extend', 'jQuery.fn.extend' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+[ 'jQuery.ready.promise' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+[ 'jQuery.Callbacks' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+[ 'jQuery.expr.id.attrHandle',
+  'jQuery.expr.name.attrHandle',
+  'jQuery.expr.coords.attrHandle' ]
+------------------------------------------------------------------------------
+Inaccessible!
+---add
+[ 'jQuery.event.add.eventHandle',
+  'jQuery.event.add.elemData.handle' ]
+------------------------------------------------------------------------------
+[ 'jQuery.Event' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+---getStyles
+[ 'getStyles' ]
+------------------------------------------------------------------------------
+---curCSS
+[ 'curCSS' ]
+------------------------------------------------------------------------------
+---getStyles
+[ 'getStyles' ]
+------------------------------------------------------------------------------
+---curCSS
+[ 'curCSS' ]
+------------------------------------------------------------------------------
+[ 'jQuery.expr.hidden.filters' ]
+------------------------------------------------------------------------------
+[ 'jQuery.expr.visible.filters' ]
+------------------------------------------------------------------------------
+[ 'jQuery.param' ]
+------------------------------------------------------------------------------
+Inaccessible!
+[ 'jQuery.fn.load' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+-------defaultPrefilter
+[ 'defaultPrefilter.hooks.empty.fire' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+[ 'jQuery.speed' ]
+------------------------------------------------------------------------------
+[ 'jQuery.speed.opt.complete' ]
+------------------------------------------------------------------------------
+[ 'jQuery.fx.tick' ]
+------------------------------------------------------------------------------
+[ 'jQuery.fx.timer' ]
+------------------------------------------------------------------------------
+[ 'jQuery.fx.start' ]
+------------------------------------------------------------------------------
+[ 'jQuery.fx.stop' ]
+------------------------------------------------------------------------------
+[ 'jQuery.expr.animated.filters' ]
+------------------------------------------------------------------------------
+[ 'jQuery.fn.offset' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+[ 'jQuery.fn.size' ]
+------------------------------------------------------------------------------
+-------isArraylike
+[ 'isArraylike' ]
+------------------------------------------------------------------------------
+-------createOptions
+[ 'createOptions' ]
+------------------------------------------------------------------------------
+-------internalData
+[ 'internalData' ]
+------------------------------------------------------------------------------
+-------internalRemoveData
+[ 'internalRemoveData' ]
+------------------------------------------------------------------------------
+-------dataAttr
+[ 'dataAttr' ]
+------------------------------------------------------------------------------
+-------isEmptyDataObject
+[ 'isEmptyDataObject' ]
+------------------------------------------------------------------------------
+-------returnTrue
+[ 'returnTrue' ]
+------------------------------------------------------------------------------
+-------returnFalse
+[ 'returnFalse' ]
+------------------------------------------------------------------------------
+-------safeActiveElement
+[ 'safeActiveElement' ]
+------------------------------------------------------------------------------
+-------sibling
+[ 'sibling' ]
+------------------------------------------------------------------------------
+-------winnow
+[ 'winnow' ]
+------------------------------------------------------------------------------
+-------createSafeFragment
+[ 'createSafeFragment' ]
+------------------------------------------------------------------------------
+-------manipulationTarget
+[ 'manipulationTarget' ]
+------------------------------------------------------------------------------
+-------disableScript
+[ 'disableScript' ]
+------------------------------------------------------------------------------
+-------restoreScript
+[ 'restoreScript' ]
+------------------------------------------------------------------------------
+-------setGlobalEval
+[ 'setGlobalEval' ]
+------------------------------------------------------------------------------
+-------cloneCopyEvent
+[ 'cloneCopyEvent' ]
+------------------------------------------------------------------------------
+-------fixCloneNodeIssues
+[ 'fixCloneNodeIssues' ]
+------------------------------------------------------------------------------
+-------getAll
+[ 'getAll' ]
+------------------------------------------------------------------------------
+-------fixDefaultChecked
+[ 'fixDefaultChecked' ]
+------------------------------------------------------------------------------
+-------vendorPropName
+[ 'vendorPropName' ]
+------------------------------------------------------------------------------
+-------isHidden
+[ 'isHidden' ]
+------------------------------------------------------------------------------
+-------showHide
+[ 'showHide' ]
+------------------------------------------------------------------------------
+-------setPositiveNumber
+[ 'setPositiveNumber' ]
+------------------------------------------------------------------------------
+-------augmentWidthOrHeight
+[ 'augmentWidthOrHeight' ]
+------------------------------------------------------------------------------
+-------getWidthOrHeight
+[ 'getWidthOrHeight' ]
+------------------------------------------------------------------------------
+-------css_defaultDisplay
+[ 'css_defaultDisplay' ]
+------------------------------------------------------------------------------
+-------actualDisplay
+[ 'actualDisplay' ]
+------------------------------------------------------------------------------
+-------buildParams
+[ 'buildParams' ]
+------------------------------------------------------------------------------
+-------addToPrefiltersOrTransports
+[ 'addToPrefiltersOrTransports' ]
+------------------------------------------------------------------------------
+-------inspectPrefiltersOrTransports
+[ 'inspectPrefiltersOrTransports' ]
+------------------------------------------------------------------------------
+-------ajaxExtend
+[ 'ajaxExtend' ]
+------------------------------------------------------------------------------
+-------ajaxHandleResponses
+[ 'ajaxHandleResponses' ]
+------------------------------------------------------------------------------
+-------ajaxConvert
+[ 'ajaxConvert' ]
+------------------------------------------------------------------------------
+-------createStandardXHR
+[ 'createStandardXHR' ]
+------------------------------------------------------------------------------
+-------createActiveXHR
+[ 'createActiveXHR' ]
+------------------------------------------------------------------------------
+-------createFxNow
+[ 'createFxNow' ]
+------------------------------------------------------------------------------
+-------createTween
+[ 'createTween' ]
+------------------------------------------------------------------------------
+-------Animation
+[ 'Animation' ]
+------------------------------------------------------------------------------
+-------propFilter
+[ 'propFilter' ]
+------------------------------------------------------------------------------
+-------defaultPrefilter
+[ 'defaultPrefilter' ]
+------------------------------------------------------------------------------
+-------Tween
+[ 'Tween' ]
+------------------------------------------------------------------------------
+-------genFx
+[ 'genFx' ]
+------------------------------------------------------------------------------
+-------getWindow
+[ 'getWindow' ]
+------------------------------------------------------------------------------
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+Inaccessible!
+-------inspectPrefiltersOrTransports
+-------inspect
+[ 'inspectPrefiltersOrTransports.inspect' ]
+------------------------------------------------------------------------------
+Inaccessible!
+[ 'jQuery',
+  'fcamelCase',
+  'completed',
+  'detach',
+  'jQuery.Callbacks.fire',
+  'jQuery.param.add',
+  'Animation.tick',
+  'jQuery.fn.init',
+  'jQuery.init',
+  'jQuery.fn.toArray',
+  'jQuery.toArray',
+  'jQuery.fn.get',
+  'jQuery.get',
+  'jQuery.fn.pushStack',
+  'jQuery.pushStack',
+  'jQuery.fn.each',
+  'jQuery.each',
+  'jQuery.fn.ready',
+  'jQuery.ready',
+  'jQuery.fn.slice',
+  'jQuery.slice',
+  'jQuery.fn.first',
+  'jQuery.first',
+  'jQuery.fn.last',
+  'jQuery.last',
+  'jQuery.fn.eq',
+  'jQuery.eq',
+  'jQuery.fn.map',
+  'jQuery.map',
+  'jQuery.fn.end',
+  'jQuery.end',
+  'add',
+  'remove',
+  'has',
+  'empty',
+  'disable',
+  'disabled',
+  'lock',
+  'locked',
+  'fireWith',
+  'fire',
+  'fired',
+  'boolHook.set',
+  'jQuery.attrHooks.value.set',
+  'nodeHook.set',
+  'jQuery.valHooks.button.get',
+  'jQuery.attrHooks.contenteditable.set',
+  'jQuery.attrHooks.style.get',
+  'jQuery.attrHooks.style.set',
+  'jQuery.propHooks.selected.get',
+  'jQuery.event.add',
+  'jQuery.event.remove',
+  'jQuery.event.trigger',
+  'jQuery.event.dispatch',
+  'jQuery.event.handlers',
+  'jQuery.event.fix',
+  'jQuery.event.simulate',
+  'jQuery.event.keyHooks.filter',
+  'jQuery.event.mouseHooks.filter',
+  'jQuery.event.special.focus.trigger',
+  'jQuery.event.special.blur.trigger',
+  'jQuery.event.special.click.trigger',
+  'jQuery.event.special.click._default',
+  'jQuery.event.special.beforeunload.postDispatch',
+  'jQuery.Event.preventDefault',
+  'jQuery.Event.stopPropagation',
+  'jQuery.Event.stopImmediatePropagation',
+  'jQuery.event.submit.special.setup',
+  'jQuery.event.submit.special.postDispatch',
+  'jQuery.event.submit.special.teardown',
+  'jQuery.event.change.special.setup',
+  'jQuery.event.change.special.handle',
+  'jQuery.event.change.special.teardown',
+  'jQuery.cssHooks.opacity.get',
+  'jQuery.cssHooks.opacity.set',
+  'Tween.init',
+  'Tween.cur',
+  'Tween.run',
+  'Tween.propHooks._default.get',
+  'Tween.propHooks._default.set',
+  'Tween.propHooks.scrollTop.set',
+  'Tween.propHooks.scrollLeft.set',
+  'jQuery.easing.linear',
+  'jQuery.easing.swing',
+  'jQuery.offset.setOffset',
+  'jQuery.extend',
+  'jQuery.fn.extend',
+  'jQuery.ready.promise',
+  'jQuery.Callbacks',
+  'jQuery.expr.id.attrHandle',
+  'jQuery.expr.name.attrHandle',
+  'jQuery.expr.coords.attrHandle',
+  'jQuery.event.add.eventHandle',
+  'jQuery.event.add.elemData.handle',
+  'jQuery.Event',
+  'getStyles',
+  'curCSS',
+  'getStyles',
+  'curCSS',
+  'jQuery.expr.hidden.filters',
+  'jQuery.expr.visible.filters',
+  'jQuery.param',
+  'jQuery.fn.load',
+  'defaultPrefilter.hooks.empty.fire',
+  'jQuery.speed',
+  'jQuery.speed.opt.complete',
+  'jQuery.fx.tick',
+  'jQuery.fx.timer',
+  'jQuery.fx.start',
+  'jQuery.fx.stop',
+  'jQuery.expr.animated.filters',
+  'jQuery.fn.offset',
+  'jQuery.fn.size',
+  'isArraylike',
+  'createOptions',
+  'internalData',
+  'internalRemoveData',
+  'dataAttr',
+  'isEmptyDataObject',
+  'returnTrue',
+  'returnFalse',
+  'safeActiveElement',
+  'sibling',
+  'winnow',
+  'createSafeFragment',
+  'manipulationTarget',
+  'disableScript',
+  'restoreScript',
+  'setGlobalEval',
+  'cloneCopyEvent',
+  'fixCloneNodeIssues',
+  'getAll',
+  'fixDefaultChecked',
+  'vendorPropName',
+  'isHidden',
+  'showHide',
+  'setPositiveNumber',
+  'augmentWidthOrHeight',
+  'getWidthOrHeight',
+  'css_defaultDisplay',
+  'actualDisplay',
+  'buildParams',
+  'addToPrefiltersOrTransports',
+  'inspectPrefiltersOrTransports',
+  'ajaxExtend',
+  'ajaxHandleResponses',
+  'ajaxConvert',
+  'createStandardXHR',
+  'createActiveXHR',
+  'createFxNow',
+  'createTween',
+  'Animation',
+  'propFilter',
+  'defaultPrefilter',
+  'Tween',
+  'genFx',
+  'getWindow',
+  'inspectPrefiltersOrTransports.inspect' ]
+158
+------------------------------------------------
+[]
+------------------------------------------------
+[]
+------------------------------------------------
