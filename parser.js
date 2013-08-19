@@ -287,19 +287,13 @@ function analyzeCode(code)
 	var count = 0;
 	for(var key in identifiedMethods)
 	{
-		console.log(key + " : " + JSON.stringify(identifiedMethods[key]));
+		//console.log(key + " : " + JSON.stringify(identifiedMethods[key]));
 		count++;
 	}
 	console.log(count);
 	return identifiedMethods;
 }
 
-
-/*if (process.argv.length < 3)
-{
-	console.log('Usage: analyze.js file.js');
-	process.exit(1);
-}*/
 fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
@@ -316,8 +310,12 @@ for(var i=0; i<files.length; i++)
 	{
 		console.log('Processing ' + filename + ' ...');
 		var functionList = analyzeCode(data);
-		//var oracleObject = fs.readFileSync(oracle);
-		//oracleObject[filename.substring(0, -2)] =  functionList;
+		var oracleObject = fs.readFileSync(oracle);
+		oracleObject[filename.substring(0, -2)] =  functionList;
+		fs.writeFile(oracle, JSON.stringify(oracleObject), function(err){
+			  if (err) console.log(err);
+			});
+
 	}
 	catch(err)
 	{
