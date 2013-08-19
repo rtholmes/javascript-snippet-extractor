@@ -194,13 +194,13 @@ function analyzeCode(code)
 		}
 		if(astcopy.left.type === 'Identifier')
 		{
-			console.log('id : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
+			console.log('reid : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
 			requires[astcopy.left.name] = astcopy.right.arguments[0].value;
 		}
 		else if(astcopy.callee.type === 'MemberExpression')
 		{
 			var mName = visitMemberExpression(astcopy.callee, [])
-			console.log('me : ' + mName + ' : ' + astcopy.right.arguments[0].value);
+			console.log('reme : ' + mName + ' : ' + astcopy.right.arguments[0].value);
 			requires[mName] = astcopy.right.arguments[0].value;		
 		}
 		else
