@@ -162,13 +162,15 @@ function analyzeCode(code)
 	
 	var res9 = [];
 	var res10 = [];
+	var res11 = [];
 	for(var item in res9_temp)
 	{
 		var i = contains(res1, res9_temp[item]);
 		if(i !== -1)
 		{
 			res9[res9.length] = res9_temp[item];
-			res10[res10.length] = res1[i];
+			res10[res10.length] = res10_temp[item];
+			res11[res10.length] = res1[i];
 		}
 	}
 	res2 = res2.concat(res10);	
