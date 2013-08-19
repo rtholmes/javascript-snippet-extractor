@@ -294,7 +294,7 @@ function analyzeCode(code)
 	return identifiedMethods;
 }
 
-fs = require('fs');
+var fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
