@@ -40,6 +40,8 @@ function visitMemberExpression(node, nameChain)
 		//console.log('---' + node.property.name);
 		return visitMemberExpression(node.object, nameChain);
 	}
+	else
+		return "no_name";
 }
 
 

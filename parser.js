@@ -137,24 +137,24 @@ function analyzeCode(code)
 {
 	//var ast = esprima.parse(code, {loc : true});
 	var ast = esprima.parse(code);
-	var identifiedMethods = [];
+	var identifiedMethods = {};
 
 	var jsonpath = require('JSONPath').eval;
 
 	var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
-	var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"PATH"});	
+	var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')]", {resultType:"PATH"});	
 	console.log('done 1');
 
 	var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
-	var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"PATH"});	
+	var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')]", {resultType:"PATH"});	
 	console.log('done 2');				
 
 	var res5 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"VALUE"});
-	var res6 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"PATH"});	
+	var res6 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )]", {resultType:"PATH"});	
 	console.log('done 3');
 
 	var res7 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
-	var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"PATH"});
+	var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )]", {resultType:"PATH"});
 	console.log('done 4');
 
 	var res9_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
@@ -273,42 +273,53 @@ function analyzeCode(code)
 					leftNodes = append(leftNodes, tempArray);
 					console.log('-------'+node.id.name);
 				}
+				astcopy = node;
 			}
-			astcopy = node;
 		}
 		if(breakFlag !== 1)
 		{
-			console.log(leftNodes);
+			//console.log(leftNodes);
 			for(var item in leftNodes)
 			{
 				var functionId = leftNodes[item];
-				identifiedMethods[identifiedMethods.length] = functionId;
+				identifiedMethods[functionId] = astcopy;
 			}
 			console.log('------------------------------------------------------------------------------');
 		}
  	}
- 	console.log(identifiedMethods);
+ 	for(var key in identifiedMethods)
+ 		console.log(key + " : " + identifiedMethods[key]);
  	console.log(identifiedMethods.length);
 }
 
 
-if (process.argv.length < 3)
+/*if (process.argv.length < 3)
 {
 	console.log('Usage: analyze.js file.js');
 	process.exit(1);
-}
+}*/
 fs = require('fs');
-var filename = process.argv[2];
-var data = fs.readFileSync(filename);
-var esprima = require('esprima');
-//console.log(esprima.parse(data));
+var oracle = 'oracle.js'
+var path = 'lib/'
+var files = fs.readdirSync(path);
+console.log(files);
+for(var i=0; i<files.length; i++)
+{
+	var filename = files[i];
+	var data = fs.readFileSync(filename);
+	var esprima = require('esprima');
+	//console.log(esprima.parse(data));
 
-try
-{
-	analyzeCode(data);
-}
-catch(err)
-{
-	var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
-	dumpError(err);
+	try
+	{
+		console.log('Processing ' + filename + ' ...');
+		var functionList = analyzeCode(data);
+		//var oracleObject = fs.readFileSync(oracle);
+		//oracleObject[filename.substring(0, -2)] =  functionList;
+	}
+	catch(err)
+	{
+		var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
+		dumpError(err);
+	}
 }
