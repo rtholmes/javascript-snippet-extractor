@@ -310,21 +310,9 @@ for(var i=0; i<files.length; i++)
 	{
 		console.log('Processing ' + filename + ' ...');
 		var functionList = analyzeCode(data);
-		fs.exists(oracle, function (exists) {
-        	if(exists)
-        	{
-        		var oracleObject = fs.readFileSync(oracle);
-        		oracleObject[filename.substring(0, -2)] =  functionList;
-         	 	fs.writeFile(JSON.stringify(oracle, oracleObject));
-        	} 
-        	else 
-        	{
-        		var oracleObject = {};
-        		oracleObject[filename.substring(0, -2)] =  functionList;
-	            fs.writeFile(JSON.stringify(oracle, oracleObject));
-        	}
-    	});
-
+		var oracleObject = fs.readFileSync(oracle);
+        oracleObject[filename.substring(0, -2)] =  functionList;
+        fs.writeFile(oracle, JSON.stringify(oracleObject));
 	}
 	catch(err)
 	{

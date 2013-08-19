@@ -196,7 +196,7 @@ function analyzeCode(code)
 }
 
 
-fs           = require('fs');
+var fs           = require('fs');
 var filename = process.argv[2];
 var data     = fs.readFileSync(filename);
 var esprima  = require('esprima');
