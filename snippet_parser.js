@@ -161,8 +161,8 @@ function analyzeCode(code)
 	var res2 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"PATH"});	
 	console.log('done 3');
 
-	var res3 = jsonpath(ast, "$..[?(@.type==='AssignmentExpression' && @.right!== null && @.right.type === 'FunctionExpression' && @.right.callee !== 'undefined'  && @.right.callee.name!== null && @.right.callee.name === 'require')]", {resultType:"VALUE"});
-	var res4 = jsonpath(ast, "$..[?(@.type==='AssignmentExpression' && @.right!== null && @.right.type === 'FunctionExpression' && @.right.callee !== 'undefined'  && @.right.callee.name!== null && @.right.callee.name === 'require')]", {resultType:"PATH"});	
+	var res3 = jsonpath(ast, "$..[?(@.type==='AssignmentExpression' && @.right!== null && @.right.type === 'FunctionExpression' && @.right.callee !== 'undefined' && @.right.callee.name === 'require')]", {resultType:"VALUE"});
+	var res4 = jsonpath(ast, "$..[?(@.type==='AssignmentExpression' && @.right!== null && @.right.type === 'FunctionExpression' && @.right.callee !== 'undefined' && @.right.callee.name === 'require')]", {resultType:"PATH"});	
 
 	var requires = {};
 	for(var item in res3)
