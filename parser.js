@@ -127,10 +127,10 @@ function contains(a, obj)
 	{
 		if (a[i] === obj) 
 		{
-			return true;
+			return i;
 		}
 	}
-	return false;
+	return -1;
 }
 
 function analyzeCode(code) 
@@ -164,10 +164,11 @@ function analyzeCode(code)
 	var res10 = [];
 	for(var item in res9_temp)
 	{
-		if(contains(res1, res9_temp[item]) === true)
+		var i = contains(res1, res9_temp[item]);
+		if(i !== -1)
 		{
 			res9[res9.length] = res9_temp[item];
-			res10[res10.length] = res10_temp[item];
+			res10[res10.length] = res1[i];
 		}
 	}
 	res2 = res2.concat(res10);	
