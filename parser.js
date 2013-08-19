@@ -279,13 +279,12 @@ function analyzeCode(code)
 				var functionId = leftNodes[item];
 				identifiedMethods[functionId] = astcopy;
 			}
-			console.log('------------------------------------------------------------------------------');
 		}
 	}
 	var count = 0;
 	for(var key in identifiedMethods)
 	{
-		console.log(key + " : " + identifiedMethods[key]);
+		console.log(key + " : " + JSON.stringify(identifiedMethods[key]));
 		count++;
 	}
 	console.log(count);
