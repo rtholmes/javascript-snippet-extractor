@@ -11,6 +11,18 @@ function visitMemberExpression(node, nameChain)
 		}
 		return name;
 	}
+	else if(node.object.type === 'ArrayExpression')
+	{
+		//console.log('THIS');
+		var name = 'ArrayExpression';
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
+			name = name +'.'+node.property.name;
+		for(var j=0; j<nameChain.length;j++)
+		{
+			name = name +'.'+nameChain[j];
+		}
+		return name;
+	}
 	else if(node.object.type === 'ThisExpression')
 	{
 		//console.log('THIS');

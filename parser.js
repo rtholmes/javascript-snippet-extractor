@@ -311,8 +311,8 @@ for(var i=0; i<files.length; i++)
 		console.log('Processing ' + filename + ' ...');
 		var functionList = analyzeCode(data);
 		var oracleObject = fs.readFileSync(oracle);
-        oracleObject[filename.substring(0, -2)] =  functionList;
-        fs.writeFile(oracle, JSON.stringify(oracleObject));
+        oracleObject[filename.substring(0, -2)] =  JSON.stringify(functionList);
+        fs.writeFile(oracle, oracleObject);
 	}
 	catch(err)
 	{
