@@ -312,9 +312,16 @@ for(var i=0; i<files.length; i++)
 		var functionList = analyzeCode(data);
 		var oracleObject = fs.readFileSync(oracle);
 		oracleObject[filename.substring(0, -2)] =  functionList;
-		fs.writeFile(oracle, JSON.stringify(oracleObject), function(err){
-			  if (err) console.log(err);
-			});
+		fs.exists(oracle, function (exists) {
+        	if(exists)
+        	{
+         	 	writeFile(JSON.stringify(oracleObject));
+        	} 
+        	else 
+        	{
+	            fs.writeFile(JSON.stringify(oracleObject));
+        	}
+    	});
 
 	}
 	catch(err)
