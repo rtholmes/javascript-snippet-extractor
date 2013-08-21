@@ -294,29 +294,46 @@ function analyzeCode(code)
 	return identifiedMethods;
 }
 
+function isEmptyObject(obj) {
+  return !Object.keys(obj).length;
+}
+
+
 var fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
-console.log(files);
+//console.log(files);
 for(var i=0; i<files.length; i++)
 {
 	var filename = files[i];
-	var data = fs.readFileSync(path + filename);
 	var esprima = require('esprima');
 	//console.log(esprima.parse(data));
-
 	try
 	{
 		console.log('Processing ' + filename + ' ...');
-		var functionList = analyzeCode(data);
-		var oracleObject = fs.readFileSync(oracle);
-        oracleObject[filename.substring(0, -2)] =  JSON.stringify(functionList);
-        fs.writeFile(oracle, oracleObject);
+		var dataFile = fs.readFileSync(oracle);
+		var oracleObject = JSON.parse(dataFile);
+		if(oracleObject.hasOwnProperty(filename.substring(0, filename.length-3)))
+	    {
+	    	console.log('File already exists!');
+	    }
+		else
+		{
+			var data = fs.readFileSync(path + filename);
+			var functionList = analyzeCode(data);
+			if(functionList.length === 0)
+				oracleObject[filename.substring(0, filename.length-3)] = {};
+			else
+				oracleObject[filename.substring(0, filename.length-3)] =  functionList;
+			//console.log(JSON.stringify(oracleObject), null, 3);
+	        fs.writeFileSync(oracle, JSON.stringify(oracleObject, null, 3),encoding='utf8');
+	    }
 	}
 	catch(err)
 	{
 		var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 		dumpError(err);
 	}
+	//break;
 }

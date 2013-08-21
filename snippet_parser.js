@@ -37,7 +37,8 @@ function visitMemberExpression(node, nameChain)
 	}
 	else if(node.object.type === 'CallExpression')
 	{
-		var name = node.object.callee.name+'().'+node.property.name;
+		//var name = node.object.callee.name+'().'+node.property.name;
+		var name = 'undefined.'+node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
 			name = name +'.'+nameChain[j];
@@ -53,7 +54,10 @@ function visitMemberExpression(node, nameChain)
 		return visitMemberExpression(node.object, nameChain);
 	}
 	else
-		return "no_name";
+	{
+		if(node.property.name !== 'prototype' && node.property.name !== 'self')
+			return "undefined."+node.property.name;
+	}
 }
 
 
@@ -147,41 +151,27 @@ function contains(a, obj)
 	return false;
 }
 
-function analyzeCode(code) 
+
+function getRequiresList(res3, res4, ast)
 {
-	var ast = esprima.parse(code);
-	var identifiedMethods = [];
-	var jsonpath = require('JSONPath').eval;
-	var methodCalls = [];
-/*
-	var res1 = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"VALUE"});
-	var res2 = jsonpath(ast, "$.body[0]..[?(@.type=='CallExpression' && @.property !== null && @.property.type=='Identifier' )].property.name", {resultType:"PATH"});*/	
-
-	var res1 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"VALUE"});
-	var res2 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"PATH"});	
-	console.log('done 3');
-
-	var res3 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='CallExpression' && @.right.callee!== null && @.right.callee.name=='require')]", {resultType:"VALUE"});
-	var res4 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='CallExpression' && @.right.callee!== null && @.right.callee.name=='require')]", {resultType:"PATH"});	
-
 	var requires = {};
 	for(var item in res3)
 	{
 		var test = res4[item];
 		test = test.slice(1);
 		var array = test.split(']');
-		for(var item in array)
+		for(var item2 in array)
 		{
-			if(isInt(array[item][1]))
-				array[item] = array[item].slice(1);
+			if(isInt(array[item2][1]))
+				array[item2] = array[item2].slice(1);
 			else
-				array[item] = array[item].slice(2, -1);
+				array[item2] = array[item2].slice(2, -1);
 		}
 		var astcopy = ast;
 		var leftNodes = [];
-		for(var item in array)
+		for(var item2 in array)
 		{
-			var node = astcopy[array[item]];
+			var node = astcopy[array[item2]];
 			if(node !== undefined)
 			{
 				if(node.hasOwnProperty('type'))
@@ -194,44 +184,42 @@ function analyzeCode(code)
 		}
 		if(astcopy.left.type === 'Identifier')
 		{
-			console.log('reid : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
+			//console.log('re-id : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
 			requires[astcopy.left.name] = astcopy.right.arguments[0].value;
 		}
 		else if(astcopy.callee.type === 'MemberExpression')
 		{
 			var mName = visitMemberExpression(astcopy.callee, [])
-			console.log('reme : ' + mName + ' : ' + astcopy.right.arguments[0].value);
+			//console.log('re-me : ' + mName + ' : ' + astcopy.right.arguments[0].value);
 			requires[mName] = astcopy.right.arguments[0].value;		
 		}
 		else
 		{
-			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee);
+			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.property.name);
 		}
-		
-		//console.log(astcopy.type);
-		//console.log('-------------------');
-	
-
 	}
-	//console.log(res1[item] + ' : ' + res2[item]);
-	var breakFlag = 0;
-	for(item in res2)
+	return requires;
+}
+
+function getMethodCalls(res2, ast)
+{
+	var methodCalls = [];
+	for(var item in res2)
 	{
 		var test = res2[item];
 		test = test.slice(1);
 		var array = test.split(']');
-		for(var item in array)
+		for(var item2 in array)
 		{
-			if(isInt(array[item][1]))
-				array[item] = array[item].slice(1);
+			if(isInt(array[item2][1]))
+				array[item2] = array[item2].slice(1);
 			else
-				array[item] = array[item].slice(2, -1);
+				array[item2] = array[item2].slice(2, -1);
 		}
 		var astcopy = ast;
-		var leftNodes = [];
-		for(var item in array)
+		for(var item2 in array)
 		{
-			var node = astcopy[array[item]];
+			var node = astcopy[array[item2]];
 			if(node !== undefined)
 			{
 				if(node.hasOwnProperty('type'))
@@ -244,36 +232,182 @@ function analyzeCode(code)
 		}
 		if(astcopy.callee.type === 'Identifier')
 		{
-			console.log('id : ' + astcopy.callee.name);
+			//console.log('id : ' + astcopy.callee.name);
 			methodCalls[methodCalls.length] = astcopy.callee.name;
 		}
 		else if(astcopy.callee.type === 'MemberExpression')
 		{
 			var mName = visitMemberExpression(astcopy.callee, [])
-			console.log('me : ' + mName);
+			//console.log('me : ' + mName);
 			methodCalls[methodCalls.length] = mName;
 		}
 		else
 		{
-			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee);
+			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.type);
 		}
 		//console.log(astcopy.type);
 		//console.log('-------------------');
 	}
+	return methodCalls;
+}
+
+function analyzeCode(code) 
+{
+	var ast = esprima.parse(code);
+	var identifiedMethods = [];
+	var jsonpath = require('JSONPath').eval;
+
+	var res1 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"VALUE"});
+	var res2 = jsonpath(ast, "$..[?(@.type=='CallExpression' && @.callee !== null)]", {resultType:"PATH"});	
+
+	var res3 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='CallExpression' && @.right.callee!== null && @.right.callee.name=='require')]", {resultType:"VALUE"});
+	var res4 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='CallExpression' && @.right.callee!== null && @.right.callee.name=='require')]", {resultType:"PATH"});	
+	//console.log(res1[item] + ' : ' + res2[item]);
+
+	var requires = getRequiresList(res3, res4, ast);
+	var methodCalls = getMethodCalls(res2, ast);
 	var obj = {};
 	obj['requires'] = requires;
 	obj['methodcalls'] = methodCalls;
 	return obj;
 }
 
+function printObject(analyzedSnippet)
+{
+	for(var key in analyzedSnippet)
+	{
+		if(key === 'requires')
+		{
+			for(var item in analyzedSnippet['requires'])
+			{
+				console.log('req- ' + item + ' : ' + analyzedSnippet['requires'][item]);
+			}
+		}
+		else if(key === 'methodcalls')
+		{
+			//console.log('has key');
+			for(var i=0; i<analyzedSnippet['methodcalls'].length; i++)
+			{
+				console.log('call- ' + i + ' : ' + analyzedSnippet['methodcalls'][i]);
+			}
+		}
+	}
+}
 
-var fs           = require('fs');
+function fetchOracle()
+{
+	var oracle = 'oracle.js'
+	var dataFile = fs.readFileSync(oracle);
+	var oracleObject = JSON.parse(dataFile);
+	return oracleObject;
+}
+
+
+
+function mapMethod(mname, oracleObject)
+{
+	for(var js in oracleObject)
+	{
+		for(var key in oracleObject[js])
+		{
+			//console.log(key);
+			if(key === mname)
+			{
+				//console.log('match: ' + js + ' : ' + key);
+				var obj = {};
+				obj['file'] = js;
+				obj['method'] = key;
+				return obj;
+			}
+			else if(key.indexOf(mname) !==-1)
+			{
+				//console.log('match: ' + js + ' : ' + key);
+				var obj = {};
+				obj['file'] = js;
+				obj['method'] = key;
+				return obj;
+			}
+			else if(mname.indexOf(key) !==-1)
+			{
+				//console.log('match: ' + js + ' : ' + key);
+				var obj = {};
+				obj['file'] = js;
+				obj['method'] = key;
+				return obj;
+			}
+			else
+			{
+				/*var name_split = mname.split('.');
+				var temp;
+				console.log(name_split);
+				for(var i=name_split.length-1; i>=0;i--)
+				{
+					if(temp === null)
+						temp = name_split[i];
+					else
+						temp = name_split[i] + '.' + temp;
+					//console.log(temp);
+					if(key.indexOf(temp)!==-1)
+					{
+						var obj = {};
+						obj['file'] = js;
+						obj['method'] = key;
+						return obj;
+					}
+				}*/
+			}
+		}
+	}
+	return null;
+}
+
+function fetchAPI(analyzedSnippet, oracleObject)
+{
+	var apifound = [];
+	var apinotfound = [];
+	for(var key in analyzedSnippet)
+	{
+		if(key === 'methodcalls')
+		{
+			for(var i=0; i<analyzedSnippet['methodcalls'].length; i++)
+			{
+				var op = mapMethod(analyzedSnippet['methodcalls'][i], oracleObject);
+				if(op!==null)
+					apifound[apifound.length] = op;
+				else
+					apinotfound[apinotfound.length] = analyzedSnippet['methodcalls'][i];
+			}
+		}
+	}
+	var temp = {};
+	temp['found'] = apifound;
+	temp['notfound'] = apinotfound;
+	return temp;
+}
+
+function printAnswer(answer)
+{
+	for(var i=0; i<answer['found'].length; i++)
+	{
+		console.log('found: '+answer['found'][i]['file']+'-'+answer['found'][i]['method']);
+	}
+	for(var i=0; i<answer['notfound'].length; i++)
+	{
+		console.log('notfound: '+answer['notfound'][i]);
+	}
+	console.log(answer['found'].length + ':' + analyzedSnippet['methodcalls'].length);
+}
+var fs       = require('fs');
 var filename = process.argv[2];
 var data     = fs.readFileSync(filename);
 var esprima  = require('esprima');
 try
 {
-	var methodCalls = analyzeCode(data);
+	var analyzedSnippet = analyzeCode(data);
+	var oracleObject = fetchOracle();
+	//printObject(analyzedSnippet);
+	var answer = fetchAPI(analyzedSnippet, oracleObject);
+	printAnswer(answer);
 }
 catch(err)
 {
