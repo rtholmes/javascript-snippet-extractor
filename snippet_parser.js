@@ -317,29 +317,49 @@ function mapMethod(mname, oracleObject)
 				var obj = {};
 				obj['file'] = js;
 				obj['method'] = key;
+				obj['source'] = 1;
 				return obj;
 			}
-			else if(key.indexOf(mname) !==-1)
+		}
+	}
+	for(var js in oracleObject)
+	{
+		for(var key in oracleObject[js])
+		{
+			if(key.indexOf(mname) !==-1)
 			{
 				//console.log('match: ' + js + ' : ' + key);
 				var obj = {};
 				obj['file'] = js;
 				obj['method'] = key;
+				obj['source'] = 2;
 				return obj;
 			}
-			else if(mname.indexOf(key) !==-1)
+		}
+	}
+	for(var js in oracleObject)
+	{
+		for(var key in oracleObject[js])
+		{
+			if(mname.indexOf(key) !==-1)
 			{
 				//console.log('match: ' + js + ' : ' + key);
 				var obj = {};
 				obj['file'] = js;
 				obj['method'] = key;
+				obj['source'] = 3;
 				return obj;
 			}
-			else
-			{
-				/*var name_split = mname.split('.');
-				var temp;
-				console.log(name_split);
+		}
+	}
+	for(var js in oracleObject)
+	{
+		for(var key in oracleObject[js])
+		{
+			
+				var name_split = mname.split('.');
+				var temp = null;
+				//console.log(name_split.length);
 				for(var i=name_split.length-1; i>=0;i--)
 				{
 					if(temp === null)
@@ -352,12 +372,14 @@ function mapMethod(mname, oracleObject)
 						var obj = {};
 						obj['file'] = js;
 						obj['method'] = key;
+						obj['source'] = 4;
 						return obj;
 					}
-				}*/
-			}
+				}
 		}
+
 	}
+
 	return null;
 }
 
@@ -389,7 +411,7 @@ function printAnswer(answer)
 {
 	for(var i=0; i<answer['found'].length; i++)
 	{
-		console.log('found: '+answer['found'][i]['file']+'-'+answer['found'][i]['method']);
+		console.log('found: '+answer['found'][i]['file']+'-'+answer['found'][i]['method'] + ' - ' + answer['found'][i]['source']);
 	}
 	for(var i=0; i<answer['notfound'].length; i++)
 	{
@@ -408,6 +430,7 @@ try
 	//printObject(analyzedSnippet);
 	var answer = fetchAPI(analyzedSnippet, oracleObject);
 	printAnswer(answer);
+	printObject(analyzedSnippet);
 }
 catch(err)
 {
