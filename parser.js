@@ -25,7 +25,8 @@ function visitMemberExpression(node, nameChain)
 	}
 	else if(node.object.type === 'CallExpression')
 	{
-		var name = node.object.callee.name+'().'+node.property.name;
+		//var name = node.object.callee.name+'().'+node.property.name;
+		var name = node.property.name;
 		for(var j=0; j<nameChain.length;j++)
 		{
 			name = name +'.'+nameChain[j];
@@ -141,20 +142,20 @@ function analyzeCode(code)
 
 	var jsonpath = require('JSONPath').eval;
 
-	var res1 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
-	var res2 = jsonpath(ast, "$.body[0]..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].init", {resultType:"PATH"});	
+	var res1 = jsonpath(ast, "$.body..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
+	var res2 = jsonpath(ast, "$.body..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].init", {resultType:"PATH"});	
 
-	var res3 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
-	var res4 = jsonpath(ast, "$.body[0]..properties[?(@.value !== null && @.value.type=='FunctionExpression')].value", {resultType:"PATH"});	
+	var res3 = jsonpath(ast, "$.body..properties[?(@.value !== null && @.value.type=='FunctionExpression')].key.name", {resultType:"VALUE"});
+	var res4 = jsonpath(ast, "$.body..properties[?(@.value !== null && @.value.type=='FunctionExpression')].value", {resultType:"PATH"});	
 
-	var res5 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"VALUE"});
-	var res6 = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].right", {resultType:"PATH"});	
+	var res5 = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].left", {resultType:"VALUE"});
+	var res6 = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='FunctionExpression' )].right", {resultType:"PATH"});	
 
-	var res7 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
-	var res8 = jsonpath(ast, "$.body[0]..[?(@.type=='FunctionDeclaration' && @.id !== null )]", {resultType:"PATH"});
+	var res7 = jsonpath(ast, "$.body..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
+	var res8 = jsonpath(ast, "$.body..[?(@.type=='FunctionDeclaration' && @.id !== null )]", {resultType:"PATH"});
 
-	var res9_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
-	var res10_temp = jsonpath(ast, "$.body[0]..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
+	var res9_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
+	var res10_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 
 	
 	res2 = res2.concat(res4, res6, res8);
@@ -175,7 +176,8 @@ function analyzeCode(code)
 	}
 	res2 = res2.concat(res10);	
 	res1 = res1.concat(res9);
-	//console.log('done merging');
+	//console.log(res1);
+	console.log('done merging');
 	var breakFlag = 0;
 	for(item in res2)
 	{
@@ -200,9 +202,14 @@ function analyzeCode(code)
 			if(node !== undefined)
 			{
 				//console.log(node.type);
+				if(item === 'arguments')
+				{
+					breakFlag =1;
+					break;
+				}
 				if(node.hasOwnProperty('type'))
 				{
-					if(node.type === 'CallExpression')
+					/*if(node.type === 'CallExpression')
 					{
 						callStatementCount++;
 						if(callStatementCount > 1)
@@ -211,7 +218,7 @@ function analyzeCode(code)
 							breakFlag =1;
 							break;
 						}
-					}
+					}*/
 				}
 				if(node.hasOwnProperty('left'))
 				{
@@ -295,7 +302,7 @@ function analyzeCode(code)
 }
 
 function isEmptyObject(obj) {
-  return !Object.keys(obj).length;
+	return !Object.keys(obj).length;
 }
 
 
@@ -303,37 +310,59 @@ var fs = require('fs');
 var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
+var esprima = require('esprima');
 //console.log(files);
-for(var i=0; i<files.length; i++)
+
+if (process.argv.length < 3)
 {
-	var filename = files[i];
-	var esprima = require('esprima');
-	//console.log(esprima.parse(data));
-	try
+	for(var i=0; i<files.length; i++)
 	{
+		var filename = files[i];
+		//console.log(esprima.parse(data));
+
 		console.log('Processing ' + filename + ' ...');
 		var dataFile = fs.readFileSync(oracle);
 		var oracleObject = JSON.parse(dataFile);
 		if(oracleObject.hasOwnProperty(filename.substring(0, filename.length-3)))
-	    {
-	    	console.log('File already exists!');
-	    }
+		{
+			console.log('File already exists!');
+		}
 		else
 		{
 			var data = fs.readFileSync(path + filename);
-			var functionList = analyzeCode(data);
+			var functionList = [];
+			try
+			{
+				functionList = analyzeCode(data);
+			}
+			catch(err)
+			{
+				var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
+				dumpError(err);
+			}
 			if(functionList.length === 0)
 				oracleObject[filename.substring(0, filename.length-3)] = {};
 			else
 				oracleObject[filename.substring(0, filename.length-3)] =  functionList;
-			//console.log(JSON.stringify(oracleObject), null, 3);
-	        fs.writeFileSync(oracle, JSON.stringify(oracleObject, null, 3),encoding='utf8');
-	    }
+				//console.log(JSON.stringify(oracleObject), null, 3);
+				fs.writeFileSync(oracle, JSON.stringify(oracleObject, null, 3),encoding='utf8');
+			}
+
+		}
+	}
+	else
+	{
+		var filename = process.argv[2];
+		var data = fs.readFileSync(filename);
+		try
+		{
+			var functionList = analyzeCode(data);
+		//console.log(JSON.stringify(functionList));
 	}
 	catch(err)
 	{
 		var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 		dumpError(err);
 	}
-	//break;
 }
+

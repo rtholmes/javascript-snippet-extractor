@@ -152,6 +152,20 @@ function contains(a, obj)
 }
 
 
+function arrayContains(a, obj) 
+{
+	var i = a.length;
+	while (i--) 
+	{
+		if (a[i]['file'] === obj['file'] && a[i]['method'] === obj['method'] && a[i]['call'] === obj['call']) 
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
 function getRequiresList(res3, res4, ast)
 {
 	var requires = {};
@@ -306,6 +320,7 @@ function fetchOracle()
 
 function mapMethod(mname, oracleObject)
 {
+	var objArray = [];
 	for(var js in oracleObject)
 	{
 		for(var key in oracleObject[js])
@@ -318,7 +333,29 @@ function mapMethod(mname, oracleObject)
 				obj['file'] = js;
 				obj['method'] = key;
 				obj['source'] = 1;
-				return obj;
+				obj['call'] = mname;
+				if(!arrayContains(objArray, obj))
+					objArray[objArray.length] = obj;
+				//return obj;
+			}
+		}
+	}
+	for(var js in oracleObject)
+	{
+		for(var key in oracleObject[js])
+		{
+			var new_name = js + '.' + key; 
+			if(new_name.toLowerCase() === mname.toLowerCase())
+			{
+				//console.log('match: ' + js + ' : ' + key);
+				var obj = {};
+				obj['file'] = js;
+				obj['method'] = key;
+				obj['source'] = 2;
+				obj['call'] = mname;
+				if(!arrayContains(objArray, obj))
+					objArray[objArray.length] = obj;
+				//return obj;
 			}
 		}
 	}
@@ -332,31 +369,40 @@ function mapMethod(mname, oracleObject)
 				var obj = {};
 				obj['file'] = js;
 				obj['method'] = key;
-				obj['source'] = 2;
-				return obj;
-			}
-		}
-	}
-	for(var js in oracleObject)
-	{
-		for(var key in oracleObject[js])
-		{
-			if(mname.indexOf(key) !==-1)
-			{
-				//console.log('match: ' + js + ' : ' + key);
-				var obj = {};
-				obj['file'] = js;
-				obj['method'] = key;
 				obj['source'] = 3;
-				return obj;
+				obj['call'] = mname;
+				if(!arrayContains(objArray, obj))
+					objArray[objArray.length] = obj;
+				//return obj;
 			}
 		}
 	}
-	for(var js in oracleObject)
+	if(objArray.length === 0)
 	{
-		for(var key in oracleObject[js])
+		
+		/*for(var js in oracleObject)
 		{
-			
+			for(var key in oracleObject[js])
+			{
+				if(mname.indexOf(key) !==-1)
+				{
+					//console.log('match: ' + js + ' : ' + key);
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 4;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					objArray[objArray.length] = obj;
+					//return obj;
+				}
+			}
+		}*/
+		for(var js in oracleObject)
+		{
+			for(var key in oracleObject[js])
+			{
+				
 				var name_split = mname.split('.');
 				var temp = null;
 				//console.log(name_split.length);
@@ -367,20 +413,26 @@ function mapMethod(mname, oracleObject)
 					else
 						temp = name_split[i] + '.' + temp;
 					//console.log(temp);
-					if(key.indexOf(temp)!==-1)
+					if((key.indexOf('.'+temp)!==-1 && key.indexOf('.'+temp)+temp.length+1 === key.length)|| key === temp)
 					{
 						var obj = {};
 						obj['file'] = js;
 						obj['method'] = key;
-						obj['source'] = 4;
-						return obj;
+						obj['source'] = 5;
+						obj['call'] = mname;
+						if(!arrayContains(objArray, obj))
+							objArray[objArray.length] = obj;
+						//return obj;
 					}
 				}
+			}
+
 		}
-
 	}
-
-	return null;
+	if(objArray.length === 0)
+		return null;
+	else
+		return objArray;
 }
 
 function fetchAPI(analyzedSnippet, oracleObject)
@@ -394,7 +446,7 @@ function fetchAPI(analyzedSnippet, oracleObject)
 			for(var i=0; i<analyzedSnippet['methodcalls'].length; i++)
 			{
 				var op = mapMethod(analyzedSnippet['methodcalls'][i], oracleObject);
-				if(op!==null)
+				if(op!==null && op!=undefined)
 					apifound[apifound.length] = op;
 				else
 					apinotfound[apinotfound.length] = analyzedSnippet['methodcalls'][i];
@@ -409,14 +461,19 @@ function fetchAPI(analyzedSnippet, oracleObject)
 
 function printAnswer(answer)
 {
+	console.log('***********************\nFOUND:');
 	for(var i=0; i<answer['found'].length; i++)
 	{
-		console.log('found: '+answer['found'][i]['file']+'-'+answer['found'][i]['method'] + ' - ' + answer['found'][i]['source']);
+		console.log('----------\n' + answer['found'][i][0]['call']);
+		for(var j=0;j<answer['found'][i].length; j++)
+			console.log(answer['found'][i][j]['file']+'  :  '+answer['found'][i][j]['method'] + '   -   ' + answer['found'][i][j]['source']);
 	}
+	console.log('***********************\nNOT FOUND:');
 	for(var i=0; i<answer['notfound'].length; i++)
 	{
-		console.log('notfound: '+answer['notfound'][i]);
+		console.log(answer['notfound'][i]);
 	}
+	console.log('***********************\nSTATS: ');
 	console.log(answer['found'].length + ':' + analyzedSnippet['methodcalls'].length);
 }
 var fs       = require('fs');
@@ -430,7 +487,8 @@ try
 	//printObject(analyzedSnippet);
 	var answer = fetchAPI(analyzedSnippet, oracleObject);
 	printAnswer(answer);
-	printObject(analyzedSnippet);
+	//printObject(analyzedSnippet);
+	//console.log(oracleObject['jquery'].length);
 }
 catch(err)
 {
