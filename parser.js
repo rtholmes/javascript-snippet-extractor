@@ -311,7 +311,7 @@ var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
 var esprima = require('esprima');
-//console.log(files);
+console.log(files);
 
 if (process.argv.length < 3)
 {
