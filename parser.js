@@ -311,10 +311,11 @@ var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
 var esprima = require('esprima');
-//console.log(files);
+console.log(files);
 
 if (process.argv.length < 3)
 {
+	
 	for(var i=0; i<files.length; i++)
 	{
 		var filename = files[i];
