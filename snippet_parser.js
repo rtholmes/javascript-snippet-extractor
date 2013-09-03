@@ -379,7 +379,7 @@ function mapMethod(mname, oracleObject)
 	}
 	if(objArray.length === 0)
 	{
-		
+		var objArray2 = [];
 		/*for(var js in oracleObject)
 		{
 			for(var key in oracleObject[js])
@@ -405,6 +405,7 @@ function mapMethod(mname, oracleObject)
 				
 				var name_split = mname.split('.');
 				var temp = null;
+				var stringExistsFlag = 0;
 				//console.log(name_split.length);
 				for(var i=name_split.length-1; i>=0;i--)
 				{
@@ -415,20 +416,44 @@ function mapMethod(mname, oracleObject)
 					//console.log(temp);
 					if((key.indexOf('.'+temp)!==-1 && key.indexOf('.'+temp)+temp.length+1 === key.length)|| key === temp)
 					{
+						stringExistsFlag = 1;
+						//return obj;
+					}
+					else if(stringExistsFlag === 1)
+					{
 						var obj = {};
 						obj['file'] = js;
 						obj['method'] = key;
 						obj['source'] = 5;
 						obj['call'] = mname;
-						if(!arrayContains(objArray, obj))
-							objArray[objArray.length] = obj;
-						//return obj;
+						obj['index'] = i;
+						if(objArray2.length===0)
+							if(!arrayContains(objArray2, obj))
+								objArray2[objArray2.length] = obj;
 					}
 				}
 			}
 
 		}
+		var objArrayMin = [];
+		var indextrack = 1000;
+		for(var index=0; index<objArray2.length;index++)
+		{
+			if(objArray2[index]['index'] < indextrack)
+			{
+				objArrayMin = [];
+				objArrayMin[objArrayMin.length] = objArray2[index];
+				indextrack = objArray2[index]['index'];
+			}
+			if(objArray2[index]['index'] === indextrack)
+			{
+				objArrayMin[objArrayMin.length] = objArray2[index];
+				indextrack = objArray2[index]['index'];
+			}
+		}
+		objArray = objArray.concat(objArrayMin);
 	}
+	
 	if(objArray.length === 0)
 		return null;
 	else
