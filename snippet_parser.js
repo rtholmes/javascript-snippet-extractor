@@ -1,3 +1,26 @@
+function lcs(lcstest, lcstarget) {
+ matchfound = 0
+ lsclen = lcstest.length
+  for(lcsi=0; lcsi<lcstest.length; lcsi++){
+   lscos=0
+    for(lcsj=0; lcsj<lcsi+1; lcsj++){
+     re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
+     temp = re.test(lcstest);
+     re = new RegExp("(" + RegExp.$1 + ")", "i");
+      if(re.test(lcstarget)){
+       matchfound=1;
+       result = RegExp.$1;
+       break;
+       }
+     lscos = lscos + 1;
+     }
+     if(matchfound==1){return result; break;}
+    lsclen = lsclen - 1;
+   }
+  result = "";
+  return result;
+ }
+
 function visitMemberExpression(node, nameChain)
 {
 	if(node.object.type === 'Identifier')
@@ -5,7 +28,7 @@ function visitMemberExpression(node, nameChain)
 		var name = node.object.name;
 		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			name = name+'.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
+		for(var j=nameChain.length-1; j>=0;j--)
 		{
 			name = name +'.'+nameChain[j];
 		}
@@ -17,7 +40,7 @@ function visitMemberExpression(node, nameChain)
 		var name = 'ArrayExpression';
 		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			name = name +'.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
+		for(var j=nameChain.length-1; j>=0;j--)
 		{
 			name = name +'.'+nameChain[j];
 		}
@@ -29,7 +52,7 @@ function visitMemberExpression(node, nameChain)
 		var name = 'this';
 		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			name = name +'.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
+		for(var j=nameChain.length-1; j>=0;j--)
 		{
 			name = name +'.'+nameChain[j];
 		}
@@ -39,7 +62,7 @@ function visitMemberExpression(node, nameChain)
 	{
 		//var name = node.object.callee.name+'().'+node.property.name;
 		var name = 'undefined.'+node.property.name;
-		for(var j=0; j<nameChain.length;j++)
+		for(var j=nameChain.length-1; j>=0;j--)
 		{
 			name = name +'.'+nameChain[j];
 		}
@@ -280,6 +303,7 @@ function analyzeCode(code)
 
 	var requires = getRequiresList(res3, res4, ast);
 	var methodCalls = getMethodCalls(res2, ast);
+	//console.log(methodCalls);
 	var obj = {};
 	obj['requires'] = requires;
 	obj['methodcalls'] = methodCalls;
@@ -427,7 +451,7 @@ function mapMethod(mname, oracleObject)
 						obj['source'] = 5;
 						obj['call'] = mname;
 						obj['index'] = i;
-						if(objArray2.length===0)
+						//if(objArray2.length===0)
 							if(!arrayContains(objArray2, obj))
 								objArray2[objArray2.length] = obj;
 					}
@@ -519,4 +543,25 @@ catch(err)
 {
 	var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 	dumpError(err);
-}
+}function lcs(lcstest, lcstarget) {
+ matchfound = 0
+ lsclen = lcstest.length
+  for(lcsi=0; lcsi<lcstest.length; lcsi++){
+   lscos=0
+    for(lcsj=0; lcsj<lcsi+1; lcsj++){
+     re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
+     temp = re.test(lcstest);
+     re = new RegExp("(" + RegExp.$1 + ")", "i");
+      if(re.test(lcstarget)){
+       matchfound=1;
+       result = RegExp.$1;
+       break;
+       }
+     lscos = lscos + 1;
+     }
+     if(matchfound==1){return result; break;}
+    lsclen = lsclen - 1;
+   }
+  result = "";
+  return result;
+ }
