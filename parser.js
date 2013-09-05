@@ -286,8 +286,10 @@ function analyzeCode(code)
 			//console.log(leftNodes);
 			for(var item in leftNodes)
 			{
+
 				var functionId = leftNodes[item];
 				identifiedMethods[functionId] = astcopy;
+				console.log(functionId);
 			}
 		}
 	}
@@ -311,11 +313,10 @@ var oracle = 'oracle.js'
 var path = 'lib/'
 var files = fs.readdirSync(path);
 var esprima = require('esprima');
-console.log(files);
 
 if (process.argv.length < 3)
 {
-	
+	console.log(files);
 	for(var i=0; i<files.length; i++)
 	{
 		var filename = files[i];
@@ -345,19 +346,20 @@ if (process.argv.length < 3)
 				oracleObject[filename.substring(0, filename.length-3)] = {};
 			else
 				oracleObject[filename.substring(0, filename.length-3)] =  functionList;
-				//console.log(JSON.stringify(oracleObject), null, 3);
-				fs.writeFileSync(oracle, JSON.stringify(oracleObject, null, 3),encoding='utf8');
-			}
 
+			//console.log(JSON.stringify(oracleObject), null, 3);
+			fs.writeFileSync(oracle, JSON.stringify(oracleObject, null, 3),encoding='utf8');
 		}
+
 	}
-	else
+}
+else
+{
+	var filename = process.argv[2];
+	var data = fs.readFileSync(filename);
+	try
 	{
-		var filename = process.argv[2];
-		var data = fs.readFileSync(filename);
-		try
-		{
-			var functionList = analyzeCode(data);
+		var functionList = analyzeCode(data);
 		//console.log(JSON.stringify(functionList));
 	}
 	catch(err)

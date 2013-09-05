@@ -1,25 +1,25 @@
 function lcs(lcstest, lcstarget) {
- matchfound = 0
- lsclen = lcstest.length
-  for(lcsi=0; lcsi<lcstest.length; lcsi++){
-   lscos=0
-    for(lcsj=0; lcsj<lcsi+1; lcsj++){
-     re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
-     temp = re.test(lcstest);
-     re = new RegExp("(" + RegExp.$1 + ")", "i");
-      if(re.test(lcstarget)){
-       matchfound=1;
-       result = RegExp.$1;
-       break;
-       }
-     lscos = lscos + 1;
-     }
-     if(matchfound==1){return result; break;}
-    lsclen = lsclen - 1;
-   }
-  result = "";
-  return result;
- }
+	matchfound = 0
+	lsclen = lcstest.length
+	for(lcsi=0; lcsi<lcstest.length; lcsi++){
+		lscos=0
+		for(lcsj=0; lcsj<lcsi+1; lcsj++){
+			re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
+			temp = re.test(lcstest);
+			re = new RegExp("(" + RegExp.$1 + ")", "i");
+			if(re.test(lcstarget)){
+				matchfound=1;
+				result = RegExp.$1;
+				break;
+			}
+			lscos = lscos + 1;
+		}
+		if(matchfound==1){return result; break;}
+		lsclen = lsclen - 1;
+	}
+	result = "";
+	return result;
+}
 
 function visitMemberExpression(node, nameChain)
 {
@@ -188,6 +188,18 @@ function arrayContains(a, obj)
 	return false;
 }
 
+function stringArrayContains(array, element)
+{
+	var i = array.length;
+	while(i>=0)
+	{
+		if(array[i] === element)
+			return true
+		i--;
+	}
+	return false;
+}
+
 
 function getRequiresList(res3, res4, ast)
 {
@@ -304,6 +316,7 @@ function analyzeCode(code)
 	var requires = getRequiresList(res3, res4, ast);
 	var methodCalls = getMethodCalls(res2, ast);
 	//console.log(methodCalls);
+	//removeLocal(methodCalls, localMethods);
 	var obj = {};
 	obj['requires'] = requires;
 	obj['methodcalls'] = methodCalls;
@@ -345,12 +358,13 @@ function fetchOracle()
 function mapMethod(mname, oracleObject)
 {
 	var objArray = [];
+	var flag = 0;
 	for(var js in oracleObject)
 	{
 		for(var key in oracleObject[js])
 		{
 			//console.log(key);
-			if(key === mname)
+			if(key.toLowerCase() === mname.toLowerCase())
 			{
 				//console.log('match: ' + js + ' : ' + key);
 				var obj = {};
@@ -359,49 +373,64 @@ function mapMethod(mname, oracleObject)
 				obj['source'] = 1;
 				obj['call'] = mname;
 				if(!arrayContains(objArray, obj))
+				{
 					objArray[objArray.length] = obj;
+					flag = 1;
+				}
 				//return obj;
 			}
 		}
 	}
-	for(var js in oracleObject)
+	if(flag === 0)
 	{
-		for(var key in oracleObject[js])
+		for(var js in oracleObject)
 		{
-			var new_name = js + '.' + key; 
-			if(new_name.toLowerCase() === mname.toLowerCase())
+			for(var key in oracleObject[js])
 			{
-				//console.log('match: ' + js + ' : ' + key);
-				var obj = {};
-				obj['file'] = js;
-				obj['method'] = key;
-				obj['source'] = 2;
-				obj['call'] = mname;
-				if(!arrayContains(objArray, obj))
-					objArray[objArray.length] = obj;
-				//return obj;
+				var new_name = js + '.' + key; 
+				if(new_name.toLowerCase() === mname.toLowerCase())
+				{
+					//console.log('match: ' + js + ' : ' + key);
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 2;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+					//return obj;
+				}
 			}
 		}
 	}
-	for(var js in oracleObject)
+	if(flag === 0)
 	{
-		for(var key in oracleObject[js])
+		for(var js in oracleObject)
 		{
-			if(key.indexOf(mname) !==-1)
+			for(var key in oracleObject[js])
 			{
-				//console.log('match: ' + js + ' : ' + key);
-				var obj = {};
-				obj['file'] = js;
-				obj['method'] = key;
-				obj['source'] = 3;
-				obj['call'] = mname;
-				if(!arrayContains(objArray, obj))
-					objArray[objArray.length] = obj;
-				//return obj;
+				if(key.endsWith('.'+mname) === true)
+				{
+					//console.log('match: ' + key + ' : ' + key);
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 3;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+					//return obj;
+				}
 			}
 		}
 	}
-	if(objArray.length === 0)
+	if(flag === 0)
 	{
 		var objArray2 = [];
 		/*for(var js in oracleObject)
@@ -452,8 +481,11 @@ function mapMethod(mname, oracleObject)
 						obj['call'] = mname;
 						obj['index'] = i;
 						//if(objArray2.length===0)
-							if(!arrayContains(objArray2, obj))
-								objArray2[objArray2.length] = obj;
+						if(!arrayContains(objArray2, obj))
+						{
+							objArray2[objArray2.length] = obj;
+							break;
+						}
 					}
 				}
 			}
@@ -508,23 +540,67 @@ function fetchAPI(analyzedSnippet, oracleObject)
 	return temp;
 }
 
-function printAnswer(answer)
+function fetchLocal(filename, answer, printAnswer)
+{
+	var sys = require('util')
+	var exec = require('child_process').exec;
+	var child = exec("node parser.js " + filename, function (error, stdout, stderr) {
+		
+		//sys.print('stdout: ' + stdout);
+		
+		if (error !== null) {
+			console.log('exec error: ' + error);
+		}
+		var localMethods = stdout;
+		var methods = localMethods.split("\n");
+		console.log(methods.slice(1, methods.length-2));
+		printAnswer(answer, methods.slice(1, methods.length-2));
+	});
+}
+function printAnswer(answer, localMethods)
 {
 	console.log('***********************\nFOUND:');
-	for(var i=0; i<answer['found'].length; i++)
+	var i=0,j=0,k=0, l=0;
+	for(i=0; i<answer['found'].length; i++)
 	{
 		console.log('----------\n' + answer['found'][i][0]['call']);
 		for(var j=0;j<answer['found'][i].length; j++)
 			console.log(answer['found'][i][j]['file']+'  :  '+answer['found'][i][j]['method'] + '   -   ' + answer['found'][i][j]['source']);
 	}
 	console.log('***********************\nNOT FOUND:');
-	for(var i=0; i<answer['notfound'].length; i++)
+	for(var j=0; j<answer['notfound'].length; j++)
 	{
-		console.log(answer['notfound'][i]);
+		if(stringArrayContains(localMethods, answer['notfound'][j]) === true)
+		{
+			console.log("+++LOCAL : "+answer['notfound'][j]);
+			k++;
+		}
+		else
+		{
+			console.log(answer['notfound'][j]);
+			l++;
+		}
 	}
 	console.log('***********************\nSTATS: ');
-	console.log(answer['found'].length + ':' + analyzedSnippet['methodcalls'].length);
+	console.log((i).toString()+ ":" + (k).toString()+ ':' + (l).toString());
 }
+
+
+
+if (typeof String.prototype.startsWith != 'function') {
+	String.prototype.startsWith = function (str){
+		return this.slice(0, str.length) == str;
+	};
+}
+
+if (typeof String.prototype.endsWith != 'function') {
+	String.prototype.endsWith = function (str){
+		return this.slice(this.length - str.length, this.length) == str;
+	};
+}
+
+
+
 var fs       = require('fs');
 var filename = process.argv[2];
 var data     = fs.readFileSync(filename);
@@ -535,7 +611,10 @@ try
 	var oracleObject = fetchOracle();
 	//printObject(analyzedSnippet);
 	var answer = fetchAPI(analyzedSnippet, oracleObject);
-	printAnswer(answer);
+	fetchLocal(filename , answer, printAnswer);
+	
+	//printAnswer(answer);
+
 	//printObject(analyzedSnippet);
 	//console.log(oracleObject['jquery'].length);
 }
@@ -543,25 +622,27 @@ catch(err)
 {
 	var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
 	dumpError(err);
-}function lcs(lcstest, lcstarget) {
- matchfound = 0
- lsclen = lcstest.length
-  for(lcsi=0; lcsi<lcstest.length; lcsi++){
-   lscos=0
-    for(lcsj=0; lcsj<lcsi+1; lcsj++){
-     re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
-     temp = re.test(lcstest);
-     re = new RegExp("(" + RegExp.$1 + ")", "i");
-      if(re.test(lcstarget)){
-       matchfound=1;
-       result = RegExp.$1;
-       break;
-       }
-     lscos = lscos + 1;
-     }
-     if(matchfound==1){return result; break;}
-    lsclen = lsclen - 1;
-   }
-  result = "";
-  return result;
- }
+}
+
+function lcs(lcstest, lcstarget) {
+	matchfound = 0
+	lsclen = lcstest.length
+	for(lcsi=0; lcsi<lcstest.length; lcsi++){
+		lscos=0
+		for(lcsj=0; lcsj<lcsi+1; lcsj++){
+			re = new RegExp("(?:.{" + lscos + "})(.{" + lsclen + "})", "i");
+			temp = re.test(lcstest);
+			re = new RegExp("(" + RegExp.$1 + ")", "i");
+			if(re.test(lcstarget)){
+				matchfound=1;
+				result = RegExp.$1;
+				break;
+			}
+			lscos = lscos + 1;
+		}
+		if(matchfound==1){return result; break;}
+		lsclen = lsclen - 1;
+	}
+	result = "";
+	return result;
+}
