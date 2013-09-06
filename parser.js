@@ -1,3 +1,15 @@
+if (typeof String.prototype.startsWith != 'function') {
+	String.prototype.startsWith = function (str){
+		return this.slice(0, str.length) == str;
+	};
+}
+
+if (typeof String.prototype.endsWith != 'function') {
+	String.prototype.endsWith = function (str){
+		return this.slice(this.length - str.length, this.length) == str;
+	};
+}
+
 function visitMemberExpression(node, nameChain)
 {
 	if(node.object.type === 'Identifier')
@@ -134,12 +146,44 @@ function contains(a, obj)
 	return -1;
 }
 
-function analyzeCode(code) 
+function containsFunction(identifiedMethods, obj)
 {
-	//var ast = esprima.parse(code, {loc : true});
-	var ast = esprima.parse(code);
-	var identifiedMethods = {};
+	var array = [];
+	var object = {};
+	object['value'] = [];
+	object['key'] = [];
+	object['flag'] = -1;
+	for(var key in identifiedMethods)
+	{
+		if(key === obj )
+		{
+			object['key'] = [];
+			object['value'] = [];
+			object['value'][0] = identifiedMethods[key];
+			object['flag'] = 0;
+			//console.log(key + ":" + obj);
+			//funObj = identifiedMethods[key];
+			//array[array.length] = identifiedMethods[key];
+			break;
+		}
+		else if(key.startsWith(obj+'.'))
+		{
+			object['key'][object['key'].length] = key.substring(key.indexOf(obj+'.') + obj.length + 1, key.length);
+			object['value'][object['value'].length] = identifiedMethods[key];
+			object['flag'] = 1;
+			//console.log(key + "-" + obj);
+			array[array.length] = identifiedMethods[key];
+		}
+	}
+	if(object.flag !== -1)
+		return object;
+	else
+		return null;
+}
 
+function getRes(code)
+{
+	var ast = esprima.parse(code);
 	var jsonpath = require('JSONPath').eval;
 
 	var res1 = jsonpath(ast, "$.body..declarations[?(@.init !== null && @.init.type=='FunctionExpression')].id.name", {resultType:"VALUE"});
@@ -154,30 +198,52 @@ function analyzeCode(code)
 	var res7 = jsonpath(ast, "$.body..[?(@.type=='FunctionDeclaration' && @.id !== null )].id.name", {resultType:"VALUE"});
 	var res8 = jsonpath(ast, "$.body..[?(@.type=='FunctionDeclaration' && @.id !== null )]", {resultType:"PATH"});
 
-	var res9_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
-	var res10_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
-
 	
 	res2 = res2.concat(res4, res6, res8);
 	res1 = res1.concat(res3, res5, res7);
 	
+
+	var identifiedMethods = analyzeCode(res2, ast, 0, null);
+
+	var res9_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
+	var res10_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
+
 	var res9 = [];
 	var res10 = [];
-	var res11 = [];
+	//var res11 = [];
 	for(var item in res9_temp)
 	{
-		var i = contains(res1, res9_temp[item]);
-		if(i !== -1)
+		var returnObject = containsFunction(identifiedMethods, res9_temp[item]);
+		if(returnObject !== null)
 		{
-			res9[res9.length] = res9_temp[item];
+			res9[res9.length] = returnObject;
 			res10[res10.length] = res10_temp[item];
-			res11[res10.length] = res1[i];
+			//res11[res10.length] = res1[i];
 		}
 	}
-	res2 = res2.concat(res10);	
-	res1 = res1.concat(res9);
+	//res2 = res2.concat(res10);	
+	//res1 = res1.concat(res9);
 	//console.log(res1);
-	console.log('done merging');
+	//console.log('done merging');
+	var tester = analyzeCode(res10, ast, 1, res9);
+	//var identifiedMethods = analyzeCode(res1, res2, ast);
+
+	for(var key in tester)
+	{
+		//console.log("----------------------  " + key);
+		identifiedMethods[key] = tester[key];
+		//console.log(JSON.stringify(tester[key]))
+	}
+	return identifiedMethods;
+}
+
+function analyzeCode(res2, ast, differFlag, res1) 
+{
+	//var ast = esprima.parse(code, {loc : true});
+	
+	var identifiedMethods = {};
+
+	
 	var breakFlag = 0;
 	for(item in res2)
 	{
@@ -209,16 +275,21 @@ function analyzeCode(code)
 				}
 				if(node.hasOwnProperty('type'))
 				{
-					/*if(node.type === 'CallExpression')
+					/*if(node.type === VariableDeclarator)
+					{
+						breakFlag =1;
+						break;
+					}*/
+					if(node.type === 'FunctionExpression')
 					{
 						callStatementCount++;
-						if(callStatementCount > 1)
+						if(callStatementCount <= 1)
 						{
 							//console.log('Inaccessible!');
 							breakFlag =1;
 							break;
 						}
-					}*/
+					}
 				}
 				if(node.hasOwnProperty('left'))
 				{
@@ -229,14 +300,22 @@ function analyzeCode(code)
 					else if(node.left.type === 'MemberExpression')    
 					{
 						assignmentChain[assignmentChain.length] = node.left;
+						if(node.right.type!=='FunctionExpression')
+						{
+							leftNodes=[];
+						}
 						var assignmentArray =[];
-						assignmentArray = getAssignmentChain(assignmentChain);
+						assignmentArray = getAssignmentChain(assignmentChain);						
 						leftNodes = append(leftNodes, assignmentArray);
 						assignmentChain = [];
 					}
 					else if(node.left.type === 'Identifier')
 					{
 						assignmentChain[assignmentChain.length] = node.left;
+						if(node.right.type!=='FunctionExpression')
+						{
+							leftNodes=[];
+						}
 						var assignmentArray = [];
 						assignmentArray = getAssignmentChain(assignmentChain);
 						leftNodes = append(leftNodes, assignmentArray);
@@ -257,11 +336,15 @@ function analyzeCode(code)
 					else
 					{
 						assignmentChain[assignmentChain.length] = node.id;
-						var assignmentArray = [];
-						assignmentArray = getAssignmentChain(assignmentChain);
-						leftNodes = append(leftNodes, assignmentArray);
-						assignmentChain = [];
-						//console.log('---'+node.id.name);
+						if(node.init.type!=='FunctionExpression')
+						{
+							var assignmentArray = [];
+							assignmentArray = getAssignmentChain(assignmentChain);
+							leftNodes = [];
+							leftNodes = append(leftNodes, assignmentArray);
+							assignmentChain = [];
+							//console.log('---'+node.id.name);
+						}
 					}
 				}
 				if(node.type === 'Property')
@@ -288,8 +371,42 @@ function analyzeCode(code)
 			{
 
 				var functionId = leftNodes[item];
-				identifiedMethods[functionId] = astcopy;
-				console.log(functionId);
+				if(differFlag == 0)
+				{
+					if(!objContains(identifiedMethods, functionId))
+					{
+						identifiedMethods[functionId] = astcopy;
+						console.log(functionId);
+					}
+				}
+				else
+				{
+					for(var index=0; index < res1.length; index++)
+					{
+						var resItem = res1[index];
+						//console.log("here!!!" + resItem['flag']);
+						if(resItem['flag'] === 0)
+						{
+							if(!objContains(identifiedMethods, functionId))
+							{
+								identifiedMethods[functionId] = resItem['value'][0];
+								console.log(functionId);
+							}
+						}
+						else if(resItem['flag'] === 1)
+						{
+							for(var p=0;p<resItem['key'].length; p++)
+							{
+								var name2 = functionId + '.' + resItem['key'][p];
+								if(!objContains(identifiedMethods, name2))
+								{
+									identifiedMethods[name2] = resItem['value'][p];
+									console.log(name2);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -299,8 +416,18 @@ function analyzeCode(code)
 		//console.log(key + " : " + JSON.stringify(identifiedMethods[key]));
 		count++;
 	}
-	console.log(count);
+	//console.log(count);
 	return identifiedMethods;
+}
+
+function objContains(object, name)
+{
+	for(key in object)
+	{
+		if(key === name)
+			return true;
+	}
+	return false;
 }
 
 function isEmptyObject(obj) {
@@ -335,7 +462,7 @@ if (process.argv.length < 3)
 			var functionList = [];
 			try
 			{
-				functionList = analyzeCode(data);
+				functionList = getRes(data);
 			}
 			catch(err)
 			{
@@ -359,7 +486,7 @@ else
 	var data = fs.readFileSync(filename);
 	try
 	{
-		var functionList = analyzeCode(data);
+		var functionList = getRes(data);
 		//console.log(JSON.stringify(functionList));
 	}
 	catch(err)
