@@ -202,9 +202,9 @@ function getRes(code)
 	res2 = res2.concat(res4, res6, res8);
 	res1 = res1.concat(res3, res5, res7);
 	
-
+	//console.log(res2[0]);
 	var identifiedMethods = analyzeCode(res2, ast, 0, null);
-
+	console.log('done merging\n ---------------------');
 	var res9_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right.name", {resultType:"VALUE"});
 	var res10_temp = jsonpath(ast, "$.body..[?(@.type=='AssignmentExpression' && @.right.type !== null && @.right.type=='Identifier')].right", {resultType:"PATH"});
 
@@ -213,7 +213,9 @@ function getRes(code)
 	//var res11 = [];
 	for(var item in res9_temp)
 	{
-		var returnObject = containsFunction(identifiedMethods, res9_temp[item]);
+		//console.log(res9_temp[item]);
+		//var returnObject = containsFunction(identifiedMethods, res9_temp[item]);
+		var returnObject = {};
 		if(returnObject !== null)
 		{
 			res9[res9.length] = returnObject;
@@ -223,7 +225,7 @@ function getRes(code)
 	}
 	//res2 = res2.concat(res10);	
 	//res1 = res1.concat(res9);
-	//console.log(res1);
+	//console.log(res10[0]);
 	//console.log('done merging');
 	var tester = analyzeCode(res10, ast, 1, res9);
 	//var identifiedMethods = analyzeCode(res1, res2, ast);
@@ -244,11 +246,11 @@ function analyzeCode(res2, ast, differFlag, res1)
 	var identifiedMethods = {};
 
 	
-	var breakFlag = 0;
+	
 	for(item in res2)
 	{
 		var callStatementCount = 0;
-		breakFlag = 0;
+		var breakFlag = 0;
 		var assignmentChain = [];
 		var test = res2[item];
 		test = test.slice(1);
@@ -262,11 +264,41 @@ function analyzeCode(res2, ast, differFlag, res1)
 		}
 		var astcopy = ast;
 		var leftNodes = [];
+		var previousNodeType = null;
+		var ppreviousNodeType = null;
+		var arraylength = array.length;
+		var counter = 0;
+		//console.log("---");
 		for(var item in array)
 		{
+			counter++;
+			/*if(counter === arraylength)
+			console.log(node.type);*/
+
+				/*
+ExpressionStatement
+AssignmentExpression
+ObjectExpression
+Property
+FunctionExpression
+BlockStatement
+ExpressionStatement
+AssignmentExpression
+Identifier
+container.input.apply
+
+*/
+			//console.log(counter + ":" + arraylength);
 			var node = astcopy[array[item]];
+			
 			if(node !== undefined)
 			{
+				/*if(previousNodeType!==null &&  previousNodeType.hasOwnProperty('type'))
+					console.log(previousNodeType.type);*/
+				
+				/*if(node.hasOwnProperty('type'))
+					console.log(node.type);*/
+				
 				//console.log(node.type);
 				if(item === 'arguments')
 				{
@@ -275,50 +307,62 @@ function analyzeCode(res2, ast, differFlag, res1)
 				}
 				if(node.hasOwnProperty('type'))
 				{
-					/*if(node.type === VariableDeclarator)
-					{
-						breakFlag =1;
-						break;
-					}*/
+					// \"callee\": \{[  \n]*\"type\": "Func
 					if(node.type === 'FunctionExpression')
 					{
-						callStatementCount++;
-						if(callStatementCount <= 1)
-						{
-							//console.log('Inaccessible!');
-							breakFlag =1;
-							break;
-						}
+							//console.log(previousNodeType.type);							
+							//if(callStatementCount>1)
+							//{
+								if(previousNodeType!==null &&  previousNodeType.hasOwnProperty('type') && previousNodeType.type === 'MemberExpression' && previousNodeType.property.name === 'call')
+								{
+											//console.log('Inaccessible!');
+											
+								}
+								else if(differFlag===0 && callStatementCount===0)
+								{
+									callStatementCount++;
+
+								}
+								else if(differFlag===1 && callStatementCount===0)
+								{
+									callStatementCount++;
+								}
+								else
+								{
+									breakFlag =1;
+									break;
+								}
+							//}
 					}
 				}
-				if(node.hasOwnProperty('left'))
-				{
-					if(node.right.type === 'AssignmentExpression')
+					if(node.hasOwnProperty('left'))
 					{
-						assignmentChain[assignmentChain.length] = node.left;
-					}
-					else if(node.left.type === 'MemberExpression')    
-					{
-						assignmentChain[assignmentChain.length] = node.left;
-						if(node.right.type!=='FunctionExpression')
+						if(node.right.type === 'AssignmentExpression')
 						{
-							leftNodes=[];
+							assignmentChain[assignmentChain.length] = node.left;
 						}
-						var assignmentArray =[];
-						assignmentArray = getAssignmentChain(assignmentChain);						
-						leftNodes = append(leftNodes, assignmentArray);
-						assignmentChain = [];
-					}
-					else if(node.left.type === 'Identifier')
-					{
-						assignmentChain[assignmentChain.length] = node.left;
-						if(node.right.type!=='FunctionExpression')
+						else if(node.left.type === 'MemberExpression')    
 						{
-							leftNodes=[];
+							assignmentChain[assignmentChain.length] = node.left;
+							if(node.right.type!=='FunctionExpression')
+							{
+								leftNodes=[];
+							}
+							var assignmentArray =[];
+							assignmentArray = getAssignmentChain(assignmentChain);						
+							leftNodes = append(leftNodes, assignmentArray);
+							assignmentChain = [];
 						}
-						var assignmentArray = [];
-						assignmentArray = getAssignmentChain(assignmentChain);
-						leftNodes = append(leftNodes, assignmentArray);
+						else if(node.left.type === 'Identifier')
+						{
+							assignmentChain[assignmentChain.length] = node.left;
+							if(node.right.type!=='FunctionExpression')
+							{
+								leftNodes=[];
+							}
+							var assignmentArray = [];
+							assignmentArray = getAssignmentChain(assignmentChain);
+							leftNodes = append(leftNodes, assignmentArray);
 						//console.log('---'+node.left.name);
 						assignmentChain = [];
 					}
@@ -362,6 +406,11 @@ function analyzeCode(res2, ast, differFlag, res1)
 					//console.log('-------'+node.id.name);
 				}
 				astcopy = node;
+				if(node.hasOwnProperty('type'))
+				{
+					previousNodeType = node;
+					ppreviousNodeType = previousNodeType;
+				}
 			}
 		}
 		if(breakFlag !== 1)
@@ -371,7 +420,7 @@ function analyzeCode(res2, ast, differFlag, res1)
 			{
 
 				var functionId = leftNodes[item];
-				if(differFlag == 0)
+				//if(differFlag == 0)
 				{
 					if(!objContains(identifiedMethods, functionId))
 					{
@@ -379,8 +428,8 @@ function analyzeCode(res2, ast, differFlag, res1)
 						console.log(functionId);
 					}
 				}
-				else
-				{
+			//	else
+				{/*
 					for(var index=0; index < res1.length; index++)
 					{
 						var resItem = res1[index];
@@ -406,7 +455,7 @@ function analyzeCode(res2, ast, differFlag, res1)
 							}
 						}
 					}
-				}
+				*/}
 			}
 		}
 	}
