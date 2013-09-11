@@ -148,7 +148,7 @@ function contains(a, obj)
 
 function containsFunction(identifiedMethods, obj)
 {
-	var array = [];
+	//var array = [];
 	var object = {};
 	object['value'] = [];
 	object['key'] = [];
@@ -164,6 +164,7 @@ function containsFunction(identifiedMethods, obj)
 			//console.log(key + ":" + obj);
 			//funObj = identifiedMethods[key];
 			//array[array.length] = identifiedMethods[key];
+			//delete identifiedMethods[key];
 			break;
 		}
 		else if(key.startsWith(obj+'.'))
@@ -172,7 +173,8 @@ function containsFunction(identifiedMethods, obj)
 			object['value'][object['value'].length] = identifiedMethods[key];
 			object['flag'] = 1;
 			//console.log(key + "-" + obj);
-			array[array.length] = identifiedMethods[key];
+			//array[array.length] = identifiedMethods[key];
+			//delete identifiedMethods[key];
 		}
 	}
 	if(object.flag !== -1)
@@ -214,8 +216,8 @@ function getRes(code)
 	for(var item in res9_temp)
 	{
 		//console.log(res9_temp[item]);
-		//var returnObject = containsFunction(identifiedMethods, res9_temp[item]);
-		var returnObject = {};
+		var returnObject = containsFunction(identifiedMethods, res9_temp[item]);
+		//var returnObject = {};
 		if(returnObject !== null)
 		{
 			res9[res9.length] = returnObject;
@@ -268,6 +270,7 @@ function analyzeCode(res2, ast, differFlag, res1)
 		var ppreviousNodeType = null;
 		var arraylength = array.length;
 		var counter = 0;
+		var unnamedFlag = 0;
 		//console.log("---");
 		for(var item in array)
 		{
@@ -294,10 +297,10 @@ container.input.apply
 			if(node !== undefined)
 			{
 				/*if(previousNodeType!==null &&  previousNodeType.hasOwnProperty('type'))
-					console.log(previousNodeType.type);*/
+				console.log(previousNodeType.type);*/
 				
 				/*if(node.hasOwnProperty('type'))
-					console.log(node.type);*/
+				console.log(node.type);*/
 				
 				//console.log(node.type);
 				if(item === 'arguments')
@@ -317,37 +320,43 @@ container.input.apply
 								{
 											//console.log('Inaccessible!');
 											
-								}
-								else if(differFlag===0 && callStatementCount===0)
-								{
-									callStatementCount++;
+										}
+										else if(differFlag===0 && callStatementCount<=0)
+										{
+											callStatementCount++;
+											if(callStatementCount === 2)
+											{
+												unnamedFlag = 0;
+											}
 
-								}
-								else if(differFlag===1 && callStatementCount===0)
-								{
-									callStatementCount++;
-								}
-								else
-								{
-									breakFlag =1;
-									break;
-								}
+										}
+										else if(differFlag===1)
+										{
+											callStatementCount++;
+										}
+										else
+										{
+											breakFlag =1;
+											break;
+										}
 							//}
-					}
-				}
-					if(node.hasOwnProperty('left'))
-					{
-						if(node.right.type === 'AssignmentExpression')
-						{
-							assignmentChain[assignmentChain.length] = node.left;
 						}
-						else if(node.left.type === 'MemberExpression')    
+					}
+					if(unnamedFlag ==0)
+					{
+						if(node.hasOwnProperty('left'))
 						{
-							assignmentChain[assignmentChain.length] = node.left;
-							if(node.right.type!=='FunctionExpression')
+							if(node.right.type === 'AssignmentExpression')
 							{
-								leftNodes=[];
+								assignmentChain[assignmentChain.length] = node.left;
 							}
+							else if(node.left.type === 'MemberExpression')    
+							{
+								assignmentChain[assignmentChain.length] = node.left;
+							//if(node.right.type!=='FunctionExpression')
+							//{
+								leftNodes=[];
+							//}
 							var assignmentArray =[];
 							assignmentArray = getAssignmentChain(assignmentChain);						
 							leftNodes = append(leftNodes, assignmentArray);
@@ -356,39 +365,39 @@ container.input.apply
 						else if(node.left.type === 'Identifier')
 						{
 							assignmentChain[assignmentChain.length] = node.left;
-							if(node.right.type!=='FunctionExpression')
-							{
+							//if(node.right.type!=='FunctionExpression')
+							//{
 								leftNodes=[];
-							}
+							//}
 							var assignmentArray = [];
 							assignmentArray = getAssignmentChain(assignmentChain);
 							leftNodes = append(leftNodes, assignmentArray);
-						//console.log('---'+node.left.name);
-						assignmentChain = [];
-					}
-				}
-				if(node.type === 'VariableDeclarator')
-				{
-					if(node.init.type === 'AssignmentExpression')
-					{
-						assignmentChain[assignmentChain.length] = node.id;
-					}
-					else if(node.init.type === 'VariableDeclarator')
-					{
-						assignmentChain[assignmentChain.length] = node.id;
-					}
-					else
-					{
-						assignmentChain[assignmentChain.length] = node.id;
-						if(node.init.type!=='FunctionExpression')
-						{
-							var assignmentArray = [];
-							assignmentArray = getAssignmentChain(assignmentChain);
-							leftNodes = [];
-							leftNodes = append(leftNodes, assignmentArray);
+							//console.log('---'+node.left.name);
 							assignmentChain = [];
-							//console.log('---'+node.id.name);
 						}
+					}
+					if(node.type === 'VariableDeclarator')
+					{
+						if(node.init.type === 'AssignmentExpression')
+						{
+							assignmentChain[assignmentChain.length] = node.id;
+						}
+						else if(node.init.type === 'VariableDeclarator')
+						{
+							assignmentChain[assignmentChain.length] = node.id;
+						}
+						else
+						{
+							assignmentChain[assignmentChain.length] = node.id;
+						//if(node.init.type!=='FunctionExpression')
+						//{
+							//
+							leftNodes = [];
+							//console.log('---'+node.id.name);
+						//}
+						var assignmentArray = getAssignmentChain(assignmentChain);
+						leftNodes = append(leftNodes, assignmentArray);
+						assignmentChain = [];
 					}
 				}
 				if(node.type === 'Property')
@@ -412,7 +421,43 @@ container.input.apply
 					ppreviousNodeType = previousNodeType;
 				}
 			}
+			else
+			{
+				if(node.hasOwnProperty('left'))
+				{
+					if(node.right.type === 'AssignmentExpression')
+					{
+						assignmentChain[assignmentChain.length] = node.left;
+					}
+					else if(node.left.type === 'MemberExpression')    
+					{
+						assignmentChain[assignmentChain.length] = node.left;
+							//if(node.right.type!=='FunctionExpression')
+							//{
+								leftNodes=[];
+							//}
+							var assignmentArray =[];
+							assignmentArray = getAssignmentChain(assignmentChain);						
+							leftNodes = append(leftNodes, assignmentArray);
+							assignmentChain = [];
+					}
+					else if(node.left.type === 'Identifier')
+					{
+							assignmentChain[assignmentChain.length] = node.left;
+							//if(node.right.type!=='FunctionExpression')
+							//{
+								leftNodes=[];
+							//}
+							var assignmentArray = [];
+							assignmentArray = getAssignmentChain(assignmentChain);
+							leftNodes = append(leftNodes, assignmentArray);
+							//console.log('---'+node.left.name);
+							assignmentChain = [];
+					}
+				}
+			}
 		}
+	}
 		if(breakFlag !== 1)
 		{
 			//console.log(leftNodes);
@@ -420,16 +465,16 @@ container.input.apply
 			{
 
 				var functionId = leftNodes[item];
-				//if(differFlag == 0)
+				if(differFlag == 0)
 				{
 					if(!objContains(identifiedMethods, functionId))
 					{
 						identifiedMethods[functionId] = astcopy;
-						console.log(functionId);
+						//console.log(functionId);
 					}
 				}
-			//	else
-				{/*
+				else
+				{
 					for(var index=0; index < res1.length; index++)
 					{
 						var resItem = res1[index];
@@ -439,7 +484,7 @@ container.input.apply
 							if(!objContains(identifiedMethods, functionId))
 							{
 								identifiedMethods[functionId] = resItem['value'][0];
-								console.log(functionId);
+								//console.log(functionId);
 							}
 						}
 						else if(resItem['flag'] === 1)
@@ -450,12 +495,12 @@ container.input.apply
 								if(!objContains(identifiedMethods, name2))
 								{
 									identifiedMethods[name2] = resItem['value'][p];
-									console.log(name2);
+									//console.log(name2);
 								}
 							}
 						}
 					}
-				*/}
+				}
 			}
 		}
 	}
@@ -536,6 +581,8 @@ else
 	try
 	{
 		var functionList = getRes(data);
+		for(var item in functionList)
+			console.log(item);
 		//console.log(JSON.stringify(functionList));
 	}
 	catch(err)

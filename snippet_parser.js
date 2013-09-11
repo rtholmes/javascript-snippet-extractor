@@ -20,9 +20,10 @@ function lcs(lcstest, lcstarget) {
 	result = "";
 	return result;
 }
-
-function visitMemberExpression(node, nameChain)
+var possibleFile = null;
+function visitMemberExpression(node, nameChain, flg)
 {
+	//possibleFile = null;
 	if(node.object.type === 'Identifier')
 	{
 		var name = node.object.name;
@@ -60,7 +61,14 @@ function visitMemberExpression(node, nameChain)
 	}
 	else if(node.object.type === 'CallExpression')
 	{
-		//var name = node.object.callee.name+'().'+node.property.name;
+		//var mname = node.object.callee.name+'().'+node.property.name;
+		var mname = node.object.callee.name;
+		//console.log(mname + "." + node.property.name);
+		if(flg===1)
+		{
+			console.log(mname + "." + node.property.name);
+			possibleFile = mname;
+		}
 		var name = 'undefined.'+node.property.name;
 		for(var j=nameChain.length-1; j>=0;j--)
 		{
@@ -74,7 +82,7 @@ function visitMemberExpression(node, nameChain)
 		if(node.property.name !== 'prototype' && node.property.name !== 'self')
 			nameChain[nameChain.length] = node.property.name;
 		//console.log('---' + node.property.name);
-		return visitMemberExpression(node.object, nameChain);
+		return visitMemberExpression(node.object, nameChain, 0);
 	}
 	else
 	{
@@ -141,7 +149,7 @@ function getAssignmentChain(assignmentChain)
 		}
 		else if(assignmentChain[j].type === 'MemberExpression')    
 		{	
-			name = visitMemberExpression(assignmentChain[j], []);
+			name = visitMemberExpression(assignmentChain[j], [], 0);
 		}
 		else if(assignmentChain[j].type === 'Identifier')
 		{
@@ -188,6 +196,16 @@ function arrayContains(a, obj)
 	return false;
 }
 
+function hasKey(obj, a)
+{
+	for(var key in obj)
+	{
+		if(key === a)
+			return true;
+	}
+	return false;
+}
+
 function stringArrayContains(array, element)
 {
 	var i = array.length;
@@ -203,7 +221,7 @@ function stringArrayContains(array, element)
 
 function getRequiresList(res3, res4, ast)
 {
-	console.log("I was here!!!!");
+	//console.log("I was here!!!!");
 	var requires = {};
 	for(var item in res3)
 	{
@@ -234,16 +252,16 @@ function getRequiresList(res3, res4, ast)
 		}
 		if(astcopy.type === 'AssignmentExpression')
 		{
-			console.log("I was here!!!!");
+			//console.log("I was here!!!!");
 			if(astcopy.left.type === 'Identifier')
 			{
-				console.log('re-id : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
+				//console.log('re-id : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
 				requires[astcopy.left.name] = astcopy.right.arguments[0].value;
 			}
 			else if(astcopy.callee.type === 'MemberExpression')
 			{
-				var mName = visitMemberExpression(astcopy.callee, [])
-				console.log('re-me : ' + mName + ' : ' + astcopy.right.arguments[0].value);
+				var mName = visitMemberExpression(astcopy.callee, [], 0)
+				//console.log('re-me : ' + mName + ' : ' + astcopy.right.arguments[0].value);
 				requires[mName] = astcopy.right.arguments[0].value;		
 			}
 			else
@@ -271,16 +289,16 @@ function getRequiresList(res3, res4, ast)
 		}*/
 		else if(astcopy.type === 'VariableDeclarator')
 		{
-			console.log("I was here too!!!!");
+			//console.log("I was here too!!!!");
 			if(astcopy.id.type === 'Identifier')
 			{
-				console.log('re-id v : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
+				//console.log('re-id v : ' + astcopy.left.name + ' : ' + astcopy.right.arguments[0].value);
 				requires[astcopy.id.name] = astcopy.init.arguments[0].value;
 			}
 			else if(astcopy.id.type === 'MemberExpression')
 			{
-				var mName = visitMemberExpression(astcopy.id, [])
-				console.log('re-me v : ' + mName + ' : ' + astcopy.right.arguments[0].value);
+				var mName = visitMemberExpression(astcopy.id, [], 0)
+				//console.log('re-me v : ' + mName + ' : ' + astcopy.right.arguments[0].value);
 				requires[mName] = astcopy.init.arguments[0].value;		
 			}
 			else
@@ -324,13 +342,21 @@ function getMethodCalls(res2, ast)
 		if(astcopy.callee.type === 'Identifier')
 		{
 			//console.log('id : ' + astcopy.callee.name);
-			methodCalls[methodCalls.length] = astcopy.callee.name;
+			var tempObj = {};
+			tempObj['method'] = astcopy.callee.name;
+			tempObj['file'] = null;
+			methodCalls[methodCalls.length] = tempObj;
+			//possibleFile = null;
 		}
 		else if(astcopy.callee.type === 'MemberExpression')
 		{
-			var mName = visitMemberExpression(astcopy.callee, [])
-			//console.log('me : ' + mName);
-			methodCalls[methodCalls.length] = mName;
+			var mName = visitMemberExpression(astcopy.callee, [] ,1)
+			//console.log('me : ' + mName + possibleFile);
+			var tempObj = {};
+			tempObj['method'] = mName;
+			tempObj['file'] = possibleFile;
+			methodCalls[methodCalls.length] = tempObj;
+			possibleFile = null;
 		}
 		else
 		{
@@ -382,7 +408,7 @@ function printObject(analyzedSnippet)
 		{
 			for(var item in analyzedSnippet['requires'])
 			{
-				console.log('req- ' + item + ' : ' + analyzedSnippet['requires'][item]);
+				//console.log('req- ' + item + ' : ' + analyzedSnippet['requires'][item]);
 			}
 		}
 		else if(key === 'methodcalls')
@@ -390,7 +416,7 @@ function printObject(analyzedSnippet)
 			//console.log('has key');
 			for(var i=0; i<analyzedSnippet['methodcalls'].length; i++)
 			{
-				console.log('call- ' + i + ' : ' + analyzedSnippet['methodcalls'][i]);
+				//console.log('call- ' + i + ' : ' + analyzedSnippet['methodcalls'][i]);
 			}
 		}
 	}
@@ -404,12 +430,84 @@ function fetchOracle()
 	return oracleObject;
 }
 
-
-
-function mapMethod(mname, oracleObject)
+var matchMap = {"$":"jQuery"};
+// mname : file
+function mapMethod(mname, fname, oracleObject)
 {
 	var objArray = [];
 	var flag = 0;
+	
+		var new_js = null;
+		//console.log("++++" + fname);
+		if(hasKey(matchMap,fname))
+		{
+			new_js = matchMap[fname];
+			//console.log("worked " + new_js);
+		}
+		if(new_js!==null)
+		{
+			console.log("worked " + new_js + mname);
+			var js = new_js;
+			for(var key in oracleObject[js])
+			{
+				//console.log(key);
+				var new_mname = null;
+				if(mname.indexOf("undefined") != -1)
+				{
+					new_mname = mname.replace("undefined", js);
+				}
+				if(key.toLowerCase() === new_mname.toLowerCase() || key.toLowerCase() === "window."+new_mname.toLowerCase())
+				{
+					//console.log('match: ' + js + ' : ' + key);
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 0;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+					//return obj;
+				}
+				else if(new_mname.endsWith('.'+key))
+				{
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 0;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+				}
+				else
+				{
+					var match = getLongestMatch(mname, key);
+					if(match!==null)
+					{
+						var obj = {};
+						obj['file'] = js;
+						obj['method'] = key;
+						obj['source'] = 5;
+						obj['match'] = match;
+						obj['call'] = mname;
+						if(!arrayContains(objArray, obj))
+						{
+							objArray[objArray.length] = obj;
+							flag =1;
+						}
+					}
+				}
+				
+			
+			}
+		}
+	
+	if(flag===0)
 	for(var js in oracleObject)
 	{
 		for(var key in oracleObject[js])
@@ -425,6 +523,8 @@ function mapMethod(mname, oracleObject)
 				obj['call'] = mname;
 				if(!arrayContains(objArray, obj))
 				{
+					//console.log("!!!"+ key + " " + js);
+					matchMap[key] = js;
 					objArray[objArray.length] = obj;
 					flag = 1;
 				}
@@ -449,6 +549,7 @@ function mapMethod(mname, oracleObject)
 					obj['call'] = mname;
 					if(!arrayContains(objArray, obj))
 					{
+						matchMap[key] = js;
 						objArray[objArray.length] = obj;
 						flag = 1;
 					}
@@ -564,7 +665,8 @@ function fetchAPI(analyzedSnippet, oracleObject, printAnswer, k)
 		{
 			for(var i=0; i<analyzedSnippet['methodcalls'].length; i++)
 			{
-				var op = mapMethod(analyzedSnippet['methodcalls'][i], oracleObject);
+				//var op = mapMethod(analyzedSnippet['methodcalls'][i]['method'], oracleObject);
+				var op = mapMethod(analyzedSnippet['methodcalls'][i]['method'], analyzedSnippet['methodcalls'][i]['file'], oracleObject);
 				if(op!==null && op!=undefined)
 					apifound[apifound.length] = op;
 				else
@@ -596,14 +698,17 @@ function fetchLocal(filename, requires, methodCalls, fetchAPI, oracleObject, pri
 		var k =0;
 		for(var i=0; i<methodCalls.length; i++)
 		{
-			if(stringArrayContains(methods, methodCalls[i]) === false)
+			if(stringArrayContains(methods, methodCalls[i]['method']) === false)
 			{
 				//console.log("----" + methodCalls[i]);
-				newMethodCalls[newMethodCalls.length] = methodCalls[i];
+				var obj = {};
+				obj['method'] = methodCalls[i]['method'];
+				obj['file'] = methodCalls[i]['file'];
+				newMethodCalls[newMethodCalls.length] = obj;
 			}
 			else
 			{
-				console.log("+++LOCAL : "+methodCalls[i]);
+				console.log("+++LOCAL : "+methodCalls[i]['method']);
 				k++;
 			}
 		}
