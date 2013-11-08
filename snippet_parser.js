@@ -66,7 +66,7 @@ function visitMemberExpression(node, nameChain, flg)
 		//console.log(mname + "." + node.property.name);
 		if(flg===1)
 		{
-			console.log(mname + "." + node.property.name);
+			//console.log(mname + "." + node.property.name);
 			possibleFile = mname;
 		}
 		var name = 'undefined.'+node.property.name;
@@ -266,7 +266,7 @@ function getRequiresList(res3, res4, ast)
 			}
 			else
 			{
-				console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.property.name);
+				//console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.property.name);
 			}
 		}
 		/*else if (astcopy.type === 'MemberExpression')
@@ -303,7 +303,7 @@ function getRequiresList(res3, res4, ast)
 			}
 			else
 			{
-				console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.property.name);
+				//console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.property.name);
 			}
 		}
 }
@@ -360,17 +360,24 @@ function getMethodCalls(res2, ast)
 		}
 		else
 		{
-			console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.type);
+			//console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' + ' ' + astcopy.callee.type);
 		}
 		//console.log(astcopy.type);
 		//console.log('-------------------');
 	}
 	return methodCalls;
 }
-
+var errCount=0;
 function analyzeCode(code, filename, oracleObject, fetchAPI, printAnswer) 
 {
-	var ast = esprima.parse(code);
+	var ast = null;
+	try{
+		ast = esprima.parse(code);
+	}
+	catch(err){
+		errCount++;
+		return;
+	}
 	var identifiedMethods = [];
 	var jsonpath = require('JSONPath').eval;
 
@@ -446,7 +453,7 @@ function mapMethod(mname, fname, oracleObject)
 		}
 		if(new_js!==null)
 		{
-			console.log("worked " + new_js + mname);
+			//console.log("worked " + new_js + mname);
 			var js = new_js;
 			for(var key in oracleObject[js])
 			{
@@ -456,6 +463,8 @@ function mapMethod(mname, fname, oracleObject)
 				{
 					new_mname = mname.replace("undefined", js);
 				}
+				else
+					new_mname = mname;
 				if(key.toLowerCase() === new_mname.toLowerCase() || key.toLowerCase() === "window."+new_mname.toLowerCase())
 				{
 					//console.log('match: ' + js + ' : ' + key);
@@ -506,6 +515,73 @@ function mapMethod(mname, fname, oracleObject)
 			
 			}
 		}
+
+	if(flag===0)
+	{
+
+			//console.log("worked " + new_js + mname);
+			var js = "jscore";
+			for(var key in oracleObject[js])
+			{
+				//console.log(key);
+				var new_mname = null;
+				if(mname.indexOf("undefined") != -1)
+				{
+					new_mname = mname.replace("undefined", js);
+				}
+				else
+					new_mname = mname;
+				if(key.toLowerCase() === new_mname.toLowerCase() || key.toLowerCase() === "window."+new_mname.toLowerCase())
+				{
+					//console.log('match: ' + js + ' : ' + key);
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 0;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+					//return obj;
+				}
+				else if(new_mname.endsWith('.'+key))
+				{
+					var obj = {};
+					obj['file'] = js;
+					obj['method'] = key;
+					obj['source'] = 0;
+					obj['call'] = mname;
+					if(!arrayContains(objArray, obj))
+					{
+						objArray[objArray.length] = obj;
+						flag = 1;
+					}
+				}
+				else
+				{
+					var match = getLongestMatch(mname, key);
+					if(match!==null)
+					{
+						var obj = {};
+						obj['file'] = js;
+						obj['method'] = key;
+						obj['source'] = 5;
+						obj['match'] = match;
+						obj['call'] = mname;
+						if(!arrayContains(objArray, obj))
+						{
+							objArray[objArray.length] = obj;
+							flag =1;
+						}
+					}
+				}
+				
+			
+			}
+		
+	}
 	
 	if(flag===0)
 	for(var js in oracleObject)
@@ -683,14 +759,16 @@ function fetchLocal(filename, requires, methodCalls, fetchAPI, oracleObject, pri
 {
 	var sys = require('util')
 	var exec = require('child_process').exec;
-	var child = exec("node parser.js " + filename, function (error, stdout, stderr) {
-
+	//var child = exec("node parser.js " + filename, function (error, stdout, stderr) {
+	//var child = exec("", function (error, stdout, stderr) {
 		//sys.print('stdout: ' + stdout);
 		
-		if (error !== null) {
+		/*if (error !== null) {
 			console.log('exec error: ' + error);
-		}
-		var localMethods = stdout;
+		}*/
+
+		//var localMethods = stdout;
+		var localMethods = "";
 		var methods = localMethods.split("\n");
 		//methods = methods.slice(1, methods.length-2);
 		//console.log(methods);
@@ -708,7 +786,7 @@ function fetchLocal(filename, requires, methodCalls, fetchAPI, oracleObject, pri
 			}
 			else
 			{
-				console.log("+++LOCAL : "+methodCalls[i]['method']);
+				//console.log("+++LOCAL : "+methodCalls[i]['method']);
 				k++;
 			}
 		}
@@ -716,20 +794,73 @@ function fetchLocal(filename, requires, methodCalls, fetchAPI, oracleObject, pri
 		obj['requires'] = requires;
 		obj['methodcalls'] = newMethodCalls;
 		fetchAPI(obj, oracleObject, printAnswer, k);
-	});
+	//});
 }
 
+var filedb = "javascript.db";
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(filedb);
 function printAnswer(answer, k, requires)
 {
-	console.log('***********************\nFOUND:');
+	//console.log('***********************\nFOUND:');
+	
+	/*db.serialize(function() {
+			  var stmt = db.prepare("INSERT INTO map VALUES (?,?,?,?)");
+			  stmt.run(aid, qid, codeid, globalCode, function(err) {
+                if (err) throw err;
+                //inserted1++;
+            	});
+			  
+			  stmt.finalize();
+			});*/
+	
+	//var exists = fs.existsSync(file);
+	
 	var i=0,j=0;
 	for(i=0; i<answer['found'].length; i++)
 	{
-		console.log('----------\n' + answer['found'][i][0]['call']);
+		//console.log('----------\n' + answer['found'][i][0]['call']);
 		for(var j=0;j<answer['found'][i].length; j++)
-			console.log(answer['found'][i][j]['file']+'  :  '+answer['found'][i][j]['method'] + '   -   ' + answer['found'][i][j]['source']);
+		{
+			console.log(answer['found'][i][j]['file']+'  :  '+answer['found'][i][j]['method'] + '   -   ' + answer['found'][i].length);
+			var answermethod = answer['found'][i][j]['method'];
+			var answerfile = answer['found'][i][j]['file'];
+			var answerlength = answer['found'][i].length;
+			/*db.serialize(function() {
+				var data = [aid, codeid,answer['found'][i][j]['method'], answer['found'][i][j]['file'], answer['found'][i].length, scriptFlag ];
+				console.log(data);
+				//var stmt = db.prepare("INSERT INTO types VALUES (?,?,?,?,?,?)", data, function (succ){ if(succ===null) console.log("success")});
+				var stmt = db.prepare("INSERT INTO types VALUES (1,1,1,1,1,1)");
+				stmt.run();
+				stmt.finalize();
+				//console.log(stmt);
+				stmt.run();
+				data = [aid, qid, codeid, globalCode];
+				stmt = db.prepare("INSERT INTO map VALUES (?,?,?,?)", data);
+				//console.log(stmt);
+				stmt.run();
+				stmt.finalize();
+			});*/
+			
+			db.serialize(function() {
+
+				var stmt = db.prepare("INSERT INTO types VALUES (?,?,?,?,?,?)");
+			  stmt.run(aid, codeid,answermethod, answerfile,answerlength, scriptFlag, function(err) {
+                if (err) throw err;
+                //inserted1++;
+            });
+			  //Insert random data
+			  stmt.finalize();
+			  //Insert random data
+			  
+			});
+
+
+	
+		}
 	}
-	console.log('***********************\nNOT FOUND:');
+	
+	//console.log('***********************\nNOT FOUND:');
 	for(var j=0; j<answer['notfound'].length; j++)
 	{
 		/*if(stringArrayContains(localMethods, answer['notfound'][j]) === true)
@@ -739,16 +870,16 @@ function printAnswer(answer, k, requires)
 		}
 		else*/
 		{
-			console.log(answer['notfound'][j]);
+			//console.log(answer['notfound'][j]);
 			//l++;
 		}
 	}
-	console.log('***********************\nREQUIRES:');
+	//console.log('***********************\nREQUIRES:');
 	for(var key in requires)
 	{
-		console.log(requires[key])
+		//console.log(requires[key])
 	}
-	console.log('***********************\nSTATS: ');
+	//console.log('***********************\nSTATS: ');
 	console.log("Mapped- "+(i).toString()+ ": Unmapped- " + (j).toString() + " : Local Calls- " + k.toString());
 }
 
@@ -767,25 +898,288 @@ if (typeof String.prototype.endsWith != 'function') {
 }
 
 
+var esprima  = require('esprima');
+var fs = require('fs');
+var parseString = require('xml2js').parseString;
+
+
+/*var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database("javascript.db");*/
+
+/*db.serialize(function() {
+  //db.run("CREATE TABLE lorem (info TEXT)");
+
+  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+  for (var i = 0; i < 10; i++) {
+      stmt.run("Ipsum " + i);
+  }
+  stmt.finalize();
+
+  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+      console.log(row.id + ": " + row.info);
+  });
+});*/
+
+
+
+fs.readFile( '/home/s23subra/workspace/stackoverflow/javascript_codes_specifictags_final.xml', function(err, data) {
+    
+        parseString(data, function (err, results) {
+       	traverseXML(results);
+    	db.close();
+});
+
+});
+
+var globalCode;
+var aid;
+var codeid;
+var scriptFlag;
+var tags;
+var code;
+var qid;
+function traverseXML(result)
+{
+
+	//console.log(JSON.stringify(result));
+	var postArray = result.root.post;
+	var counter = 0;
+	for(var i=0; i<postArray.length; i++)
+	{
+		var postContent = postArray[i];
+		//console.log(postContent['aid'][0]);
+		aid = postContent['aid'][0];
+		qid = postContent['qid'][0];
+		codeid = postContent['codeid'][0];
+		scriptFlag = postContent['scriptFlag'][0];
+		tags = postContent['tags'][0];
+		code = postContent['code'][0];
+		code = code.replace("&lt;", "<");
+		code = code.replace("&gt;", ">");
+		code = code.replace("&amp;", "&");
+		code = code.replace("&quot;", "\"");
+		globalCode = code;
+
+		try
+		{
+			var oracleObject = fetchOracle();
+			var analyzedSnippet = analyzeCode(code, null, oracleObject, fetchAPI, printAnswer);
+			counter++;
+			//if(counter>5)
+			//{
+		//		break;
+	//			return;
+//			}
+			console.log("COUNTER: ------"+counter);
+			//printObject(analyzedSnippet);
+			//var answer = fetchAPI(analyzedSnippet, oracleObject);
+			//fetchLocal(filename , answer, printAnswer);
+			
+			//printAnswer(answer);
+
+			//printObject(analyzedSnippet);
+			//console.log(oracleObject['jquery'].length);
+		}
+		catch(err)
+		{
+			var txt="Error description: " + err.message + " : "+err.line+ "\n\n";
+			dumpError(err);
+		}
+	}
+}
+
+
+//-------------------------------------------------------------------
 
 var fs;
 fs       = require('fs');
-var filename = process.argv[2];
-var data     = fs.readFileSync(filename);
+//var filename = process.argv[2];
+//var data     = fs.readFileSync(filename);
 var esprima  = require('esprima');
+
+/*var filenamearray = [
+'/src/bb10/ext/client.js',
+'/src/bb10/ext/index.js',
+'/src/bb10/js/_bb10_fileInput.js',
+'/src/bb10/js/_bb10_activityIndicator.js',
+'/src/bb10/js/core.js',
+'/src/bb10/js/progress.js',
+'/src/bb10/js/_bb10_contextMenu.js',
+'/src/bb10/js/_PlayBook_contextMenu.js',
+'/src/bb10/js/_bb10_imageList.js',
+'/src/bb10/js/_bb10_labelControlContainers.js',
+'/src/bb10/js/_bb_PlayBook_10_scrollPanel.js',
+'/src/bb10/js/_bb10_button.js',
+'/src/bb10/js/screen.js',
+'/src/bb10/js/iscroll.js',
+'/src/bb10/js/menuBar.js',
+'/src/bb10/js/_bb10_checkbox.js',
+'/src/bb10/js/_bb10_radio.js',
+'/src/bb10/js/titleBar.js',
+'/src/bb10/js/_bb10_roundPanel.js',
+'/src/bb10/js/bbmBubble.js',
+'/src/bb10/js/tabOverflow.js',
+'/src/bb10/js/_bb10_toggle.js',
+'/src/bb10/js/_bb10_slider.js',
+'/src/bb10/js/_bb10_grid.js',
+'/src/bb10/js/_bb10_textInput.js',
+'/src/bb10/js/_bb10_pillButtons.js',
+'/src/bb10/js/actionBar.js',
+'/src/bb10/js/_bb10_dropdown.js',
+'/src/bbos/ext/client.js',
+'/src/bbos/ext/index.js',
+'/src/bbos/js/_bb_6_7_PlayBook_labelControlContainers.js',
+'/src/bbos/js/core.js',
+'/src/bbos/js/progress.js',
+'/src/bbos/js/_bb_6_7_PlayBook_dropdown.js',
+'/src/bbos/js/_bb_6_7_button.js',
+'/src/bbos/js/_bb_6_7_PlayBook_pillButtons.js',
+'/src/bbos/js/screen.js',
+'/src/bbos/js/_bb5_button.js',
+'/src/bbos/js/menuBar.js',
+'/src/bbos/js/titleBar.js',
+'/src/bbos/js/_bb_6_7_textInput.js',
+'/src/bbos/js/bbmBubble.js',
+'/src/bbos/js/_bb_5_6_7_imageList.js',
+'/src/bbos/js/_bb5_pillButtons.js',
+'/src/bbos/js/_bb_5_6_7_roundPanel.js',
+'/src/bbos/js/_bb5_labelControlContainers.js',
+'/src/playbook/ext/client.js',
+'/src/playbook/ext/index.js',
+'/src/playbook/js/_bb10_fileInput.js',
+'/src/playbook/js/_bb10_activityIndicator.js',
+'/src/playbook/js/core.js',
+'/src/playbook/js/progress.js',
+'/src/playbook/js/_bb10_contextMenu.js',
+'/src/playbook/js/_bb10_imageList.js',
+'/src/playbook/js/_bb10_labelControlContainers.js',
+'/src/playbook/js/_bb10_button.js',
+'/src/playbook/js/_bbPlayBook_textInput.js',
+'/src/playbook/js/screen.js',
+'/src/playbook/js/iscroll.js',
+'/src/playbook/js/_bb_PlayBook_pillButtons.js',
+'/src/playbook/js/menuBar.js',
+'/src/playbook/js/_bbPlayBook_button.js',
+'/src/playbook/js/_bb10_checkbox.js',
+'/src/playbook/js/_bb10_radio.js',
+'/src/playbook/js/titleBar.js',
+'/src/playbook/js/_bb_6_7_textInput.js',
+'/src/playbook/js/_bb10_roundPanel.js',
+'/src/playbook/js/bbmBubble.js',
+'/src/playbook/js/_bb10_toggle.js',
+'/src/playbook/js/_bbPlayBook_activityIndicator.js',
+'/src/playbook/js/_bbPlayBook_dropdown.js',
+'/src/playbook/js/_bbPlayBook_imageList.js',
+'/src/playbook/js/_bbPlayBook_roundPanel.js',
+'/src/playbook/js/_bb_PlayBook_scrollPanel.js',
+'/src/playbook/js/_bb10_slider.js',
+'/src/playbook/js/_bb10_grid.js',
+'/src/playbook/js/_bb10_textInput.js',
+'/src/playbook/js/_bb10_pillButtons.js',
+'/src/playbook/js/_bb10_dropdown.js',
+'/src/playbook/js/_bb_PlayBook_labelControlContainers.js',
+'/samples/bb10/js/gauge.js',
+'/samples/bb10/js/dynamicRadioButtons.js',
+'/samples/bb10/js/dynamicButtons.js',
+'/samples/bb10/js/dataOnLoad.js',
+'/samples/bb10/js/imageListAddButtons.js',
+'/samples/bb10/js/dynamicDropDowns.js',
+'/samples/bb10/js/dynamicActionBar.js',
+'/samples/bb10/js/dynamicToggle.js',
+'/samples/bb10/js/menuBar.js',
+'/samples/bb10/js/slider.js',
+'/samples/bb10/js/pillButtons.js',
+'/samples/bb10/js/dynamicCheckBoxes.js',
+'/samples/bb10/js/dynamicInputs.js',
+'/samples/bb10/js/dataOnTheFly.js',
+'/samples/bb10/js/input.js',
+'/samples/bb10/js/dynamicPillButtons.js',
+'/samples/bb10/js/titlePillButtons.js',
+'/samples/bb10/js/checkboxes.js',
+'/samples/bb10/js/dynamicBubbles.js',
+'/samples/bb10/js/tabs.js',
+'/samples/bb10/js/dynamicProgress.js',
+'/samples/bb10/js/actionBar.js',
+'/samples/bb10/js/inboxList.js',
+'/samples/bb10/js/masterDetail.js',
+'/samples/bb10/js/imageList.js',
+'/samples/bbos/js/gauge.js',
+'/samples/bbos/js/dynamicRadioButtons.js',
+'/samples/bbos/js/dynamicButtons.js',
+'/samples/bbos/js/dataOnLoad.js',
+'/samples/bbos/js/imageListAddButtons.js',
+'/samples/bbos/js/dynamicDropDowns.js',
+'/samples/bbos/js/dynamicActionBar.js',
+'/samples/bbos/js/dynamicToggle.js',
+'/samples/bbos/js/menuBar.js',
+'/samples/bbos/js/slider.js',
+'/samples/bbos/js/pillButtons.js',
+'/samples/bbos/js/dynamicCheckBoxes.js',
+'/samples/bbos/js/dynamicInputs.js',
+'/samples/bbos/js/dataOnTheFly.js',
+'/samples/bbos/js/input.js',
+'/samples/bbos/js/dynamicPillButtons.js',
+'/samples/bbos/js/titlePillButtons.js',
+'/samples/bbos/js/checkboxes.js',
+'/samples/bbos/js/dynamicBubbles.js',
+'/samples/bbos/js/tabs.js',
+'/samples/bbos/js/dynamicProgress.js',
+'/samples/bbos/js/actionBar.js',
+'/samples/bbos/js/inboxList.js',
+'/samples/bbos/js/masterDetail.js',
+'/samples/bbos/js/imageList.js',
+'/samples/bbos/bbui.js',
+'/samples/playbook/js/gauge.js',
+'/samples/playbook/js/dynamicRadioButtons.js',
+'/samples/playbook/js/dynamicButtons.js',
+'/samples/playbook/js/dataOnLoad.js',
+'/samples/playbook/js/imageListAddButtons.js',
+'/samples/playbook/js/dynamicDropDowns.js',
+'/samples/playbook/js/dynamicActionBar.js',
+'/samples/playbook/js/dynamicToggle.js',
+'/samples/playbook/js/menuBar.js',
+'/samples/playbook/js/slider.js',
+'/samples/playbook/js/pillButtons.js',
+'/samples/playbook/js/dynamicCheckBoxes.js',
+'/samples/playbook/js/dynamicInputs.js',
+'/samples/playbook/js/dataOnTheFly.js',
+'/samples/playbook/js/input.js',
+'/samples/playbook/js/dynamicPillButtons.js',
+'/samples/playbook/js/titlePillButtons.js',
+'/samples/playbook/js/checkboxes.js',
+'/samples/playbook/js/dynamicBubbles.js',
+'/samples/playbook/js/tabs.js',
+'/samples/playbook/js/dynamicProgress.js',
+'/samples/playbook/js/actionBar.js',
+'/samples/playbook/js/inboxList.js',
+'/samples/playbook/js/masterDetail.js',
+'/samples/playbook/js/imageList.js',
+'pkg/bb10/ext/client.js',
+'/pkg/bb10/ext/index.js'
+];
+
+
+var filetoinsert;
 try
 {
-	var oracleObject = fetchOracle();
-	var analyzedSnippet = analyzeCode(data, filename, oracleObject, fetchAPI, printAnswer);
-	
-	//printObject(analyzedSnippet);
-	//var answer = fetchAPI(analyzedSnippet, oracleObject);
-	//fetchLocal(filename , answer, printAnswer);
-	
-	//printAnswer(answer);
+	for(var p = 0; p<filenamearray.length; p++)
+	{
+		var filename = '/home/s23subra/repositories/javascript-snippet-extractor/BBUI_Samples'+filenamearray[p];
+		filetoinsert = filenamearray[p];
+		console.log(filenamearray[p]);
+		var data     = fs.readFileSync(filename);
+		var oracleObject = fetchOracle();
+		var analyzedSnippet = analyzeCode(data, filename, oracleObject, fetchAPI, printAnswer);
 
-	//printObject(analyzedSnippet);
-	//console.log(oracleObject['jquery'].length);
+		//printObject(analyzedSnippet);
+		//var answer = fetchAPI(analyzedSnippet, oracleObject);
+		//fetchLocal(filename , answer, printAnswer);
+
+		//printAnswer(answer);
+
+		//printObject(analyzedSnippet);
+		//console.log(oracleObject['jquery'].length);
+	}
 }
 catch(err)
 {
@@ -814,4 +1208,4 @@ function lcs(lcstest, lcstarget) {
 	}
 	result = "";
 	return result;
-}
+}*/

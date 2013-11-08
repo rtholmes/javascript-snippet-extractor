@@ -2190,7 +2190,7 @@
             "id": "canvaspixelarray.length",
             "type": "Number"},
         "canvasrenderingcontext2d.shadowOffsetX": {
-            "id": "canvasrenderingcontext2d.shadowOffsetX",
+            "id": "canvasrenderingcontexblackberry.ui.tt2d.shadowOffsetX",
             "type": "Number"},
         "canvasrenderingcontext2d.shadowOffsetY": {
             "id": "canvasrenderingcontext2d.shadowOffsetY",
@@ -2198,6 +2198,7 @@
         "blackberry.pim.contacts.contact.anniversary": {
             "id": "blackberry.pim.contacts.contact.anniversary",
             "type": "Date"},
+            "blackberry.ui.toast":{},
         "blackberry.ui.toast.show": {
             "id": "blackberry.ui.toast.show",
             "return": "Number",
@@ -2785,3209 +2786,768 @@
             "id": "canvasrenderingcontext2d.arc",
             "return": "void",
             "type": "FunctionExpression"}},
-            "underscore": {
-        "last": {
-            "type": "Method"},
-        "throttle": {
-            "type": "Method"},
-        "isBoolean": {
-            "type": "Method"},
-        "contains": {
-            "type": "Method"},
-        "indexOf": {
-            "type": "Method"},
-        "pluck": {
-            "type": "Method"},
-        "where": {
-            "type": "Method"},
-        "every": {
-            "type": "Method"},
-        "isNumber": {
-            "type": "Method"},
-        "has": {
-            "type": "Method"},
-        "after": {
-            "type": "Method"},
-        "isEmpty": {
-            "type": "Method"},
-        "defaults": {
-            "type": "Method"},
-        "compact": {
-            "type": "Method"},
-        "values": {
-            "type": "Method"},
-        "bindAll": {
-            "type": "Method"},
-        "countBy": {
-            "type": "Method"},
-        "initial": {
-            "type": "Method"},
-        "value": {
-            "type": "Method"},
-        "noConflict": {
-            "type": "Method"},
-        "compose": {
-            "type": "Method"},
-        "sortedIndex": {
-            "type": "Method"},
-        "template": {
-            "type": "Method"},
-        "clone": {
-            "type": "Method"},
-        "wrap": {
-            "type": "Method"},
-        "pairs": {
-            "type": "Method"},
-        "once": {
-            "type": "Method"},
-        "isUndefined": {
-            "type": "Method"},
-        "isObject": {
-            "type": "Method"},
-        "indexBy": {
-            "type": "Method"},
-        "isFunction": {
-            "type": "Method"},
-        "random": {
-            "type": "Method"},
-        "lastIndexOf": {
-            "type": "Method"},
-        "partial": {
-            "type": "Method"},
-        "without": {
-            "type": "Method"},
-        "reduce": {
-            "type": "Method"},
-        "size": {
-            "type": "Method"},
-        "groupBy": {
-            "type": "Method"},
-        "difference": {
-            "type": "Method"},
-        "isFinite": {
-            "type": "Method"},
-        "sortBy": {
-            "type": "Method"},
-        "isEqual": {
-            "type": "Method"},
-        "memoize": {
-            "type": "Method"},
-        "isNaN": {
-            "type": "Method"},
-        "each": {
-            "type": "Method"},
-        "rest": {
-            "type": "Method"},
-        "delay": {
-            "type": "Method"},
-        "tap": {
-            "type": "Method"},
-        "isArray": {
-            "type": "Method"},
-        "some": {
-            "type": "Method"},
-        "filter": {
-            "type": "Method"},
-        "result": {
-            "type": "Method"},
-        "isNull": {
-            "type": "Method"},
-        "reject": {
-            "type": "Method"},
-        "range": {
-            "type": "Method"},
-        "reduceRight": {
-            "type": "Method"},
-        "findWhere": {
-            "type": "Method"},
-        "object": {
-            "type": "Method"},
-        "escape": {
-            "type": "Method"},
-        "uniqueId": {
-            "type": "Method"},
-        "invert": {
-            "type": "Method"},
-        "identity": {
-            "type": "Method"},
-        "isElement": {
-            "type": "Method"},
-        "defer": {
-            "type": "Method"},
-        "flatten": {
-            "type": "Method"},
-        "times": {
-            "type": "Method"},
-        "union": {
-            "type": "Method"},
-        "map": {
-            "type": "Method"},
-        "mixin": {
-            "type": "Method"},
-        "pick": {
-            "type": "Method"},
-        "unescape": {
-            "type": "Method"},
-        "find": {
-            "type": "Method"},
-        "sample": {
-            "type": "Method"},
-        "min": {
-            "type": "Method"},
-        "functions": {
-            "type": "Method"},
-        "intersection": {
-            "type": "Method"},
-        "zip": {
-            "type": "Method"},
-        "toArray": {
-            "type": "Method"},
-        "max": {
-            "type": "Method"},
-        "keys": {
-            "type": "Method"},
-        "extend": {
-            "type": "Method"},
-        "isRegExp": {
-            "type": "Method"},
-        "isDate": {
-            "type": "Method"},
-        "debounce": {
-            "type": "Method"},
-        "uniq": {
-            "type": "Method"},
-        "chain": {
-            "type": "Method"},
-        "omit": {
-            "type": "Method"},
-        "shuffle": {
-            "type": "Method"},
-        "invoke": {
-            "type": "Method"},
-        "isArguments": {
-            "type": "Method"},
-        "first": {
-            "type": "Method"},
-        "bind": {
-            "type": "Method"},
-        "isString": {
-            "type": "Method"}},
+            "underscore": {},
             "jscore": {
-        "Context.getKeys": {
-            "id": "Context.getKeys",
-            "return": "Iterator",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Context.getNamedContext": {
-            "id": "Context.getNamedContext",
-            "return": "void",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLTableSectionElement.vAlign": {
-            "id": "HTMLTableSectionElement.vAlign",
-            "type": "String"},
-        "HTMLTableCaptionElement.align": {
-            "id": "HTMLTableCaptionElement.align",
-            "type": "String"},
-        "HTMLParamElement.valueType": {
-            "id": "HTMLParamElement.valueType",
-            "type": "String"},
-        "HTMLIsIndexElement.prompt": {
-            "id": "HTMLIsIndexElement.prompt",
-            "type": "String"},
-        "HTMLLinkElement.type": {
-            "id": "HTMLLinkElement.type",
-            "type": "String"},
-        "HTMLTextAreaElement.hostname": {
-            "id": "HTMLTextAreaElement.hostname",
-            "type": "String"},
-        "HTMLModElement.dateTime": {
-            "id": "HTMLModElement.dateTime",
-            "type": "String"},
-        "HTMLAreaElement.hash": {
-            "id": "HTMLAreaElement.hash",
-            "type": "String"},
-        "Node.ownerDocument": {
-            "id": "Node.ownerDocument",
-            "type": "readonly Document"},
-        "NamedNodeMap.setNamedItem": {
-            "id": "NamedNodeMap.setNamedItem",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "arg",
-                    "type": "Node"}],
-            "type": "FunctionExpression"},
-        "Date.getUTCMinutes": {
-            "id": "Date.getUTCMinutes",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Array.length": {
-            "id": "Array.length",
-            "type": "number"},
-        "HTMLFormElement.behavior": {
-            "id": "HTMLFormElement.behavior",
-            "type": "String"},
-        "HTMLFrameElement.contentDocument": {
-            "id": "HTMLFrameElement.contentDocument",
-            "type": "readonly Document"},
-        "Layer.load": {
-            "id": "Layer.load",
-            "return": "void",
-            "params": [
-                {
-                    "name": "src",
-                    "type": "String"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.size": {
-            "id": "HTMLSelectElement.size",
-            "type": "number"},
-        "HTMLBlockquoteElement.cite": {
-            "id": "HTMLBlockquoteElement.cite",
-            "type": "String"},
-        "HTMLTextAreaElement.readOnly": {
-            "id": "HTMLTextAreaElement.readOnly",
-            "type": "boolean"},
-        "HTMLInputElement.accessKey": {
-            "id": "HTMLInputElement.accessKey",
-            "type": "String"},
-        "HTMLTableCellElement.width": {
-            "id": "HTMLTableCellElement.width",
-            "type": "String"},
-        "window.history": {
-            "id": "window.history",
-            "type": "history"},
-        "HTMLTableSectionElement.rows": {
-            "id": "HTMLTableSectionElement.rows",
-            "type": "readonly HTMLCollection"},
-        "HTMLDocument.attachEvent": {
-            "id": "HTMLDocument.attachEvent",
-            "return": "boolean",
-            "params": [
-                {
-                    "name": "event",
-                    "type": "String"},
-                {
-                    "name": "code",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "Node.removeChild": {
-            "id": "Node.removeChild",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "oldChild",
-                    "type": "Node"}],
-            "type": "FunctionExpression"},
-        "HTMLOptionElement.disabled": {
-            "id": "HTMLOptionElement.disabled",
-            "type": "boolean"},
-        "HTMLFrameElement.scrolling": {
-            "id": "HTMLFrameElement.scrolling",
-            "type": "String"},
-        "HTMLTableSectionElement.deleteRow": {
-            "id": "HTMLTableSectionElement.deleteRow",
-            "return": "void",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "window.name": {
-            "id": "window.name",
-            "type": "String"},
-        "HTMLTableCellElement.chOff": {
-            "id": "HTMLTableCellElement.chOff",
-            "type": "String"},
-        "HTMLParagraphElement.align": {
-            "id": "HTMLParagraphElement.align",
-            "type": "String"},
-        "navigator.cpuClass": {
-            "id": "navigator.cpuClass",
-            "type": "readonly String"},
-        "HTMLFontElement.color": {
-            "id": "HTMLFontElement.color",
-            "type": "String"},
-        "HTMLIFrameElement.marginWidth": {
-            "id": "HTMLIFrameElement.marginWidth",
-            "type": "String"},
-        "HTMLTableCellElement.rowSpan": {
-            "id": "HTMLTableCellElement.rowSpan",
-            "type": "number"},
-        "window.open": {
-            "id": "window.open",
-            "return": "window",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"},
-                {
-                    "name": "String",
-                    "type": ""},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLElement.childNodes": {
-            "id": "HTMLElement.childNodes",
-            "type": "readonly NodeList"},
-        "window.resizeTo": {
-            "id": "window.resizeTo",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAnchorElement.type": {
-            "id": "HTMLAnchorElement.type",
-            "type": "String"},
-        "CharacterData.replaceData": {
-            "id": "CharacterData.replaceData",
-            "return": "void",
-            "params": [
-                {
-                    "name": "offset",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "Context.getParentContext": {
-            "id": "Context.getParentContext",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.data": {
-            "id": "HTMLObjectElement.data",
-            "type": "String"},
-        "String.fontcolor": {
-            "id": "String.fontcolor",
-            "return": "String",
-            "params": [
-                {
-                    "name": "color",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLUListElement.compact": {
-            "id": "HTMLUListElement.compact",
-            "type": "boolean"},
-        "Date.setYear": {
-            "id": "Date.setYear",
-            "return": "number",
-            "params": [
-                {
-                    "name": "year",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.href": {
-            "id": "HTMLTextAreaElement.href",
-            "type": "String"},
-        "HTMLSelectElement.name": {
-            "id": "HTMLSelectElement.name",
-            "type": "String"},
-        "HTMLTextAreaElement.hash": {
-            "id": "HTMLTextAreaElement.hash",
-            "type": "String"},
-        "Date.getYear": {
-            "id": "Date.getYear",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "CharacterData.length": {
-            "id": "CharacterData.length",
-            "type": "readonly number"},
-        "Rule.selectorText": {
-            "id": "Rule.selectorText",
-            "type": "String"},
-        "HTMLInputElement.useMap": {
-            "id": "HTMLInputElement.useMap",
-            "type": "String"},
-        "HTMLLinkElement.target": {
-            "id": "HTMLLinkElement.target",
-            "type": "String"},
-        "HTMLElement.filters": {
-            "id": "HTMLElement.filters",
-            "type": "Array"},
-        "Date.toLocaleString": {
-            "id": "Date.toLocaleString",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.moveBelow": {
-            "id": "Layer.moveBelow",
-            "return": "void",
-            "params": [
-                {
-                    "name": "target",
-                    "type": "Layer"}],
-            "type": "FunctionExpression"},
-        "HTMLLinkElement.href": {
-            "id": "HTMLLinkElement.href",
-            "type": "String"},
-        "window.scroll": {
-            "id": "window.scroll",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLIFrameElement.align": {
-            "id": "HTMLIFrameElement.align",
-            "type": "String"},
-        "HTMLLabelElement.htmlFor": {
-            "id": "HTMLLabelElement.htmlFor",
-            "type": "String"},
-        "event.CONTROL_MASK": {
-            "id": "event.CONTROL_MASK",
-            "type": "number"},
-        "HTMLSelectElement.form": {
-            "id": "HTMLSelectElement.form",
-            "type": "readonly HTMLFormElement"},
-        "screen.colorDepth": {
-            "id": "screen.colorDepth",
-            "type": "readonly number"},
-        "navigator.cookieEnabled": {
-            "id": "navigator.cookieEnabled",
-            "type": "readonly boolean"},
-        "HTMLFormElement.reset": {
-            "id": "HTMLFormElement.reset",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "TextRange.text": {
-            "id": "TextRange.text",
-            "type": "String"},
-        "HTMLTextAreaElement.createTextRange": {
-            "id": "HTMLTextAreaElement.createTextRange",
-            "return": "TextRange",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Node.appendChild": {
-            "id": "Node.appendChild",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "newChild",
-                    "type": "Node"}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.tHead": {
-            "id": "HTMLTableElement.tHead",
-            "type": "HTMLTableSectionElement"},
-        "HTMLDocument.cookie": {
-            "id": "HTMLDocument.cookie",
-            "type": "String"},
-        "location.hostname": {
-            "id": "location.hostname",
-            "type": "String"},
-        "HTMLAreaElement.protocol": {
-            "id": "HTMLAreaElement.protocol",
-            "type": "String"},
-        "Date.getMonth": {
-            "id": "Date.getMonth",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.window": {
-            "id": "Layer.window",
-            "type": "window"},
-        "HTMLAppletElement.code": {
-            "id": "HTMLAppletElement.code",
-            "type": "String"},
-        "String.charCodeAt": {
-            "id": "String.charCodeAt",
-            "return": "number",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "NodeList.item": {
-            "id": "NodeList.item",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "Document.createTextNode": {
-            "id": "Document.createTextNode",
-            "return": "Text",
-            "params": [
-                {
-                    "name": "data",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "window.status": {
-            "id": "window.status",
-            "type": "String"},
-        "HTMLInputElement.alt": {
-            "id": "HTMLInputElement.alt",
-            "type": "String"},
-        "Date.getHours": {
-            "id": "Date.getHours",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Date.toGMTString": {
-            "id": "Date.toGMTString",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.captureEvents": {
-            "id": "Layer.captureEvents",
-            "return": "void",
-            "params": [
-                {
-                    "name": "eventTypeList",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLFrameSetElement.cols": {
-            "id": "HTMLFrameSetElement.cols",
-            "type": "String"},
-        "HTMLTableRowElement.sectionRowIndex": {
-            "id": "HTMLTableRowElement.sectionRowIndex",
-            "type": "number"},
-        "HTMLButtonElement.form": {
-            "id": "HTMLButtonElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLMapElement.name": {
-            "id": "HTMLMapElement.name",
-            "type": "String"},
-        "Node.parentElement": {
-            "id": "Node.parentElement",
-            "type": "readonly Node"},
-        "NodeList.length": {
-            "id": "NodeList.length",
-            "type": "readonly number"},
-        "Date.getTime": {
-            "id": "Date.getTime",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.contentDocument": {
-            "id": "HTMLObjectElement.contentDocument",
-            "type": "readonly Document"},
-        "NamedNodeMap.getNamedItem": {
-            "id": "NamedNodeMap.getNamedItem",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Date.setUTCMinutes": {
-            "id": "Date.setUTCMinutes",
-            "return": "number",
-            "params": [
-                {
-                    "name": "min",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "window.outerWidth": {
-            "id": "window.outerWidth",
-            "type": "number"},
-        "HTMLLegendElement.accessKey": {
-            "id": "HTMLLegendElement.accessKey",
-            "type": "String"},
-        "HTMLTableElement.frame": {
-            "id": "HTMLTableElement.frame",
-            "type": "String"},
-        "Date.getSeconds": {
-            "id": "Date.getSeconds",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLDocument.scripts": {
-            "id": "HTMLDocument.scripts",
-            "type": "Array"},
-        "location.hash": {
-            "id": "location.hash",
-            "type": "String"},
-        "HTMLElement.title": {
-            "id": "HTMLElement.title",
-            "type": "String"},
-        "HTMLTableElement.width": {
-            "id": "HTMLTableElement.width",
-            "type": "String"},
-        "HTMLObjectElement.name": {
-            "id": "HTMLObjectElement.name",
-            "type": "String"},
-        "Node.attributes": {
-            "id": "Node.attributes",
-            "type": "readonly NamedNodeMap"},
-        "String.anchor": {
-            "id": "String.anchor",
-            "return": "String",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLTableCellElement.axis": {
-            "id": "HTMLTableCellElement.axis",
-            "type": "String"},
-        "navigator.plugins": {
-            "id": "navigator.plugins",
-            "type": "plugins"},
-        "HTMLScriptElement.defer": {
-            "id": "HTMLScriptElement.defer",
-            "type": "boolean"},
-        "HTMLTableCellElement.height": {
-            "id": "HTMLTableCellElement.height",
-            "type": "String"},
-        "HTMLSelectElement.add": {
-            "id": "HTMLSelectElement.add",
-            "return": "void",
-            "params": [
-                {
-                    "name": "element",
-                    "type": "HTMLElement"},
-                {
-                    "name": "HTMLElement",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "location.replace": {
-            "id": "location.replace",
-            "return": "void",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Date.UTC": {
-            "id": "Date.UTC",
-            "return": "number",
-            "params": [
-                {
-                    "name": "yyyy",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.tabIndex": {
-            "id": "HTMLTextAreaElement.tabIndex",
-            "type": "number"},
-        "HTMLInputElement.defaultChecked": {
-            "id": "HTMLInputElement.defaultChecked",
-            "type": "boolean"},
-        "window.ScriptEngineMinorVersion": {
-            "id": "window.ScriptEngineMinorVersion",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "String.fixed": {
-            "id": "String.fixed",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.siblingAbove": {
-            "id": "Layer.siblingAbove",
-            "type": "Layer"},
-        "Layer.moveTo": {
-            "id": "Layer.moveTo",
-            "return": "void",
-            "params": [
-                {
-                    "name": "x",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.tBodies": {
-            "id": "HTMLTableElement.tBodies",
-            "type": "readonly HTMLCollection"},
-        "HTMLInputElement.value": {
-            "id": "HTMLInputElement.value",
-            "type": "String"},
-        "HTMLTextAreaElement.select": {
-            "id": "HTMLTextAreaElement.select",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.checked": {
-            "id": "HTMLInputElement.checked",
-            "type": "boolean"},
-        "window.close": {
-            "id": "window.close",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "navigator.browserLanguage": {
-            "id": "navigator.browserLanguage",
-            "type": "readonly String"},
-        "window.clearInterval": {
-            "id": "window.clearInterval",
-            "return": "void",
-            "params": [
-                {
-                    "name": "id",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "window.closed": {
-            "id": "window.closed",
-            "type": "boolean"},
-        "HTMLElement.className": {
-            "id": "HTMLElement.className",
-            "type": "String"},
-        "StyleSheet.rules": {
-            "id": "StyleSheet.rules",
-            "type": "Array"},
-        "HTMLTextAreaElement.cols": {
-            "id": "HTMLTextAreaElement.cols",
-            "type": "number"},
-        "screen.availHeight": {
-            "id": "screen.availHeight",
-            "type": "readonly number"},
-        "String.concat": {
-            "id": "String.concat",
-            "return": "String",
-            "params": [
-                {
-                    "name": "string2",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLDocument.tags": {
-            "id": "HTMLDocument.tags",
-            "return": "",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLElement.addBehavior": {
-            "id": "HTMLElement.addBehavior",
-            "return": "number",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLTableRowElement.cells": {
-            "id": "HTMLTableRowElement.cells",
-            "type": "HTMLCollection"},
-        "HTMLElement.children": {
-            "id": "HTMLElement.children",
-            "type": "Array"},
-        "HTMLButtonElement.name": {
-            "id": "HTMLButtonElement.name",
-            "type": "String"},
-        "HTMLOptionElement.click": {
-            "id": "HTMLOptionElement.click",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Date.setMinutes": {
-            "id": "Date.setMinutes",
-            "return": "number",
-            "params": [
-                {
-                    "name": "min",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.createCaption": {
-            "id": "HTMLTableElement.createCaption",
-            "return": "HTMLElement",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.defaultValue": {
-            "id": "HTMLInputElement.defaultValue",
-            "type": "String"},
-        "HTMLObjectElement.height": {
-            "id": "HTMLObjectElement.height",
-            "type": "String"},
-        "Element.normalize": {
-            "id": "Element.normalize",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableColElement.ch": {
-            "id": "HTMLTableColElement.ch",
-            "type": "String"},
-        "HTMLTableElement.deleteTHead": {
-            "id": "HTMLTableElement.deleteTHead",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "StyleSheet.removeRule": {
-            "id": "StyleSheet.removeRule",
-            "return": "void",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.tabIndex": {
-            "id": "HTMLAreaElement.tabIndex",
-            "type": "String"},
-        "HTMLTableCellElement.abbr": {
-            "id": "HTMLTableCellElement.abbr",
-            "type": "String"},
-        "HTMLElement.offsetParent": {
-            "id": "HTMLElement.offsetParent",
-            "type": "number"},
-        "Date.setUTCHours": {
-            "id": "Date.setUTCHours",
-            "return": "number",
-            "params": [
-                {
-                    "name": "hour",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "Context.put": {
-            "id": "Context.put",
-            "return": "void",
-            "params": [
-                {
-                    "name": "key",
-                    "type": "String"},
-                {
-                    "name": "Object",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.accessKey": {
-            "id": "HTMLTextAreaElement.accessKey",
-            "type": "String"},
-        "Text.splitText": {
-            "id": "Text.splitText",
-            "return": "Text",
-            "params": [
-                {
-                    "name": "offset",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.form": {
-            "id": "HTMLInputElement.form",
-            "type": "readonly HTMLFormElement"},
-        "String.strike": {
-            "id": "String.strike",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.blur": {
-            "id": "window.blur",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLButtonElement.tabIndex": {
-            "id": "HTMLButtonElement.tabIndex",
-            "type": "number"},
-        "HTMLImageElement.width": {
-            "id": "HTMLImageElement.width",
-            "type": "String"},
-        "HTMLLinkElement.rev": {
-            "id": "HTMLLinkElement.rev",
-            "type": "String"},
-        "HTMLCollection.item": {
-            "id": "HTMLCollection.item",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "Document.documentElement": {
-            "id": "Document.documentElement",
-            "type": "readonly Element"},
-        "Date.getDay": {
-            "id": "Date.getDay",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "String.split": {
-            "id": "String.split",
-            "return": "Array",
-            "params": [
-                {
-                    "name": "delimiter",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Element.removeAttribute": {
-            "id": "Element.removeAttribute",
-            "return": "void",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "navigator.getContext": {
-            "id": "navigator.getContext",
-            "return": "Context",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.border": {
-            "id": "HTMLObjectElement.border",
-            "type": "String"},
-        "CharacterData.insertData": {
-            "id": "CharacterData.insertData",
-            "return": "void",
-            "params": [
-                {
-                    "name": "offset",
-                    "type": "number"},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.innerHeight": {
-            "id": "window.innerHeight",
-            "type": "number"},
-        "HTMLLinkElement.rel": {
-            "id": "HTMLLinkElement.rel",
-            "type": "String"},
-        "String.slice": {
-            "id": "String.slice",
-            "return": "String",
-            "params": [
-                {
-                    "name": "startPositionIndex",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "screen.height": {
-            "id": "screen.height",
-            "type": "readonly number"},
-        "HTMLTextAreaElement.blur": {
-            "id": "HTMLTextAreaElement.blur",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Array.unshift": {
-            "id": "Array.unshift",
-            "return": "number",
-            "params": [
-                {
-                    "name": "value",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.lowsrc": {
-            "id": "HTMLImageElement.lowsrc",
-            "type": "String"},
-        "HTMLTableElement.cellPadding": {
-            "id": "HTMLTableElement.cellPadding",
-            "type": "String"},
-        "HTMLIFrameElement.contentDocument": {
-            "id": "HTMLIFrameElement.contentDocument",
-            "type": "readonly Document"},
-        "HTMLAreaElement.pathname": {
-            "id": "HTMLAreaElement.pathname",
-            "type": "String"},
-        "Date.setUTCDate": {
-            "id": "Date.setUTCDate",
-            "return": "number",
-            "params": [
-                {
-                    "name": "date",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "window.detachEvent": {
-            "id": "window.detachEvent",
-            "return": "void",
-            "params": [
-                {
-                    "name": "event",
-                    "type": "String"},
-                {
-                    "name": "code",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.statusbar": {
-            "id": "window.statusbar",
-            "type": "toolbar"},
-        "String.toUpperCase": {
-            "id": "String.toUpperCase",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.border": {
-            "id": "HTMLTableElement.border",
-            "type": "String"},
-        "HTMLElement.detachEvent": {
-            "id": "HTMLElement.detachEvent",
-            "return": "void",
-            "params": [
-                {
-                    "name": "event",
-                    "type": "String"},
-                {
-                    "name": "code",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLParamElement.value": {
-            "id": "HTMLParamElement.value",
-            "type": "String"},
-        "HTMLAnchorElement.click": {
-            "id": "HTMLAnchorElement.click",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "navigator.isWebKing": {
-            "id": "navigator.isWebKing",
-            "type": "readonly boolean"},
-        "HTMLInputElement.selectedIndex": {
-            "id": "HTMLInputElement.selectedIndex",
-            "type": ""},
-        "String.big": {
-            "id": "String.big",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLHRElement.noShade": {
-            "id": "HTMLHRElement.noShade",
-            "type": "boolean"},
-        "HTMLIFrameElement.marginHeight": {
-            "id": "HTMLIFrameElement.marginHeight",
-            "type": "String"},
-        "HTMLHtmlElement.version": {
-            "id": "HTMLHtmlElement.version",
-            "type": "String"},
-        "HTMLTableElement.deleteRow": {
-            "id": "HTMLTableElement.deleteRow",
-            "return": "void",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLElement.offsetLeft": {
-            "id": "HTMLElement.offsetLeft",
-            "type": "number"},
-        "String.small": {
-            "id": "String.small",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLScriptElement.charset": {
-            "id": "HTMLScriptElement.charset",
-            "type": "String"},
-        "HTMLFrameElement.noResize": {
-            "id": "HTMLFrameElement.noResize",
-            "type": "boolean"},
-        "toolbar.visible": {
-            "id": "toolbar.visible",
-            "type": "boolean"},
-        "Date.getUTCHours": {
-            "id": "Date.getUTCHours",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLHRElement.align": {
-            "id": "HTMLHRElement.align",
-            "type": "String"},
-        "HTMLObjectElement.hspace": {
-            "id": "HTMLObjectElement.hspace",
-            "type": "String"},
-        "HTMLInputElement.align": {
-            "id": "HTMLInputElement.align",
-            "type": "String"},
-        "HTMLDivElement.align": {
-            "id": "HTMLDivElement.align",
-            "type": "String"},
-        "HTMLDocument.parentWindow": {
-            "id": "HTMLDocument.parentWindow",
-            "type": "readonly window"},
-        "HTMLTableElement.cellSpacing": {
-            "id": "HTMLTableElement.cellSpacing",
-            "type": "String"},
-        "HTMLFormElement.target": {
-            "id": "HTMLFormElement.target",
-            "type": "String"},
-        "HTMLDocument.applets": {
-            "id": "HTMLDocument.applets",
-            "type": "readonly HTMLCollection"},
-        "HTMLDocument.title": {
-            "id": "HTMLDocument.title",
-            "type": "String"},
-        "window.outerHeight": {
-            "id": "window.outerHeight",
-            "type": "number"},
-        "HTMLDocument.uniqueID": {
-            "id": "HTMLDocument.uniqueID",
-            "type": "String"},
-        "HTMLAreaElement.target": {
-            "id": "HTMLAreaElement.target",
-            "type": "String"},
-        "HTMLUListElement.type": {
-            "id": "HTMLUListElement.type",
-            "type": "String"},
-        "HTMLMetaElement.content": {
-            "id": "HTMLMetaElement.content",
-            "type": "String"},
-        "Node.replaceChild": {
-            "id": "Node.replaceChild",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "newChild",
-                    "type": "Node"},
-                {
-                    "name": "Node",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "Rule.style": {
-            "id": "Rule.style",
-            "type": "style"},
-        "String.link": {
-            "id": "String.link",
-            "return": "String",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.acceptCharset": {
-            "id": "HTMLFormElement.acceptCharset",
-            "type": "String"},
-        "String.charAt": {
-            "id": "String.charAt",
-            "return": "number",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLHRElement.size": {
-            "id": "HTMLHRElement.size",
-            "type": "String"},
-        "HTMLSelectElement.length": {
-            "id": "HTMLSelectElement.length",
-            "type": "readonly number"},
-        "HTMLTableElement.rows": {
-            "id": "HTMLTableElement.rows",
-            "type": "readonly HTMLCollection"},
-        "HTMLOptionElement.onsubmit": {
-            "id": "HTMLOptionElement.onsubmit",
-            "type": ""},
-        "HTMLAppletElement.vspace": {
-            "id": "HTMLAppletElement.vspace",
-            "type": "String"},
-        "HTMLSelectElement.options": {
-            "id": "HTMLSelectElement.options",
-            "type": "readonly HTMLCollection"},
-        "String.substring": {
-            "id": "String.substring",
-            "return": "String",
-            "params": [
-                {
-                    "name": "startPositionIndex",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.bgColor": {
-            "id": "HTMLTableElement.bgColor",
-            "type": "String"},
-        "HTMLElement.innerText": {
-            "id": "HTMLElement.innerText",
-            "type": "String"},
-        "HTMLSelectElement.disabled": {
-            "id": "HTMLSelectElement.disabled",
-            "type": "boolean"},
-        "location.port": {
-            "id": "location.port",
-            "type": "String"},
-        "window.parent": {
-            "id": "window.parent",
-            "type": "readonly window"},
-        "window.scrollTo": {
-            "id": "window.scrollTo",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.menubar": {
-            "id": "window.menubar",
-            "type": "toolbar"},
-        "HTMLTableRowElement.chOff": {
-            "id": "HTMLTableRowElement.chOff",
-            "type": "String"},
-        "HTMLMetaElement.name": {
-            "id": "HTMLMetaElement.name",
-            "type": "String"},
-        "HTMLElement.attachEvent": {
-            "id": "HTMLElement.attachEvent",
-            "return": "boolean",
-            "params": [
-                {
-                    "name": "event",
-                    "type": "String"},
-                {
-                    "name": "code",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.opener": {
-            "id": "window.opener",
-            "type": "window"},
-        "window.captureEvents": {
-            "id": "window.captureEvents",
-            "return": "void",
-            "params": [
-                {
-                    "name": "eventTypeList",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.pathname": {
-            "id": "HTMLTextAreaElement.pathname",
-            "type": "String"},
-        "HTMLStyleElement.type": {
-            "id": "HTMLStyleElement.type",
-            "type": "String"},
-        "HTMLCollection.length": {
-            "id": "HTMLCollection.length",
-            "type": "readonly number"},
-        "HTMLLayerElement.captureEvents": {
-            "id": "HTMLLayerElement.captureEvents",
-            "return": "void",
-            "params": [
-                {
-                    "name": "eventTypeList",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "Context.getContextType": {
-            "id": "Context.getContextType",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "location.href": {
-            "id": "location.href",
-            "type": "String"},
-        "HTMLLayerElement.bgColor": {
-            "id": "HTMLLayerElement.bgColor",
-            "type": "String"},
-        "Layer.parentLayer": {
-            "id": "Layer.parentLayer",
-            "type": ""},
-        "HTMLTextAreaElement.host": {
-            "id": "HTMLTextAreaElement.host",
-            "type": "String"},
-        "window.showModelessDialog": {
-            "id": "window.showModelessDialog",
-            "return": "window",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"},
-                {
-                    "name": "arguments",
-                    "type": ""},
-                {
-                    "name": "features",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.tabIndex": {
-            "id": "HTMLSelectElement.tabIndex",
-            "type": "number"},
-        "HTMLLabelElement.accessKey": {
-            "id": "HTMLLabelElement.accessKey",
-            "type": "String"},
-        "Node.cloneNode": {
-            "id": "Node.cloneNode",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "deep",
-                    "type": "boolean"}],
-            "type": "FunctionExpression"},
-        "String.bold": {
-            "id": "String.bold",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.longDesc": {
-            "id": "HTMLImageElement.longDesc",
-            "type": "String"},
-        "HTMLTextAreaElement.defaultValue": {
-            "id": "HTMLTextAreaElement.defaultValue",
-            "type": "String"},
-        "HTMLInputElement.createTextRange": {
-            "id": "HTMLInputElement.createTextRange",
-            "return": "TextRange",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Element.getAttribute": {
-            "id": "Element.getAttribute",
-            "return": "String",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Layer.resizeBy": {
-            "id": "Layer.resizeBy",
-            "return": "void",
-            "params": [
-                {
-                    "name": "dw",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "location.reload": {
-            "id": "location.reload",
-            "return": "void",
-            "params": [
-                {
-                    "name": "unconditional",
-                    "type": "boolean"}],
-            "type": "FunctionExpression"},
-        "HTMLAppletElement.height": {
-            "id": "HTMLAppletElement.height",
-            "type": "String"},
-        "HTMLTextAreaElement.name": {
-            "id": "HTMLTextAreaElement.name",
-            "type": "String"},
-        "HTMLObjectElement.width": {
-            "id": "HTMLObjectElement.width",
-            "type": "String"},
-        "navigator.appCodeName": {
-            "id": "navigator.appCodeName",
-            "type": "readonly String"},
-        "CharacterData.data": {
-            "id": "CharacterData.data",
-            "type": "String"},
-        "HTMLTableCellElement.ch": {
-            "id": "HTMLTableCellElement.ch",
-            "type": "String"},
-        "HTMLTextAreaElement.rows": {
-            "id": "HTMLTextAreaElement.rows",
-            "type": "number"},
-        "HTMLTableSectionElement.insertRow": {
-            "id": "HTMLTableSectionElement.insertRow",
-            "return": "HTMLElement",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.port": {
-            "id": "HTMLAreaElement.port",
-            "type": "String"},
-        "Node.nodeType": {
-            "id": "Node.nodeType",
-            "type": "readonly number"},
-        "NamedNodeMap.length": {
-            "id": "NamedNodeMap.length",
-            "type": "readonly number"},
-        "HTMLIsIndexElement.form": {
-            "id": "HTMLIsIndexElement.form",
-            "type": "readonly HTMLFormElement"},
-        "Date.setUTCFullYear": {
-            "id": "Date.setUTCFullYear",
-            "return": "number",
-            "params": [
-                {
-                    "name": "year",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.submit": {
-            "id": "HTMLFormElement.submit",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.moveBy": {
-            "id": "window.moveBy",
-            "return": "void",
-            "params": [
-                {
-                    "name": "x",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLElement.lang": {
-            "id": "HTMLElement.lang",
-            "type": "String"},
-        "HTMLElement.removeBehavior": {
-            "id": "HTMLElement.removeBehavior",
-            "return": "boolean",
-            "params": [
-                {
-                    "name": "id",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLOptGroupElement.label": {
-            "id": "HTMLOptGroupElement.label",
-            "type": "String"},
-        "HTMLTextAreaElement.form": {
-            "id": "HTMLTextAreaElement.form",
-            "type": "readonly HTMLFormElement"},
-        "Context.get": {
-            "id": "Context.get",
-            "return": "Object",
-            "params": [
-                {
-                    "name": "key",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Date.getMinutes": {
-            "id": "Date.getMinutes",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.layers": {
-            "id": "Layer.layers",
-            "type": "Array"},
-        "HTMLAppletElement.width": {
-            "id": "HTMLAppletElement.width",
-            "type": "String"},
-        "HTMLDocument.forms": {
-            "id": "HTMLDocument.forms",
-            "type": "readonly HTMLCollection"},
-        "window.print": {
-            "id": "window.print",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "location.pathname": {
-            "id": "location.pathname",
-            "type": "String"},
-        "HTMLAnchorElement.hreflang": {
-            "id": "HTMLAnchorElement.hreflang",
-            "type": "String"},
-        "window.locationbar": {
-            "id": "window.locationbar",
-            "type": "toolbar"},
-        "StyleSheet.addRule": {
-            "id": "StyleSheet.addRule",
-            "return": "number",
-            "params": [
-                {
-                    "name": "selector",
-                    "type": "string"},
-                {
-                    "name": "string",
-                    "type": ""},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLQuoteElement.cite": {
-            "id": "HTMLQuoteElement.cite",
-            "type": "String"},
-        "window.createPopup": {
-            "id": "window.createPopup",
-            "return": "window",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLDocument.all": {
-            "id": "HTMLDocument.all",
-            "type": "Array"},
-        "HTMLBaseFontElement.color": {
-            "id": "HTMLBaseFontElement.color",
-            "type": "String"},
-        "window.clearTimeout": {
-            "id": "window.clearTimeout",
-            "return": "void",
-            "params": [
-                {
-                    "name": "id",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.noHref": {
-            "id": "HTMLAreaElement.noHref",
-            "type": "String"},
-        "HTMLInputElement.maxLength": {
-            "id": "HTMLInputElement.maxLength",
-            "type": "number"},
-        "HTMLDocument.getElementById": {
-            "id": "HTMLDocument.getElementById",
-            "return": "Element",
-            "params": [
-                {
-                    "name": "elementId",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLButtonElement.value": {
-            "id": "HTMLButtonElement.value",
-            "type": "String"},
-        "HTMLSelectElement.multiple": {
-            "id": "HTMLSelectElement.multiple",
-            "type": "boolean"},
-        "HTMLMetaElement.httpEquiv": {
-            "id": "HTMLMetaElement.httpEquiv",
-            "type": "String"},
-        "Layer.siblingBelow": {
-            "id": "Layer.siblingBelow",
-            "type": "Layer"},
-        "HTMLObjectElement.useMap": {
-            "id": "HTMLObjectElement.useMap",
-            "type": "String"},
-        "HTMLOptionElement.value": {
-            "id": "HTMLOptionElement.value",
-            "type": "String"},
-        "window.window": {
-            "id": "window.window",
-            "type": "window"},
-        "HTMLScriptElement.htmlFor": {
-            "id": "HTMLScriptElement.htmlFor",
-            "type": "String"},
-        "HTMLOptGroupElement.disabled": {
-            "id": "HTMLOptGroupElement.disabled",
-            "type": "boolean"},
-        "Node.nodeName": {
-            "id": "Node.nodeName",
-            "type": "readonly String"},
-        "HTMLIFrameElement.frameBorder": {
-            "id": "HTMLIFrameElement.frameBorder",
-            "type": "String"},
-        "HTMLBaseFontElement.size": {
-            "id": "HTMLBaseFontElement.size",
-            "type": "String"},
-        "HTMLTextAreaElement.search": {
-            "id": "HTMLTextAreaElement.search",
-            "type": "String"},
-        "HTMLTableElement.insertRow": {
-            "id": "HTMLTableElement.insertRow",
-            "return": "HTMLElement",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLElement.style": {
-            "id": "HTMLElement.style",
-            "type": "style"},
-        "HTMLDocument.close": {
-            "id": "HTMLDocument.close",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Context.clear": {
-            "id": "Context.clear",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.remove": {
-            "id": "HTMLSelectElement.remove",
-            "return": "void",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.summary": {
-            "id": "HTMLTableElement.summary",
-            "type": "String"},
-        "HTMLInputElement.blur": {
-            "id": "HTMLInputElement.blur",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "event.click": {
-            "id": "event.click",
-            "type": "number"},
-        "HTMLInputElement.onclick": {
-            "id": "HTMLInputElement.onclick",
-            "type": ""},
-        "window.setInterval": {
-            "id": "window.setInterval",
-            "return": "number",
-            "params": [
-                {
-                    "name": "expression",
-                    "type": "code"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLAnchorElement.blur": {
-            "id": "HTMLAnchorElement.blur",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.archive": {
-            "id": "HTMLObjectElement.archive",
-            "type": "String"},
-        "HTMLInputElement.type": {
-            "id": "HTMLInputElement.type",
-            "type": "readonly String"},
-        "Date.getTimezoneOffset": {
-            "id": "Date.getTimezoneOffset",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLOptionElement.index": {
-            "id": "HTMLOptionElement.index",
-            "type": "number"},
-        "HTMLLinkElement.disabled": {
-            "id": "HTMLLinkElement.disabled",
-            "type": "boolean"},
-        "HTMLDocument.createStyleSheet": {
-            "id": "HTMLDocument.createStyleSheet",
-            "return": "StyleSheet",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLElement.offsetWidth": {
-            "id": "HTMLElement.offsetWidth",
-            "type": "number"},
-        "HTMLTableElement.caption": {
-            "id": "HTMLTableElement.caption",
-            "type": "HTMLTableCaptionElement"},
-        "HTMLAnchorElement.focus": {
-            "id": "HTMLAnchorElement.focus",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "location.search": {
-            "id": "location.search",
-            "type": "String"},
-        "Date.getDate": {
-            "id": "Date.getDate",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableRowElement.bgColor": {
-            "id": "HTMLTableRowElement.bgColor",
-            "type": "String"},
-        "HTMLTableCellElement.noWrap": {
-            "id": "HTMLTableCellElement.noWrap",
-            "type": "boolean"},
-        "Node.removeNode": {
-            "id": "Node.removeNode",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "removeChildren",
-                    "type": "boolean"}],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.readOnly": {
-            "id": "HTMLInputElement.readOnly",
-            "type": "boolean"},
-        "HTMLOListElement.start": {
-            "id": "HTMLOListElement.start",
-            "type": "number"},
-        "HTMLMenuElement.compact": {
-            "id": "HTMLMenuElement.compact",
-            "type": "boolean"},
-        "HTMLImageElement.hspace": {
-            "id": "HTMLImageElement.hspace",
-            "type": "String"},
+        "XMLHttpRequest":{
+
+        },
+        "XMLHttpRequest.responseXML":{
+
+        },
+        "XMLHttpRequest.send":{
+
+        },
+        "XMLHttpRequest.open":{
+
+        },
+        "window.ActiveXObject":{},
+        "window.DOMParser":{},
+        "console.log": {
+            "type": "Method"},
         "Array.join": {
-            "id": "Array.join",
-            "return": "String",
-            "params": [
-                {
-                    "name": "delimiterString",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.disabled": {
-            "id": "HTMLInputElement.disabled",
-            "type": "boolean"},
-        "HTMLDocument.plugins": {
-            "id": "HTMLDocument.plugins",
-            "type": "Array"},
+            "type": "Method"},
+        "Window.screen": {
+            "type": "Method"},
+        "Global.isFinite": {
+            "type": "Method"},
+        "Keyboard.clientX": {
+            "type": "Method"},
+        "Location.host": {
+            "type": "Method"},
         "Date.parse": {
-            "id": "Date.parse",
-            "return": "number",
-            "params": [
-                {
-                    "name": "date",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLElement.currentStyle": {
-            "id": "HTMLElement.currentStyle",
-            "type": "style"},
-        "HTMLFontElement.size": {
-            "id": "HTMLFontElement.size",
-            "type": "String"},
-        "HTMLTableElement.rules": {
-            "id": "HTMLTableElement.rules",
-            "type": "String"},
+            "type": "Method"},
+        "Date.getUTCMinutes": {
+            "type": "Method"},
+        "Array.valueOf": {
+            "type": "Method"},
+        "element.setAttributeNode": {
+            "type": "Method"},
+        "Navigator.appCodeName": {
+            "type": "Method"},
+        "element.setUserData": {
+            "type": "Method"},
         "Date.getUTCMonth": {
-            "id": "Date.getUTCMonth",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.self": {
-            "id": "window.self",
-            "type": "window"},
-        "HTMLOptionElement.defaultSelected": {
-            "id": "HTMLOptionElement.defaultSelected",
-            "type": "boolean"},
+            "type": "Method"},
+        "Window.history": {
+            "type": "Method"},
+        "Math.SQRT2": {
+            "type": "Method"},
+        "Window.moveTo": {
+            "type": "Method"},
+        "document.documentMode": {
+            "type": "Method"},
         "Date.getUTCFullYear": {
-            "id": "Date.getUTCFullYear",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.hostname": {
-            "id": "HTMLAreaElement.hostname",
-            "type": "String"},
-        "HTMLAppletElement.alt": {
-            "id": "HTMLAppletElement.alt",
-            "type": "String"},
-        "HTMLFrameElement.frameBorder": {
-            "id": "HTMLFrameElement.frameBorder",
-            "type": "String"},
+            "type": "Method"},
+        "Math.exp": {
+            "type": "Method"},
         "Date.setMilliseconds": {
-            "id": "Date.setMilliseconds",
-            "return": "number",
-            "params": [
-                {
-                    "name": "ms",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.port": {
-            "id": "HTMLTextAreaElement.port",
-            "type": "String"},
+            "type": "Method"},
         "Array.reverse": {
-            "id": "Array.reverse",
-            "return": "Array",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLFrameElement.marginWidth": {
-            "id": "HTMLFrameElement.marginWidth",
-            "type": "String"},
-        "HTMLAnchorElement.target": {
-            "id": "HTMLAnchorElement.target",
-            "type": "String"},
-        "window.frames": {
-            "id": "window.frames",
-            "type": "Array"},
-        "Document.createElement": {
-            "id": "Document.createElement",
-            "return": "Element",
-            "params": [
-                {
-                    "name": "tagName",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "nodemap.removeNamedItem": {
+            "type": "Method"},
+        "element.nodeType": {
+            "type": "Method"},
+        "element.scrollHeight": {
+            "type": "Method"},
+        "nodemap.getNamedItem": {
+            "type": "Method"},
+        "Global.decodeURIComponent": {
+            "type": "Method"},
         "screen.width": {
-            "id": "screen.width",
-            "type": "readonly number"},
-        "HTMLHeadElement.profile": {
-            "id": "HTMLHeadElement.profile",
-            "type": "String"},
-        "HTMLTableCellElement.align": {
-            "id": "HTMLTableCellElement.align",
-            "type": "String"},
-        "HTMLInputElement.onchange": {
-            "id": "HTMLInputElement.onchange",
-            "type": ""},
-        "navigator.appMinorVersion": {
-            "id": "navigator.appMinorVersion",
-            "type": "readonly String"},
-        "Node.insertBefore": {
-            "id": "Node.insertBefore",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "newChild",
-                    "type": "Node"},
-                {
-                    "name": "Node",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLButtonElement.disabled": {
-            "id": "HTMLButtonElement.disabled",
-            "type": "boolean"},
-        "HTMLTableSectionElement.align": {
-            "id": "HTMLTableSectionElement.align",
-            "type": "String"},
-        "plugins.refresh": {
-            "id": "plugins.refresh",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Layer.moveBy": {
-            "id": "Layer.moveBy",
-            "return": "void",
-            "params": [
-                {
-                    "name": "dx",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.type": {
-            "id": "HTMLSelectElement.type",
-            "type": "readonly String"},
+            "type": "Method"},
+        "Window.name": {
+            "type": "Method"},
+        "element.title": {
+            "type": "Method"},
+        "element.id": {
+            "type": "Method"},
+        "Location.href": {
+            "type": "Method"},
+        "Location.assign": {
+            "type": "Method"},
+        "document.body": {
+            "type": "Method"},
+        "String.replace": {
+            "type": "Method"},
+        "element.hasChildNodes": {
+            "type": "Method"},
+        "Location.hostname": {
+            "type": "Method"},
+        "Keyboardt.onkeyup": {
+            "type": "Method"},
+        "document.documentURI": {
+            "type": "Method"},
         "Date.valueOf": {
-            "id": "Date.valueOf",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "String.lastIndexOf": {
-            "id": "String.lastIndexOf",
-            "return": "number",
-            "params": [
-                {
-                    "name": "searchString",
-                    "type": "String"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLPreElement.width": {
-            "id": "HTMLPreElement.width",
-            "type": "number"},
-        "HTMLBodyElement.createTextRange": {
-            "id": "HTMLBodyElement.createTextRange",
-            "return": "TextRange",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAnchorElement.href": {
-            "id": "HTMLAnchorElement.href",
-            "type": "String"},
-        "window.top": {
-            "id": "window.top",
-            "type": "window"},
-        "window.attachEvent": {
-            "id": "window.attachEvent",
-            "return": "boolean",
-            "params": [
-                {
-                    "name": "event",
-                    "type": "String"},
-                {
-                    "name": "code",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLStyleElement.media": {
-            "id": "HTMLStyleElement.media",
-            "type": "String"},
-        "navigator.userAgent": {
-            "id": "navigator.userAgent",
-            "type": "readonly String"},
-        "Context.getContext": {
-            "id": "Context.getContext",
-            "return": "Context",
-            "params": [
-                {
-                    "name": "type",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.standby": {
-            "id": "HTMLObjectElement.standby",
-            "type": "String"},
-        "HTMLDocument.writeln": {
-            "id": "HTMLDocument.writeln",
-            "return": "void",
-            "params": [
-                {
-                    "name": "text",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLTextAreaElement.value": {
-            "id": "HTMLTextAreaElement.value",
-            "type": "String"},
-        "HTMLAreaElement.shape": {
-            "id": "HTMLAreaElement.shape",
-            "type": "String"},
-        "HTMLLinkElement.media": {
-            "id": "HTMLLinkElement.media",
-            "type": "String"},
-        "HTMLTableElement.createTFoot": {
-            "id": "HTMLTableElement.createTFoot",
-            "return": "HTMLElement",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLFieldSetElement.form": {
-            "id": "HTMLFieldSetElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLDocument.window": {
-            "id": "HTMLDocument.window",
-            "type": "window"},
-        "location.assign": {
-            "id": "location.assign",
-            "return": "void",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLTableCellElement.colSpan": {
-            "id": "HTMLTableCellElement.colSpan",
-            "type": "number"},
-        "HTMLBodyElement.vLink": {
-            "id": "HTMLBodyElement.vLink",
-            "type": "String"},
-        "HTMLIFrameElement.longDesc": {
-            "id": "HTMLIFrameElement.longDesc",
-            "type": "String"},
-        "HTMLImageElement.vspace": {
-            "id": "HTMLImageElement.vspace",
-            "type": "String"},
-        "HTMLDocument.getElementsByName": {
-            "id": "HTMLDocument.getElementsByName",
-            "return": "NodeList",
-            "params": [
-                {
-                    "name": "elementName",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "TextRange.htmlText": {
-            "id": "TextRange.htmlText",
-            "type": "String"},
-        "HTMLInputElement.accept": {
-            "id": "HTMLInputElement.accept",
-            "type": "String"},
-        "HTMLElement.offsetHeight": {
-            "id": "HTMLElement.offsetHeight",
-            "type": "number"},
-        "HTMLAreaElement.coords": {
-            "id": "HTMLAreaElement.coords",
-            "type": "String"},
+            "type": "Method"},
+        "String.fontcolor": {
+            "type": "Method"},
+        "element.cloneNode": {
+            "type": "Method"},
+        "element.parentNode": {
+            "type": "Method"},
+        "Window.frames": {
+            "type": "Method"},
+        "Date.setYear": {
+            "type": "Method"},
+        "Form.onselect": {
+            "type": "Method"},
+        "Global.isNaN": {
+            "type": "Method"},
+        "document.adoptNode": {
+            "type": "Method"},
+        "Date.getYear": {
+            "type": "Method"},
+        "document.normalizeDocument": {
+            "type": "Method"},
+        "Window.alert": {
+            "type": "Method"},
+        "Window.innerWidth": {
+            "type": "Method"},
+        "document.writeln": {
+            "type": "Method"},
+        "Keyboard.initKeyboardEvent": {
+            "type": "Method"},
+        "History.go": {
+            "type": "Method"},
+        "document.images": {
+            "type": "Method"},
+        "Date.toLocaleString": {
+            "type": "Method"},
+        "Math.min": {
+            "type": "Method"},
+        "element.isSameNode": {
+            "type": "Method"},
         "Array.slice": {
-            "id": "Array.slice",
-            "return": "Array",
-            "params": [
-                {
-                    "name": "startIndex",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.code": {
-            "id": "HTMLObjectElement.code",
-            "type": "String"},
-        "HTMLTableCellElement.cellIndex": {
-            "id": "HTMLTableCellElement.cellIndex",
-            "type": "number"},
-        "HTMLDocument.location": {
-            "id": "HTMLDocument.location",
-            "type": "location"},
+            "type": "Method"},
+        "Window.focus": {
+            "type": "Method"},
+        "element.removeAttribute": {
+            "type": "Method"},
         "Date.setUTCMilliseconds": {
-            "id": "Date.setUTCMilliseconds",
-            "return": "number",
-            "params": [
-                {
-                    "name": "ms",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.name": {
-            "id": "HTMLImageElement.name",
-            "type": "String"},
-        "Document.getElementsByTagName": {
-            "id": "Document.getElementsByTagName",
-            "return": "NodeList",
-            "params": [
-                {
-                    "name": "tagname",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLIFrameElement.scrolling": {
-            "id": "HTMLIFrameElement.scrolling",
-            "type": "String"},
-        "HTMLTableElement.align": {
-            "id": "HTMLTableElement.align",
-            "type": "String"},
-        "HTMLModElement.cite": {
-            "id": "HTMLModElement.cite",
-            "type": "String"},
-        "HTMLButtonElement.createTextRange": {
-            "id": "HTMLButtonElement.createTextRange",
-            "return": "TextRange",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLBRElement.clear": {
-            "id": "HTMLBRElement.clear",
-            "type": "String"},
-        "Document.getElementById": {
-            "id": "Document.getElementById",
-            "return": "Element",
-            "params": [
-                {
-                    "name": "elementId",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "CharacterData.deleteData": {
-            "id": "CharacterData.deleteData",
-            "return": "void",
-            "params": [
-                {
-                    "name": "offset",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.event": {
-            "id": "window.event",
-            "type": ""},
-        "window.moveTo": {
-            "id": "window.moveTo",
-            "return": "void",
-            "params": [
-                {
-                    "name": "x",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.options": {
-            "id": "HTMLInputElement.options",
-            "type": ""},
-        "history.previous": {
-            "id": "history.previous",
-            "type": "readonly String"},
-        "HTMLTableColElement.span": {
-            "id": "HTMLTableColElement.span",
-            "type": "number"},
+            "type": "Method"},
+        "screen.colorDepth": {
+            "type": "Method"},
+        "Math.PI": {
+            "type": "Method"},
+        "element.isSupported": {
+            "type": "Method"},
+        "Global.unescape": {
+            "type": "Method"},
+        "element.style": {
+            "type": "Method"},
+        "Math.tan": {
+            "type": "Method"},
+        "Date.getMonth": {
+            "type": "Method"},
+        "Window.scroll": {
+            "type": "Method"},
+        "Window.document": {
+            "type": "Method"},
+        "Event.type": {
+            "type": "Method"},
+        "document.createElement": {
+            "type": "Method"},
+        "String.charCodeAt": {
+            "type": "Method"},
+        "Date.toTimeString": {
+            "type": "Method"},
+        "element.hasAttribute": {
+            "type": "Method"},
         "Date.setFullYear": {
-            "id": "Date.setFullYear",
-            "return": "number",
-            "params": [
-                {
-                    "name": "year",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.accessKey": {
-            "id": "HTMLAreaElement.accessKey",
-            "type": "String"},
-        "HTMLFrameElement.name": {
-            "id": "HTMLFrameElement.name",
-            "type": "String"},
-        "NamedNodeMap.item": {
-            "id": "NamedNodeMap.item",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "location.protocol": {
-            "id": "location.protocol",
-            "type": "String"},
+            "type": "Method"},
+        "Keyboard.keyLocation": {
+            "type": "Method"},
+        "Date.toGMTString": {
+            "type": "Method"},
+        "Date.getHours": {
+            "type": "Method"},
+        "String.valueOf": {
+            "type": "Method"},
+        "Date.toLocaleDateString": {
+            "type": "Method"},
+        "Form.onblur": {
+            "type": "Method"},
+        "Array.lastIndexOf": {
+            "type": "Method"},
+        "Window.clearTimeout": {
+            "type": "Method"},
+        "History.back": {
+            "type": "Method"},
+        "Window.outerWidth": {
+            "type": "Method"},
         "Date.setUTCSeconds": {
-            "id": "Date.setUTCSeconds",
-            "return": "number",
-            "params": [
-                {
-                    "name": "sec",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.encoding": {
-            "id": "HTMLFormElement.encoding",
-            "type": "String"},
-        "HTMLDirectoryElement.compact": {
-            "id": "HTMLDirectoryElement.compact",
-            "type": "boolean"},
-        "HTMLDocument.URL": {
-            "id": "HTMLDocument.URL",
-            "type": "readonly String"},
-        "HTMLParamElement.type": {
-            "id": "HTMLParamElement.type",
-            "type": "String"},
-        "window.prompt": {
-            "id": "window.prompt",
-            "return": "String",
-            "params": [
-                {
-                    "name": "message",
-                    "type": "String"},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.action": {
-            "id": "HTMLFormElement.action",
-            "type": "String"},
-        "HTMLInputElement.size": {
-            "id": "HTMLInputElement.size",
-            "type": "String"},
-        "HTMLAppletElement.archive": {
-            "id": "HTMLAppletElement.archive",
-            "type": "String"},
-        "HTMLBodyElement.text": {
-            "id": "HTMLBodyElement.text",
-            "type": "String"},
-        "window.focus": {
-            "id": "window.focus",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "Window.clearInterval": {
+            "type": "Method"},
+        "Date.getTime": {
+            "type": "Method"},
+        "Frame.onload": {
+            "type": "Method"},
+        "Date.setUTCMinutes": {
+            "type": "Method"},
+        "document.getElementsByTagName": {
+            "type": "Method"},
+        "Date.getSeconds": {
+            "type": "Method"},
+        "element.offsetTop": {
+            "type": "Method"},
+        "Math.sin": {
+            "type": "Method"},
+        "element.setAttribute": {
+            "type": "Method"},
+        "element.getFeature": {
+            "type": "Method"},
+        "nodemap.length": {
+            "type": "Method"},
+        "Window.top": {
+            "type": "Method"},
         "Date.setSeconds": {
-            "id": "Date.setSeconds",
-            "return": "number",
-            "params": [
-                {
-                    "name": "sec",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLIFrameElement.src": {
-            "id": "HTMLIFrameElement.src",
-            "type": "String"},
-        "HTMLTableRowElement.rowIndex": {
-            "id": "HTMLTableRowElement.rowIndex",
-            "type": "number"},
+            "type": "Method"},
+        "Math.asin": {
+            "type": "Method"},
+        "attr.value": {
+            "type": "Method"},
+        "String.anchor": {
+            "type": "Method"},
         "Date.getUTCMilliseconds": {
-            "id": "Date.getUTCMilliseconds",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.blur": {
-            "id": "HTMLSelectElement.blur",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.value": {
-            "id": "HTMLSelectElement.value",
-            "type": "String"},
-        "HTMLTableColElement.align": {
-            "id": "HTMLTableColElement.align",
-            "type": "String"},
-        "HTMLBodyElement.bgColor": {
-            "id": "HTMLBodyElement.bgColor",
-            "type": "String"},
-        "HTMLTextAreaElement.type": {
-            "id": "HTMLTextAreaElement.type",
-            "type": "readonly String"},
-        "HTMLTableSectionElement.ch": {
-            "id": "HTMLTableSectionElement.ch",
-            "type": "String"},
-        "CharacterData.substringData": {
-            "id": "CharacterData.substringData",
-            "return": "String",
-            "params": [
-                {
-                    "name": "offset",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "Layer.routeEvent": {
-            "id": "Layer.routeEvent",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableRowElement.ch": {
-            "id": "HTMLTableRowElement.ch",
-            "type": "String"},
-        "HTMLElement.dir": {
-            "id": "HTMLElement.dir",
-            "type": "String"},
-        "HTMLAreaElement.alt": {
-            "id": "HTMLAreaElement.alt",
-            "type": "String"},
-        "HTMLStyleElement.disabled": {
-            "id": "HTMLStyleElement.disabled",
-            "type": "boolean"},
-        "Element.setAttribute": {
-            "id": "Element.setAttribute",
-            "return": "void",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLTableCellElement.vAlign": {
-            "id": "HTMLTableCellElement.vAlign",
-            "type": "String"},
-        "HTMLAnchorElement.charset": {
-            "id": "HTMLAnchorElement.charset",
-            "type": "String"},
-        "HTMLScriptElement.text": {
-            "id": "HTMLScriptElement.text",
-            "type": "String"},
-        "HTMLCollection.namedItem": {
-            "id": "HTMLCollection.namedItem",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "String.indexOf": {
-            "id": "String.indexOf",
-            "return": "number",
-            "params": [
-                {
-                    "name": "searchString",
-                    "type": "String"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLSelectElement.selectedIndex": {
-            "id": "HTMLSelectElement.selectedIndex",
-            "type": "number"},
-        "HTMLOptionElement.selected": {
-            "id": "HTMLOptionElement.selected",
-            "type": "readonly boolean"},
-        "window.navigator": {
-            "id": "window.navigator",
-            "type": "readonly navigator"},
+            "type": "Method"},
+        "Global.encodeURI": {
+            "type": "Method"},
+        "element.lang": {
+            "type": "Method"},
+        "Keyboard.": {
+            "type": "Method"},
+        "element.nodeName": {
+            "type": "Method"},
+        "element.insertBefore": {
+            "type": "Method"},
+        "Navigator.appName": {
+            "type": "Method"},
+        "Location.hash": {
+            "type": "Method"},
+        "Navigator.userAgent": {
+            "type": "Method"},
+        "element.replaceChild": {
+            "type": "Method"},
+        "Window.outerHeight": {
+            "type": "Method"},
+        "Event.AT_TARGET": {
+            "type": "Method"},
+        "attr.isId": {
+            "type": "Method"},
+        "Event.target": {
+            "type": "Method"},
+        "Date.UTC": {
+            "type": "Method"},
+        "document.renameNode": {
+            "type": "Method"},
+        "document.anchors": {
+            "type": "Method"},
+        "Math.LN10": {
+            "type": "Method"},
+        "Mouse.onmousedown": {
+            "type": "Method"},
+        "Window.parent": {
+            "type": "Method"},
+        "String.fixed": {
+            "type": "Method"},
+        "element.tagName": {
+            "type": "Method"},
+        "element.clientWidth": {
+            "type": "Method"},
+        "document.cookie": {
+            "type": "Method"},
+        "Keyboard.relatedTarget": {
+            "type": "Method"},
+        "element.tabIndex": {
+            "type": "Method"},
         "String.blink": {
-            "id": "String.blink",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.href": {
-            "id": "HTMLAreaElement.href",
-            "type": "String"},
-        "HTMLAnchorElement.tabIndex": {
-            "id": "HTMLAnchorElement.tabIndex",
-            "type": "number"},
-        "HTMLOptionElement.label": {
-            "id": "HTMLOptionElement.label",
-            "type": "String"},
-        "HTMLTextAreaElement.focus": {
-            "id": "HTMLTextAreaElement.focus",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLBodyElement.aLink": {
-            "id": "HTMLBodyElement.aLink",
-            "type": "String"},
-        "HTMLTableElement.deleteTFoot": {
-            "id": "HTMLTableElement.deleteTFoot",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.item": {
-            "id": "HTMLFormElement.item",
-            "return": "HTMLElement",
-            "params": [
-                {
-                    "name": "key",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLTableElement.tFoot": {
-            "id": "HTMLTableElement.tFoot",
-            "type": "HTMLTableSectionElement"},
-        "HTMLElement.offsetTop": {
-            "id": "HTMLElement.offsetTop",
-            "type": "number"},
-        "history.next": {
-            "id": "history.next",
-            "type": "readonly String"},
-        "HTMLObjectElement.codeBase": {
-            "id": "HTMLObjectElement.codeBase",
-            "type": "String"},
-        "HTMLButtonElement.accessKey": {
-            "id": "HTMLButtonElement.accessKey",
-            "type": "String"},
-        "HTMLTableElement.deleteCaption": {
-            "id": "HTMLTableElement.deleteCaption",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.border": {
-            "id": "HTMLImageElement.border",
-            "type": "String"},
-        "HTMLTableColElement.chOff": {
-            "id": "HTMLTableColElement.chOff",
-            "type": "String"},
-        "history.forward": {
-            "id": "history.forward",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.align": {
-            "id": "HTMLImageElement.align",
-            "type": "String"},
+            "type": "Method"},
+        "screen.availHeight": {
+            "type": "Method"},
+        "String.concat": {
+            "type": "Method"},
+        "element.setIdAttribute": {
+            "type": "Method"},
+        "Math.acos": {
+            "type": "Method"},
+        "Frame.onunload": {
+            "type": "Method"},
+        "Window.opener": {
+            "type": "Method"},
+        "document.createDocumentFragment": {
+            "type": "Method"},
+        "Frame.onscroll": {
+            "type": "Method"},
+        "Date.setMinutes": {
+            "type": "Method"},
+        "EventTarget.dispatchEvent": {
+            "type": "Method"},
+        "document.applets": {
+            "type": "Method"},
+        "Keyboard.button": {
+            "type": "Method"},
+        "element.textContent": {
+            "type": "Method"},
+        "Number.toExponential": {
+            "type": "Method"},
+        "Form.onreset": {
+            "type": "Method"},
+        "Regex.compile": {
+            "type": "Method"},
         "String.fontsize": {
-            "id": "String.fontsize",
-            "return": "String",
-            "params": [
-                {
-                    "name": "size",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "navigator.onLine": {
-            "id": "navigator.onLine",
-            "type": "readonly boolean"},
-        "HTMLLabelElement.form": {
-            "id": "HTMLLabelElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLTextAreaElement.disabled": {
-            "id": "HTMLTextAreaElement.disabled",
-            "type": "boolean"},
-        "HTMLDocument.links": {
-            "id": "HTMLDocument.links",
-            "type": "readonly HTMLCollection"},
+            "type": "Method"},
+        "Global.String": {
+            "type": "Method"},
+        "Regex.exec": {
+            "type": "Method"},
+        "Navigator.onLine": {
+            "type": "Method"},
+        "element.setIdAttributeNode": {
+            "type": "Method"},
+        "Window.setInterval": {
+            "type": "Method"},
         "Date.setTime": {
-            "id": "Date.setTime",
-            "return": "number",
-            "params": [
-                {
-                    "name": "ms",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.complete": {
-            "id": "HTMLImageElement.complete",
-            "type": "boolean"},
-        "window.document": {
-            "id": "window.document",
-            "type": "HTMLDocument"},
-        "HTMLIFrameElement.name": {
-            "id": "HTMLIFrameElement.name",
-            "type": "String"},
-        "navigator.platform": {
-            "id": "navigator.platform",
-            "type": "readonly String"},
-        "HTMLAnchorElement.coords": {
-            "id": "HTMLAnchorElement.coords",
-            "type": "String"},
-        "HTMLAnchorElement.name": {
-            "id": "HTMLAnchorElement.name",
-            "type": "String"},
-        "Layer.handleEvent": {
-            "id": "Layer.handleEvent",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLIFrameElement.height": {
-            "id": "HTMLIFrameElement.height",
-            "type": "String"},
-        "Node.lastChild": {
-            "id": "Node.lastChild",
-            "type": "readonly Node"},
+            "type": "Method"},
+        "element.isDefaultNamespace": {
+            "type": "Method"},
+        "Navigator.cookieEnabled": {
+            "type": "Method"},
+        "Date.setUTCHours": {
+            "type": "Method"},
+        "Math.random": {
+            "type": "Method"},
+        "EventTarget.removeEventListener": {
+            "type": "Method"},
+        "Keyboard.onkeydown": {
+            "type": "Method"},
         "Date.getUTCSeconds": {
-            "id": "Date.getUTCSeconds",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLBodyElement.background": {
-            "id": "HTMLBodyElement.background",
-            "type": "String"},
-        "HTMLAppletElement.hspace": {
-            "id": "HTMLAppletElement.hspace",
-            "type": "String"},
-        "HTMLImageElement.src": {
-            "id": "HTMLImageElement.src",
-            "type": "String"},
-        "Node.previousSibling": {
-            "id": "Node.previousSibling",
-            "type": "readonly Node"},
+            "type": "Method"},
+        "element.lastChild": {
+            "type": "Method"},
+        "String.strike": {
+            "type": "Method"},
+        "nodemap.item": {
+            "type": "Method"},
+        "document.forms": {
+            "type": "Method"},
+        "element.ownerDocument": {
+            "type": "Method"},
+        "document.getElementsByName": {
+            "type": "Method"},
         "Date.toUTCString": {
-            "id": "Date.toUTCString",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "Form.onfocus": {
+            "type": "Method"},
+        "Math.LOG2E": {
+            "type": "Method"},
+        "Date.getDay": {
+            "type": "Method"},
+        "Math.floor": {
+            "type": "Method"},
+        "Window.print": {
+            "type": "Method"},
+        "String.split": {
+            "type": "Method"},
         "Date.getMilliseconds": {
-            "id": "Date.getMilliseconds",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.personalbar": {
-            "id": "window.personalbar",
-            "type": "toolbar"},
-        "window.resizeBy": {
-            "id": "window.resizeBy",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.innerWidth": {
-            "id": "window.innerWidth",
-            "type": "number"},
-        "HTMLButtonElement.type": {
-            "id": "HTMLButtonElement.type",
-            "type": "readonly String"},
-        "history.current": {
-            "id": "history.current",
-            "type": "readonly String"},
-        "HTMLLinkElement.hreflang": {
-            "id": "HTMLLinkElement.hreflang",
-            "type": "String"},
-        "HTMLDocument.referrer": {
-            "id": "HTMLDocument.referrer",
-            "type": "readonly String"},
-        "HTMLBaseFontElement.face": {
-            "id": "HTMLBaseFontElement.face",
-            "type": "String"},
-        "HTMLObjectElement.codeType": {
-            "id": "HTMLObjectElement.codeType",
-            "type": "String"},
-        "HTMLInputElement.focus": {
-            "id": "HTMLInputElement.focus",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "window.scrollbars": {
-            "id": "window.scrollbars",
-            "type": "toolbar"},
-        "HTMLInputElement.select": {
-            "id": "HTMLInputElement.select",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "location.host": {
-            "id": "location.host",
-            "type": "String"},
-        "HTMLLIElement.type": {
-            "id": "HTMLLIElement.type",
-            "type": "String"},
-        "HTMLAreaElement.search": {
-            "id": "HTMLAreaElement.search",
-            "type": "String"},
-        "HTMLFrameElement.src": {
-            "id": "HTMLFrameElement.src",
-            "type": "String"},
+            "type": "Method"},
+        "Mouse.ondblclick": {
+            "type": "Method"},
+        "Navigator.appVersion": {
+            "type": "Method"},
+        "String.slice": {
+            "type": "Method"},
+        "Math.LN2": {
+            "type": "Method"},
+        "screen.height": {
+            "type": "Method"},
+        "Array.unshift": {
+            "type": "Method"},
+        "element.innerHTML": {
+            "type": "Method"},
+        "Window.close": {
+            "type": "Method"},
+        "element.dir": {
+            "type": "Method"},
+        "Math.LOG10E": {
+            "type": "Method"},
+        "Number.toString": {
+            "type": "Method"},
+        "Mouse.onmouseover": {
+            "type": "Method"},
+        "Date.setUTCDate": {
+            "type": "Method"},
+        "Window.scrollTo": {
+            "type": "Method"},
         "Array.concat": {
-            "id": "Array.concat",
-            "return": "Array",
-            "params": [
-                {
-                    "name": "array2",
-                    "type": "Array"}],
-            "type": "FunctionExpression"},
-        "navigator.appName": {
-            "id": "navigator.appName",
-            "type": "readonly String"},
-        "HTMLTableSectionElement.chOff": {
-            "id": "HTMLTableSectionElement.chOff",
-            "type": "String"},
-        "HTMLHeadingElement.align": {
-            "id": "HTMLHeadingElement.align",
-            "type": "String"},
-        "HTMLObjectElement.vspace": {
-            "id": "HTMLObjectElement.vspace",
-            "type": "String"},
-        "HTMLDocument.open": {
-            "id": "HTMLDocument.open",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "history.go": {
-            "id": "history.go",
-            "return": "void",
-            "params": [
-                {
-                    "name": "url|stepCount",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLOListElement.compact": {
-            "id": "HTMLOListElement.compact",
-            "type": "boolean"},
-        "NamedNodeMap.removeNamedItem": {
-            "id": "NamedNodeMap.removeNamedItem",
-            "return": "Node",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLDocument.embeds": {
-            "id": "HTMLDocument.embeds",
-            "type": "Array"},
-        "HTMLTextAreaElement.protocol": {
-            "id": "HTMLTextAreaElement.protocol",
-            "type": "String"},
-        "HTMLTableRowElement.insertCell": {
-            "id": "HTMLTableRowElement.insertCell",
-            "return": "HTMLElement",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "Node.childNodes": {
-            "id": "Node.childNodes",
-            "type": "readonly NodeList"},
-        "window.toolbar": {
-            "id": "window.toolbar",
-            "type": "toolbar"},
+            "type": "Method"},
+        "Window.blur": {
+            "type": "Method"},
+        "element.getElementsByTagName": {
+            "type": "Method"},
+        "String.toUpperCase": {
+            "type": "Method"},
+        "element.hasAttributes": {
+            "type": "Method"},
+        "document.baseURI": {
+            "type": "Method"},
+        "document.createAttribute": {
+            "type": "Method"},
+        "element.scrollLeft": {
+            "type": "Method"},
+        "document.URL": {
+            "type": "Method"},
+        "Form.onchange": {
+            "type": "Method"},
+        "Window.pageXOffset": {
+            "type": "Method"},
+        "String.big": {
+            "type": "Method"},
+        "element.firstChild": {
+            "type": "Method"},
+        "Event.BUBBLING_PHASE": {
+            "type": "Method"},
+        "element.nodeValue": {
+            "type": "Method"},
         "Array.shift": {
-            "id": "Array.shift",
-            "return": "Object",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableCellElement.scope": {
-            "id": "HTMLTableCellElement.scope",
-            "type": "String"},
-        "HTMLAnchorElement.rel": {
-            "id": "HTMLAnchorElement.rel",
-            "type": "String"},
+            "type": "Method"},
+        "element.className": {
+            "type": "Method"},
+        "document.write": {
+            "type": "Method"},
+        "Window.pageYOffset": {
+            "type": "Method"},
+        "Event.stopPropagation": {
+            "type": "Method"},
+        "document.importNode": {
+            "type": "Method"},
+        "String.small": {
+            "type": "Method"},
+        "document.strictErrorChecking": {
+            "type": "Method"},
         "Array.pop": {
-            "id": "Array.pop",
-            "return": "Object",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "history.back": {
-            "id": "history.back",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAnchorElement.shape": {
-            "id": "HTMLAnchorElement.shape",
-            "type": "String"},
-        "HTMLSelectElement.accessKey": {
-            "id": "HTMLSelectElement.accessKey",
-            "type": "String"},
-        "HTMLDocument.frames": {
-            "id": "HTMLDocument.frames",
-            "type": "Array"},
-        "HTMLAnchorElement.text": {
-            "id": "HTMLAnchorElement.text",
-            "type": "String"},
+            "type": "Method"},
+        "Window.createPopup": {
+            "type": "Method"},
+        "EventTarget.addEventListener": {
+            "type": "Method"},
+        "nodelist.length": {
+            "type": "Method"},
+        "Date.getUTCHours": {
+            "type": "Method"},
+        "Math.cos": {
+            "type": "Method"},
+        "Keyboard.keyIdentifier": {
+            "type": "Method"},
+        "element.compareDocumentPosition": {
+            "type": "Method"},
+        "Array.splice": {
+            "type": "Method"},
         "String.italics": {
-            "id": "String.italics",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Context.getContextContaining": {
-            "id": "Context.getContextContaining",
-            "return": "Context",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLAnchorElement.rev": {
-            "id": "HTMLAnchorElement.rev",
-            "type": "String"},
-        "window.ScriptEngineMajorVersion": {
-            "id": "window.ScriptEngineMajorVersion",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "String.length": {
-            "id": "String.length",
-            "type": "readonly number"},
-        "HTMLSelectElement.focus": {
-            "id": "HTMLSelectElement.focus",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAppletElement.align": {
-            "id": "HTMLAppletElement.align",
-            "type": "String"},
-        "window.clientInformation": {
-            "id": "window.clientInformation",
-            "type": ""},
-        "HTMLInputElement.name": {
-            "id": "HTMLInputElement.name",
-            "type": "String"},
-        "window.showModalDialog": {
-            "id": "window.showModalDialog",
-            "return": "window",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "String"},
-                {
-                    "name": "arguments",
-                    "type": ""},
-                {
-                    "name": "features",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "StyleSheet.href": {
-            "id": "StyleSheet.href",
-            "type": "string"},
+            "type": "Method"},
+        "document.close": {
+            "type": "Method"},
+        "Window.location": {
+            "type": "Method"},
+        "Window.resizeBy": {
+            "type": "Method"},
+        "element.getAttributeNode": {
+            "type": "Method"},
+        "element.attributes": {
+            "type": "Method"},
+        "Window.resizeTo": {
+            "type": "Method"},
+        "document.doctype": {
+            "type": "Method"},
+        "document.inputEncoding": {
+            "type": "Method"},
+        "Date.getUTCDay": {
+            "type": "Method"},
+        "History.forward": {
+            "type": "Method"},
+        "Window.scrollBy": {
+            "type": "Method"},
         "Date.setUTCMonth": {
-            "id": "Date.setUTCMonth",
-            "return": "number",
-            "params": [
-                {
-                    "name": "month",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "Layer.moveToAbsolute": {
-            "id": "Layer.moveToAbsolute",
-            "return": "void",
-            "params": [
-                {
-                    "name": "x",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "Navigator.javaEnabled": {
+            "type": "Method"},
+        "Navigator.taintEnabled": {
+            "type": "Method"},
+        "Event.CAPTURING_PHASE": {
+            "type": "Method"},
+        "String.link": {
+            "type": "Method"},
+        "document.lastModified": {
+            "type": "Method"},
+        "element.nextSibling": {
+            "type": "Method"},
         "String.toLowerCase": {
-            "id": "String.toLowerCase",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLDocument.captureEvents": {
-            "id": "HTMLDocument.captureEvents",
-            "return": "void",
-            "params": [
-                {
-                    "name": "eventTypeList",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLTableRowElement.vAlign": {
-            "id": "HTMLTableRowElement.vAlign",
-            "type": "String"},
-        "HTMLOListElement.type": {
-            "id": "HTMLOListElement.type",
-            "type": "String"},
-        "HTMLTableColElement.vAlign": {
-            "id": "HTMLTableColElement.vAlign",
-            "type": "String"},
+            "type": "Method"},
+        "String.charAt": {
+            "type": "Method"},
+        "document.createTextNode": {
+            "type": "Method"},
+        "Keyboard.shiftKey": {
+            "type": "Method"},
+        "Global.escape": {
+            "type": "Method"},
+        "Window.self": {
+            "type": "Method"},
+        "String.search": {
+            "type": "Method"},
         "Date.getFullYear": {
-            "id": "Date.getFullYear",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.type": {
-            "id": "HTMLObjectElement.type",
-            "type": "String"},
+            "type": "Method"},
+        "String.substring": {
+            "type": "Method"},
+        "document.links": {
+            "type": "Method"},
         "screen.pixelDepth": {
-            "id": "screen.pixelDepth",
-            "type": "readonly number"},
-        "window.confirm": {
-            "id": "window.confirm",
-            "return": "boolean",
-            "params": [
-                {
-                    "name": "message",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLElement.document": {
-            "id": "HTMLElement.document",
-            "type": "HTMLDocument"},
-        "HTMLLinkElement.charset": {
-            "id": "HTMLLinkElement.charset",
-            "type": "String"},
-        "window.scrollBy": {
-            "id": "window.scrollBy",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLDocument.anchors": {
-            "id": "HTMLDocument.anchors",
-            "type": "readonly HTMLCollection"},
-        "Node.nodeValue": {
-            "id": "Node.nodeValue",
-            "type": "String"},
-        "Node.nextSibling": {
-            "id": "Node.nextSibling",
-            "type": "readonly Node"},
-        "HTMLTableCellElement.bgColor": {
-            "id": "HTMLTableCellElement.bgColor",
-            "type": "String"},
-        "window.navigate": {
-            "id": "window.navigate",
-            "return": "void",
-            "params": [
-                {
-                    "name": "url",
-                    "type": "string"}],
-            "type": "FunctionExpression"},
-        "HTMLObjectElement.form": {
-            "id": "HTMLObjectElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLFrameSetElement.rows": {
-            "id": "HTMLFrameSetElement.rows",
-            "type": "String"},
-        "HTMLAppletElement.object": {
-            "id": "HTMLAppletElement.object",
-            "type": "String"},
-        "CharacterData.appendData": {
-            "id": "CharacterData.appendData",
-            "return": "void",
-            "params": [
-                {
-                    "name": "arg",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Layer.moveAbove": {
-            "id": "Layer.moveAbove",
-            "return": "void",
-            "params": [
-                {
-                    "name": "target",
-                    "type": "Layer"}],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "document.documentElement": {
+            "type": "Method"},
+        "document.domain": {
+            "type": "Method"},
+        "DocumentEvent.createEvent": {
+            "type": "Method"},
+        "Global.parseInt": {
+            "type": "Method"},
+        "Number.valueOf": {
+            "type": "Method"},
+        "element.scrollTop": {
+            "type": "Method"},
+        "Window.screenLeft": {
+            "type": "Method"},
+        "Window.moveBy": {
+            "type": "Method"},
+        "Array.indexOf": {
+            "type": "Method"},
         "String.sup": {
-            "id": "String.sup",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableRowElement.deleteCell": {
-            "id": "HTMLTableRowElement.deleteCell",
-            "return": "void",
-            "params": [
-                {
-                    "name": "index",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLInputElement.tabIndex": {
-            "id": "HTMLInputElement.tabIndex",
-            "type": "number"},
-        "HTMLFormElement.name": {
-            "id": "HTMLFormElement.name",
-            "type": "String"},
-        "Context.getContextName": {
-            "id": "Context.getContextName",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.alt": {
-            "id": "HTMLImageElement.alt",
-            "type": "String"},
-        "HTMLDocument.body": {
-            "id": "HTMLDocument.body",
-            "type": "readonly HTMLElement"},
+            "type": "Method"},
+        "element.namespaceURI": {
+            "type": "Method"},
+        "Math.SQRT1_2": {
+            "type": "Method"},
+        "Mouse.onmouseout": {
+            "type": "Method"},
+        "element.removeAttributeNode": {
+            "type": "Method"},
+        "Mouse.onclick": {
+            "type": "Method"},
+        "Mouse.onmouseup": {
+            "type": "Method"},
+        "nodemap.setNamedItem": {
+            "type": "Method"},
+        "document.implementation": {
+            "type": "Method"},
         "Array.sort": {
-            "id": "Array.sort",
-            "return": "Array",
-            "params": [
-                {
-                    "name": "compareFunction",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
-        "HTMLElement.insertAdjacentHTML": {
-            "id": "HTMLElement.insertAdjacentHTML",
-            "return": "void",
-            "params": [
-                {
-                    "name": "where",
-                    "type": "String"},
-                {
-                    "name": "String",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLLegendElement.form": {
-            "id": "HTMLLegendElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLFrameElement.marginHeight": {
-            "id": "HTMLFrameElement.marginHeight",
-            "type": "String"},
+            "type": "Method"},
+        "Math.round": {
+            "type": "Method"},
+        "Keyboard.screenX": {
+            "type": "Method"},
+        "Keyboard.screenY": {
+            "type": "Method"},
         "String.sub": {
-            "id": "String.sub",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAppletElement.name": {
-            "id": "HTMLAppletElement.name",
-            "type": "String"},
-        "window.length": {
-            "id": "window.length",
-            "type": "number"},
-        "HTMLMapElement.areas": {
-            "id": "HTMLMapElement.areas",
-            "type": "readonly HTMLCollection"},
+            "type": "Method"},
+        "String.trim": {
+            "type": "Method"},
+        "element.offsetHeight": {
+            "type": "Method"},
+        "Math.sqrt": {
+            "type": "Method"},
+        "Event.currentTarget": {
+            "type": "Method"},
         "String.fromCharCode": {
-            "id": "String.fromCharCode",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "Element.tagName": {
-            "id": "Element.tagName",
-            "type": "readonly String"},
-        "HTMLImageElement.isMap": {
-            "id": "HTMLImageElement.isMap",
-            "type": "String"},
-        "HTMLAreaElement.click": {
-            "id": "HTMLAreaElement.click",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLBodyElement.link": {
-            "id": "HTMLBodyElement.link",
-            "type": "String"},
-        "HTMLLegendElement.align": {
-            "id": "HTMLLegendElement.align",
-            "type": "String"},
+            "type": "Method"},
+        "Math.ceil": {
+            "type": "Method"},
+        "String.bold": {
+            "type": "Method"},
+        "Math.max": {
+            "type": "Method"},
         "String.substr": {
-            "id": "String.substr",
-            "return": "String",
-            "params": [
-                {
-                    "name": "startPositionIndex",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "HTMLFormElement.method": {
-            "id": "HTMLFormElement.method",
-            "type": "String"},
-        "window.setTimeout": {
-            "id": "window.setTimeout",
-            "return": "number",
-            "params": [
-                {
-                    "name": "expression",
-                    "type": "code"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "element.clientHeight": {
+            "type": "Method"},
+        "element.normalize": {
+            "type": "Method"},
+        "element.previousSibling": {
+            "type": "Method"},
+        "Event.preventDefault": {
+            "type": "Method"},
         "screen.availWidth": {
-            "id": "screen.availWidth",
-            "type": "readonly number"},
-        "Layer.resizeTo": {
-            "id": "Layer.resizeTo",
-            "return": "void",
-            "params": [
-                {
-                    "name": "width",
-                    "type": "Layer"},
-                {
-                    "name": "Layer",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.offscreenBuffering": {
-            "id": "window.offscreenBuffering",
-            "type": ""},
-        "HTMLTitleElement.text": {
-            "id": "HTMLTitleElement.text",
-            "type": "String"},
-        "HTMLIFrameElement.width": {
-            "id": "HTMLIFrameElement.width",
-            "type": "String"},
-        "HTMLScriptElement.type": {
-            "id": "HTMLScriptElement.type",
-            "type": "String"},
-        "HTMLElement.uniqueID": {
-            "id": "HTMLElement.uniqueID",
-            "type": "String"},
-        "HTMLAppletElement.codeBase": {
-            "id": "HTMLAppletElement.codeBase",
-            "type": "String"},
-        "HTMLObjectElement.tabIndex": {
-            "id": "HTMLObjectElement.tabIndex",
-            "type": "number"},
-        "HTMLMetaElement.scheme": {
-            "id": "HTMLMetaElement.scheme",
-            "type": "String"},
-        "Element.getElementsByTagName": {
-            "id": "Element.getElementsByTagName",
-            "return": "NodeList",
-            "params": [
-                {
-                    "name": "name",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "Layer.document": {
-            "id": "Layer.document",
-            "type": "HTMLDocument"},
-        "HTMLFontElement.face": {
-            "id": "HTMLFontElement.face",
-            "type": "String"},
-        "Node.parentNode": {
-            "id": "Node.parentNode",
-            "type": "readonly Node"},
-        "Node.firstChild": {
-            "id": "Node.firstChild",
-            "type": "readonly Node"},
-        "screen.availTop": {
-            "id": "screen.availTop",
-            "type": "readonly number"},
+            "type": "Method"},
+        "Global.decodeURI": {
+            "type": "Method"},
+        "Mouse.onmousemove": {
+            "type": "Method"},
+        "attr.specified": {
+            "type": "Method"},
+        "Global.encodeURIComponent": {
+            "type": "Method"},
+        "Location.protocol": {
+            "type": "Method"},
+        "Event.cancelable": {
+            "type": "Method"},
+        "Global.parseFloat": {
+            "type": "Method"},
+        "Keyboard.initMouseEvent": {
+            "type": "Method"},
+        "Keyboard.metaKey": {
+            "type": "Method"},
+        "Regex.test": {
+            "type": "Method"},
+        "EventListener.handleEvent": {
+            "type": "Method"},
+        "document.createComment": {
+            "type": "Method"},
+            "document.open": {
+            "type": "Method"},
+        "Window.prompt": {
+            "type": "Method"},
+        "Array.toString": {
+            "type": "Method"},
+        "Event.bubbles": {
+            "type": "Method"},
+        "document.getElementById": {
+            "type": "Method"},
+        "Date.toDateString": {
+            "type": "Method"},
+        "Date.setUTCFullYear": {
+            "type": "Method"},
+        "Number.toPrecision": {
+            "type": "Method"},
+        "Window.length": {
+            "type": "Method"},
+        "document.domConfig": {
+            "type": "Method"},
+        "document.readyState": {
+            "type": "Method"},
         "Date.getUTCDate": {
-            "id": "Date.getUTCDate",
-            "return": "number",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLLIElement.value": {
-            "id": "HTMLLIElement.value",
-            "type": "String"},
-        "HTMLFormElement.elements": {
-            "id": "HTMLFormElement.elements",
-            "type": "readonly HTMLCollection"},
-        "window.location": {
-            "id": "window.location",
-            "type": "location"},
-        "screen.availLeft": {
-            "id": "screen.availLeft",
-            "type": "readonly number"},
-        "HTMLDocument.domain": {
-            "id": "HTMLDocument.domain",
-            "type": "readonly String"},
-        "HTMLObjectElement.declare": {
-            "id": "HTMLObjectElement.declare",
-            "type": "boolean"},
-        "HTMLScriptElement.src": {
-            "id": "HTMLScriptElement.src",
-            "type": "String"},
-        "window.screen": {
-            "id": "window.screen",
-            "type": "screen"},
-        "HTMLObjectElement.align": {
-            "id": "HTMLObjectElement.align",
-            "type": "String"},
-        "Layer.clip": {
-            "id": "Layer.clip",
-            "type": "Clip"},
-        "HTMLOptionElement.form": {
-            "id": "HTMLOptionElement.form",
-            "type": "readonly HTMLFormElement"},
-        "HTMLTableElement.createTHead": {
-            "id": "HTMLTableElement.createTHead",
-            "return": "HTMLElement",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLBaseElement.href": {
-            "id": "HTMLBaseElement.href",
-            "type": "String"},
-        "HTMLTableRowElement.align": {
-            "id": "HTMLTableRowElement.align",
-            "type": "String"},
-        "navigator.mimeTypes": {
-            "id": "navigator.mimeTypes",
-            "type": "Array"},
-        "HTMLElement.innerHTML": {
-            "id": "HTMLElement.innerHTML",
-            "type": "String"},
-        "HTMLBaseElement.target": {
-            "id": "HTMLBaseElement.target",
-            "type": "String"},
-        "HTMLInputElement.click": {
-            "id": "HTMLInputElement.click",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLTableCellElement.headers": {
-            "id": "HTMLTableCellElement.headers",
-            "type": "String"},
-        "HTMLDocument.layers": {
-            "id": "HTMLDocument.layers",
-            "type": "Array"},
+            "type": "Method"},
+        "Keyboard.onkeypress": {
+            "type": "Method"},
+        "Window.innerHeight": {
+            "type": "Method"},
+        "Event.timeStamp": {
+            "type": "Method"},
+        "Date.getMinutes": {
+            "type": "Method"},
+        "Frame.onerror": {
+            "type": "Method"},
+        "Navigator.platform": {
+            "type": "Method"},
+        "Frame.onresize": {
+            "type": "Method"},
+        "element.offsetWidth": {
+            "type": "Method"},
+        "Math.atan": {
+            "type": "Method"},
+        "element.isEqualNode": {
+            "type": "Method"},
+        "String.match": {
+            "type": "Method"},
+        "Event.initEvent": {
+            "type": "Method"},
+        "document.normalize": {
+            "type": "Method"},
+        "Date.toLocaleTimeString": {
+            "type": "Method"},
+        "Window.screenX": {
+            "type": "Method"},
+        "Window.screenY": {
+            "type": "Method"},
+        "Window.setTimeout": {
+            "type": "Method"},
+        "Location.reload": {
+            "type": "Method"},
+        "element.toString": {
+            "type": "Method"},
+        "element.getUserData": {
+            "type": "Method"},
+        "element.accessKey": {
+            "type": "Method"},
+        "Event.eventPhase": {
+            "type": "Method"},
+        "Framet.onabort": {
+            "type": "Method"},
+        "Date.toISOString": {
+            "type": "Method"},
         "Array.push": {
-            "id": "Array.push",
-            "return": "Object",
-            "params": [
-                {
-                    "name": "value",
-                    "type": "Identifier"}],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "Math.atan2": {
+            "type": "Method"},
         "Date.setMonth": {
-            "id": "Date.setMonth",
-            "return": "number",
-            "params": [
-                {
-                    "name": "month",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "window.frameElement": {
-            "id": "window.frameElement",
-            "type": "HTMLElement"},
-        "HTMLDocument.images": {
-            "id": "HTMLDocument.images",
-            "type": "readonly HTMLCollection"},
-        "Layer.releaseEvents": {
-            "id": "Layer.releaseEvents",
-            "return": "void",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLAreaElement.host": {
-            "id": "HTMLAreaElement.host",
-            "type": "String"},
-        "Layer.offset": {
-            "id": "Layer.offset",
-            "return": "void",
-            "params": [
-                {
-                    "name": "dx",
-                    "type": "number"},
-                {
-                    "name": "number",
-                    "type": ""}],
-            "type": "FunctionExpression"},
-        "window.alert": {
-            "id": "window.alert",
-            "return": "void",
-            "params": [
-                {
-                    "name": "message",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "HTMLImageElement.height": {
-            "id": "HTMLImageElement.height",
-            "type": "String"},
-        "HTMLFrameElement.longDesc": {
-            "id": "HTMLFrameElement.longDesc",
-            "type": "String"},
-        "HTMLElement.id": {
-            "id": "HTMLElement.id",
-            "type": "String"},
-        "HTMLDocument.styleSheets": {
-            "id": "HTMLDocument.styleSheets",
-            "type": "Array"},
+            "type": "Method"},
+        "element.removeChild": {
+            "type": "Method"},
+        "element.scrollWidth": {
+            "type": "Method"},
+        "Date.toJSON": {
+            "type": "Method"},
+        "FormEvent.onsubmit": {
+            "type": "Method"},
+        "element.offsetLeft": {
+            "type": "Method"},
+        "document.title": {
+            "type": "Method"},
+        "Location.pathname": {
+            "type": "Method"},
+        "document.referrer": {
+            "type": "Method"},
         "Date.setDate": {
-            "id": "Date.setDate",
-            "return": "number",
-            "params": [
-                {
-                    "name": "date",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLParamElement.name": {
-            "id": "HTMLParamElement.name",
-            "type": "String"},
-        "HTMLAnchorElement.accessKey": {
-            "id": "HTMLAnchorElement.accessKey",
-            "type": "String"},
-        "HTMLFormElement.length": {
-            "id": "HTMLFormElement.length",
-            "type": "readonly number"},
-        "navigator.appVersion": {
-            "id": "navigator.appVersion",
-            "type": "readonly String"},
+            "type": "Method"},
+        "Math.E": {
+            "type": "Method"},
+        "Global.Number": {
+            "type": "Method"},
+        "Location.port": {
+            "type": "Method"},
+        "Math.abs": {
+            "type": "Method"},
+        "Window.defaultStatus": {
+            "type": "Method"},
+        "Window.closed": {
+            "type": "Method"},
         "Date.setHours": {
-            "id": "Date.setHours",
-            "return": "number",
-            "params": [
-                {
-                    "name": "hour",
-                    "type": "number"}],
-            "type": "FunctionExpression"},
-        "HTMLScriptElement.event": {
-            "id": "HTMLScriptElement.event",
-            "type": "String"},
-        "HTMLTableColElement.width": {
-            "id": "HTMLTableColElement.width",
-            "type": "String"},
-        "HTMLHRElement.width": {
-            "id": "HTMLHRElement.width",
-            "type": "String"},
-        "HTMLDListElement.compact": {
-            "id": "HTMLDListElement.compact",
-            "type": "boolean"},
-        "HTMLOptionElement.text": {
-            "id": "HTMLOptionElement.text",
-            "type": "readonly String"},
-        "HTMLImageElement.useMap": {
-            "id": "HTMLImageElement.useMap",
-            "type": "String"},
-        "Node.hasChildNodes": {
-            "id": "Node.hasChildNodes",
-            "return": "boolean",
-            "params": [
-],
-            "type": "FunctionExpression"},
+            "type": "Method"},
+        "Window.confirm": {
+            "type": "Method"},
+        "Math.pow": {
+            "type": "Method"},
+        "Date.getTimezoneOffset": {
+            "type": "Method"},
+        "attr.name": {
+            "type": "Method"},
+        "Number.toFixed": {
+            "type": "Method"},
+        "Window.screenTop": {
+            "type": "Method"},
+        "Global.eval": {
+            "type": "Method"},
+        "Window.status": {
+            "type": "Method"},
+        "nodelist.item": {
+            "type": "Method"},
+        "element.offsetParent": {
+            "type": "Method"},
+        "element.childNodes": {
+            "type": "Method"},
+        "Keyboard.altKey": {
+            "type": "Method"},
+        "element.getAttribute": {
+            "type": "Method"},
+        "Window.navigator": {
+            "type": "Method"},
         "Date.toString": {
-            "id": "Date.toString",
-            "return": "String",
-            "params": [
-],
-            "type": "FunctionExpression"},
-        "HTMLDocument.write": {
-            "id": "HTMLDocument.write",
-            "return": "void",
-            "params": [
-                {
-                    "name": "text",
-                    "type": "String"}],
-            "type": "FunctionExpression"},
-        "navigator.javaEnabled": {
-            "id": "navigator.javaEnabled",
-            "return": "boolean",
-            "params": [
-],
-            "type": "FunctionExpression"}},
+            "type": "Method"},
+        "Date.getDate": {
+            "type": "Method"},
+        "Keyboard.ctrlKey": {
+            "type": "Method"},
+        "element.appendChild": {
+            "type": "Method"}},
     "jQuery": {
         "$":{
             "type": "Method"},
@@ -6492,782 +4052,8 @@
         "jQuery.slideToggle": {
             "type": "Method"}}
 ,
-            "angular": {
-        "angular.encodeUriQuery": {
-            "type": "Method"},
-        "angular.forEach": {
-            "type": "Method"},
-        "angular.bootstrap": {
-            "type": "Method"},
-        "angular.mock.dump": {
-            "type": "Method"},
-        "angular.isElement": {
-            "type": "Method"},
-        "angular.equals": {
-            "type": "Method"},
-        "angular.valueFn": {
-            "type": "Method"},
-        "angular.mock.module": {
-            "type": "Method"},
-        "angular.isBoolean": {
-            "type": "Method"},
-        "angular.isArray": {
-            "type": "Method"},
-        "angular.isArrayLike": {
-            "type": "Method"},
-        "angular.sortedKeys": {
-            "type": "Method"},
-        "angular.module": {
-            "type": "Method"},
-        "angular.parseKeyValue": {
-            "type": "Method"},
-        "angular.startingTag": {
-            "type": "Method"},
-        "angular.angularInit.append": {
-            "type": "Method"},
-        "angular.getter": {
-            "type": "Method"},
-        "angular.nextUid": {
-            "type": "Method"},
-        "angular.indexOf": {
-            "type": "Method"},
-        "angular.isRegExp": {
-            "type": "Method"},
-        "angular.bindJQuery": {
-            "type": "Method"},
-        "angular.angularInit": {
-            "type": "Method"},
-        "angular.isWindow": {
-            "type": "Method"},
-        "angular.isFunction": {
-            "type": "Method"},
-        "angular.fromJson": {
-            "type": "Method"},
-        "angular.includes": {
-            "type": "Method"},
-        "angular.setHashKey": {
-            "type": "Method"},
-        "angular.arrayRemove": {
-            "type": "Method"},
-        "angular.extend": {
-            "type": "Method"},
-        "angular.sliceArgs": {
-            "type": "Method"},
-        "angular.concat": {
-            "type": "Method"},
-        "angular.map": {
-            "type": "Method"},
-        "angular.isNumber": {
-            "type": "Method"},
-        "angular.noop": {
-            "type": "Method"},
-        "angular.isObject": {
-            "type": "Method"},
-        "angular.encodeUriSegment": {
-            "type": "Method"},
-        "angular.uppercase": {
-            "type": "Method"},
-        "angular.isUndefined": {
-            "type": "Method"},
-        "angular.manualLowercase": {
-            "type": "Method"},
-        "angular.assertArg": {
-            "type": "Method"},
-        "angular.isLeafNode": {
-            "type": "Method"},
-        "angular.int": {
-            "type": "Method"},
-        "angular.doBootstrap": {
-            "type": "Method"},
-        "angular.toJsonReplacer": {
-            "type": "Method"},
-        "angular.version": {
-            "type": "Method"},
-        "angular.hasOwnPropertyLocal": {
-            "type": "Method"},
-        "angular.identity": {
-            "type": "Method"},
-        "angular.tryDecodeURIComponent": {
-            "type": "Method"},
-        "angular.isDefined": {
-            "type": "Method"},
-        "angular.inherit": {
-            "type": "Method"},
-        "angular.copy": {
-            "type": "Method"},
-        "angular.mock.inject": {
-            "type": "Method"},
-        "angular.mock.TzDate": {
-            "type": "Method"},
-        "angular.resumeBootstrap": {
-            "type": "Method"},
-        "angular.reverseParams": {
-            "type": "Method"},
-        "angular.shallowCopy": {
-            "type": "Method"},
-        "angular.snake_case": {
-            "type": "Method"},
-        "angular.injector": {
-            "type": "Method"},
-        "angular.toKeyValue": {
-            "type": "Method"},
-        "angular.isString": {
-            "type": "Method"},
-        "angular.assertArgFn": {
-            "type": "Method"},
-        "angular.element": {
-            "type": "Method"},
-        "angular.mock": {
-            "type": "Method"},
-        "angular.lowercase": {
-            "type": "Method"},
-        "angular.size": {
-            "type": "Method"},
-        "angular.forEachSorted": {
-            "type": "Method"},
-        "angular.isFile": {
-            "type": "Method"},
-        "angular.toJson": {
-            "type": "Method"},
-        "angular.isDate": {
-            "type": "Method"},
-        "angular.bind": {
-            "type": "Method"},
-        "angular.isScope": {
-            "type": "Method"},
-        "angular.makeMap": {
-            "type": "Method"},
-        "angular.toBoolean": {
-            "type": "Method"},
-        "angular.manualUppercase": {
-            "type": "Method"}},
-               "ember": {
-        "Ember.LinkView.init": {
-            "type": "Method"},
-        "Ember.Observable.getProperties": {
-            "type": "Method"},
-        "Ember.Comparable.compare": {
-            "type": "Method"},
-        "Ember.ControllerMixin.makeToString": {
-            "type": "Method"},
-        "String.classify": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.input": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.connectOutlet": {
-            "type": "Method"},
-        "Ember.ArrayProxy.objectAtContent": {
-            "type": "Method"},
-        "Ember.Map.remove": {
-            "type": "Method"},
-        "Ember.Observable.cacheFor": {
-            "type": "Method"},
-        "Ember.Evented.has": {
-            "type": "Method"},
-        "Ember.View.didInsertElement": {
-            "type": "Method"},
-        "Ember.CoreObject.create": {
-            "type": "Method"},
-        "Ember.MutableEnumerable.removeObjects": {
-            "type": "Method"},
-        "Ember.ObjectController.set": {
-            "type": "Method"},
-        "Ember.Route.setupController": {
-            "type": "Method"},
-        "Ember.View.willInsertElement": {
-            "type": "Method"},
-        "Ember.ComputedProperty.property": {
-            "type": "Method"},
-        "String.camelize": {
-            "type": "Method"},
-        "String.decamelize": {
-            "type": "Method"},
-        "Ember.Application.inject": {
-            "type": "Method"},
-        "Ember.Evented.one": {
-            "type": "Method"},
-        "Ember.View.findElementInParentElement": {
-            "type": "Method"},
-        "Ember.CoreObject.eachComputedProperty": {
-            "type": "Method"},
-        "Ember.Logger.info": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.partial": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.bind-attr": {
-            "type": "Method"},
-        "Ember.MapWithDefault.get": {
-            "type": "Method"},
-        "Ember.Test.registerHelper": {
-            "type": "Method"},
-        "Ember.Observable.getWithDefault": {
-            "type": "Method"},
-        "Ember.ControllerMixin.reset": {
-            "type": "Method"},
-        "Ember.OrderedSet.remove": {
-            "type": "Method"},
-        "Ember.Test.unregisterHelper": {
-            "type": "Method"},
-        "Ember.DefaultResolver.resolve": {
-            "type": "Method"},
-        "Ember.Binding.copy": {
-            "type": "Method"},
-        "Ember.ControllerMixin.set": {
-            "type": "Method"},
-        "Ember.Logger.error": {
-            "type": "Method"},
-        "Ember.TextSupport.insertNewLine": {
-            "type": "Method"},
-        "Ember.TrackedArray.apply": {
-            "type": "Method"},
-        "Ember.CoreObject.init": {
-            "type": "Method"},
-        "Ember.MutableArray.unshiftObject": {
-            "type": "Method"},
-        "Ember.Test.wait": {
-            "type": "Method"},
-        "String.dasherize": {
-            "type": "Method"},
-        "Ember.Component.sendAction": {
-            "type": "Method"},
-        "Ember.ComputedProperty.meta": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.disconnectOutlet": {
-            "type": "Method"},
-        "Ember.CoreObject.metaForProperty": {
-            "type": "Method"},
-        "Ember.View.removeChild": {
-            "type": "Method"},
-        "Ember.MutableEnumerable.removeObject": {
-            "type": "Method"},
-        "Ember.ArrayController.lookupItemController": {
-            "type": "Method"},
-        "Ember.OrderedSet.add": {
-            "type": "Method"},
-        "Ember.Route.send": {
-            "type": "Method"},
-        "Ember.Logger.log": {
-            "type": "Method"},
-        "Ember.ControllerMixin.destroy": {
-            "type": "Method"},
-        "String.fmt": {
-            "type": "Method"},
-        "Ember.Route.model": {
-            "type": "Method"},
-        "Ember.MutableArray.unshiftObjects": {
-            "type": "Method"},
-        "Ember.MutableArray.clear": {
-            "type": "Method"},
-        "Ember.ComputedProperty.cacheable": {
-            "type": "Method"},
-        "Ember.MutableArray.setObjects": {
-            "type": "Method"},
-        "Ember.Test.onInjectHelpers": {
-            "type": "Method"},
-        "Ember.MutableArray.reverseObjects": {
-            "type": "Method"},
-        "Ember.Route.disconnectOutlet": {
-            "type": "Method"},
-        "Ember.OrderedSet.has": {
-            "type": "Method"},
-        "Ember.ControllerMixin.replaceRoute": {
-            "type": "Method"},
-        "Ember.View.createChildView": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.if": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.init": {
-            "type": "Method"},
-        "Ember.TrackedArray.removeItems": {
-            "type": "Method"},
-        "Ember.Enumerable.contains": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.log": {
-            "type": "Method"},
-        "Ember.Copyable.frozenCopy": {
-            "type": "Method"},
-        "Ember.Observable.notifyPropertyChange": {
-            "type": "Method"},
-        "Ember.Enumerable.reduce": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.loc": {
-            "type": "Method"},
-        "Ember.Controller.destroy": {
-            "type": "Method"},
-        "Ember.Array.arrayContentDidChange": {
-            "type": "Method"},
-        "Ember.View.appendTo": {
-            "type": "Method"},
-        "Ember.MutableArray.replace": {
-            "type": "Method"},
-        "String.capitalize": {
-            "type": "Method"},
-        "Ember.Route.deactivate": {
-            "type": "Method"},
-        "Ember.RenderBuffer.addClass": {
-            "type": "Method"},
-        "Function.property": {
-            "type": "Method"},
-        "Ember.Route.replaceWith": {
-            "type": "Method"},
-        "String.loc": {
-            "type": "Method"},
-        "Ember.Enumerable.mapBy": {
-            "type": "Method"},
-        "Function.observesImmediately": {
-            "type": "Method"},
-        "Ember.Array.slice": {
-            "type": "Method"},
-        "Ember.Observable.endPropertyChanges": {
-            "type": "Method"},
-        "Ember.Set.push": {
-            "type": "Method"},
-        "Ember.Enumerable.removeEnumerableObserver": {
-            "type": "Method"},
-        "Ember.Test.promise": {
-            "type": "Method"},
-        "Ember.Mixin.detect": {
-            "type": "Method"},
-        "Ember.View.render": {
-            "type": "Method"},
-        "Ember.RenderBuffer.removeAttr": {
-            "type": "Method"},
-        "Ember.ControllerMixin.factoryInjection": {
-            "type": "Method"},
-        "Ember.Enumerable.filter": {
-            "type": "Method"},
-        "Ember.Set.add": {
-            "type": "Method"},
-        "Ember.Set.clear": {
-            "type": "Method"},
-        "Ember.Map.copy": {
-            "type": "Method"},
-        "Ember.Array.objectAt": {
-            "type": "Method"},
-        "Ember.View.parentViewDidChange": {
-            "type": "Method"},
-        "Ember.RenderBuffer.id": {
-            "type": "Method"},
-        "Ember.NativeArray.activate": {
-            "type": "Method"},
-        "Ember.TrackedArray.addItems": {
-            "type": "Method"},
-        "Ember.Enumerable.without": {
-            "type": "Method"},
-        "Ember.Set.shift": {
-            "type": "Method"},
-        "Ember.ObjectController.get": {
-            "type": "Method"},
-        "String.underscore": {
-            "type": "Method"},
-        "Ember.ArrayController.set": {
-            "type": "Method"},
-        "Ember.View.removeFromParent": {
-            "type": "Method"},
-        "Ember.RenderBuffer.push": {
-            "type": "Method"},
-        "Ember.Freezable.freeze": {
-            "type": "Method"},
-        "Ember.View.replaceIn": {
-            "type": "Method"},
-        "Ember.CoreObject.willDestroy": {
-            "type": "Method"},
-        "Ember.Test.click": {
-            "type": "Method"},
-        "Ember.CoreObject.toString": {
-            "type": "Method"},
-        "Ember.Route.modelFor": {
-            "type": "Method"},
-        "Ember.Map.has": {
-            "type": "Method"},
-        "Ember.CollectionView.arrayWillChange": {
-            "type": "Method"},
-        "Ember.Enumerable.rejectBy": {
-            "type": "Method"},
-        "Ember.MapWithDefault.copy": {
-            "type": "Method"},
-        "Ember.Controller.get": {
-            "type": "Method"},
-        "Ember.Application.register": {
-            "type": "Method"},
-        "Ember.Observable.get": {
-            "type": "Method"},
-        "Ember.TextSupport.focusIn": {
-            "type": "Method"},
-        "Ember.ComputedProperty.set": {
-            "type": "Method"},
-        "Ember.ControllerMixin.has": {
-            "type": "Method"},
-        "Ember.View.removeAllChildren": {
-            "type": "Method"},
-        "Ember.Route.controllerFor": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.unless": {
-            "type": "Method"},
-        "Ember.TextSupport.focusOut": {
-            "type": "Method"},
-        "Ember.ArrayController.get": {
-            "type": "Method"},
-        "Ember.Map.get": {
-            "type": "Method"},
-        "Ember.OrderedSet.copy": {
-            "type": "Method"},
-        "Ember.Array.addArrayObserver": {
-            "type": "Method"},
-        "Ember.Array.lastIndexOf": {
-            "type": "Method"},
-        "Function.on": {
-            "type": "Method"},
-        "Ember.Handlebars.get": {
-            "type": "Method"},
-        "Ember.Observable.hasObserverFor": {
-            "type": "Method"},
-        "Ember.Enumerable.getEach": {
-            "type": "Method"},
-        "Ember.Enumerable.uniq": {
-            "type": "Method"},
-        "Ember.Application.reset": {
-            "type": "Method"},
-        "Ember.Evented.on": {
-            "type": "Method"},
-        "Ember.View.append": {
-            "type": "Method"},
-        "Ember.Set.addEach": {
-            "type": "Method"},
-        "Ember.Observable.beginPropertyChanges": {
-            "type": "Method"},
-        "Ember.TextSupport.cancel": {
-            "type": "Method"},
-        "Ember.Binding.to": {
-            "type": "Method"},
-        "Ember.Handlebars.registerBoundHelper": {
-            "type": "Method"},
-        "Ember.ArrayController.destroy": {
-            "type": "Method"},
-        "Ember.View.destroyElement": {
-            "type": "Method"},
-        "Ember.Enumerable.every": {
-            "type": "Method"},
-        "Ember.ControllerMixin.transitionToRoute": {
-            "type": "Method"},
-        "Ember.LinkView.click": {
-            "type": "Method"},
-        "Ember.OrderedSet.toArray": {
-            "type": "Method"},
-        "Ember.Evented.trigger": {
-            "type": "Method"},
-        "Ember.Test.visit": {
-            "type": "Method"},
-        "Ember.Observable.propertyDidChange": {
-            "type": "Method"},
-        "Ember.Observable.decrementProperty": {
-            "type": "Method"},
-        "Ember.Deferred.resolve": {
-            "type": "Method"},
-        "Ember.Enumerable.toArray": {
-            "type": "Method"},
-        "Ember.Route.store": {
-            "type": "Method"},
-        "Ember.Observable.toggleProperty": {
-            "type": "Method"},
-        "Ember.ComputedProperty.volatile": {
-            "type": "Method"},
-        "Ember.Enumerable.invoke": {
-            "type": "Method"},
-        "Ember.Application.advanceReadiness": {
-            "type": "Method"},
-        "Ember.Route.afterModel": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.view": {
-            "type": "Method"},
-        "Ember.Observable.addObserver": {
-            "type": "Method"},
-        "Ember.Test.setupForTesting": {
-            "type": "Method"},
-        "Ember.CollectionView.init": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.yield": {
-            "type": "Method"},
-        "Ember.View.destroy": {
-            "type": "Method"},
-        "Ember.Enumerable.find": {
-            "type": "Method"},
-        "Ember.MutableArray.shiftObject": {
-            "type": "Method"},
-        "Ember.Set.pop": {
-            "type": "Method"},
-        "Ember.Deferred.then": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.outlet": {
-            "type": "Method"},
-        "Ember.Binding.disconnect": {
-            "type": "Method"},
-        "Function.observesBefore": {
-            "type": "Method"},
-        "Ember.Mixin.reopen": {
-            "type": "Method"},
-        "Ember.View.createElement": {
-            "type": "Method"},
-        "Ember.Evented.off": {
-            "type": "Method"},
-        "Ember.Test.keyEvent": {
-            "type": "Method"},
-        "Ember.ArrayProxy.replaceContent": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.each": {
-            "type": "Method"},
-        "Ember.Test.fillIn": {
-            "type": "Method"},
-        "Ember.Binding.oneWay": {
-            "type": "Method"},
-        "Ember.Binding.connect": {
-            "type": "Method"},
-        "Ember.Observable.removeObserver": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.render": {
-            "type": "Method"},
-        "Ember.ControllerMixin.unregister": {
-            "type": "Method"},
-        "Ember.Deferred.reject": {
-            "type": "Method"},
-        "Ember.CollectionView.destroy": {
-            "type": "Method"},
-        "Ember.ComputedProperty.readOnly": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.control": {
-            "type": "Method"},
-        "Ember.ComputedProperty.get": {
-            "type": "Method"},
-        "Ember.Handlebars.helper": {
-            "type": "Method"},
-        "Ember.Route.activate": {
-            "type": "Method"},
-        "Ember.Array.indexOf": {
-            "type": "Method"},
-        "Ember.Set.unshift": {
-            "type": "Method"},
-        "Ember.Observable.set": {
-            "type": "Method"},
-        "Ember.Enumerable.enumerableContentDidChange": {
-            "type": "Method"},
-        "Ember.Array.removeArrayObserver": {
-            "type": "Method"},
-        "Ember.Controller.set": {
-            "type": "Method"},
-        "Ember.Logger.assert": {
-            "type": "Method"},
-        "Ember.MutableArray.insertAt": {
-            "type": "Method"},
-        "Ember.RenderBuffer.string": {
-            "type": "Method"},
-        "Ember.Enumerable.addEnumerableObserver": {
-            "type": "Method"},
-        "Ember.Test.injectTestHelpers": {
-            "type": "Method"},
-        "Ember.RenderBuffer.attr": {
-            "type": "Method"},
-        "Ember.MutableArray.pushObject": {
-            "type": "Method"},
-        "Ember.SubArray.addItem": {
-            "type": "Method"},
-        "Ember.CoreObject.reopenClass": {
-            "type": "Method"},
-        "Ember.Set.removeEach": {
-            "type": "Method"},
-        "Ember.Array.arrayContentWillChange": {
-            "type": "Method"},
-        "Ember.CoreObject.reopen": {
-            "type": "Method"},
-        "Ember.ControllerMixin.resolve": {
-            "type": "Method"},
-        "Ember.RenderBuffer.prop": {
-            "type": "Method"},
-        "Ember.Application.deferReadiness": {
-            "type": "Method"},
-        "Ember.Enumerable.setEach": {
-            "type": "Method"},
-        "Ember.MutableEnumerable.addObject": {
-            "type": "Method"},
-        "Ember.MutableArray.popObject": {
-            "type": "Method"},
-        "Ember.TestAdapter.asyncStart": {
-            "type": "Method"},
-        "Ember.ControllerMixin.get": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.action": {
-            "type": "Method"},
-        "Ember.Set.remove": {
-            "type": "Method"},
-        "Ember.OrderedSet.clear": {
-            "type": "Method"},
-        "Ember.Application.ready": {
-            "type": "Method"},
-        "String.w": {
-            "type": "Method"},
-        "Ember.Mixin.apply": {
-            "type": "Method"},
-        "Ember.Test.find": {
-            "type": "Method"},
-        "Ember.Route.serialize": {
-            "type": "Method"},
-        "Ember.ControllerMixin.describe": {
-            "type": "Method"},
-        "Ember.Binding.toString": {
-            "type": "Method"},
-        "Ember.Enumerable.reject": {
-            "type": "Method"},
-        "Ember.MutableArray.pushObjects": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.with": {
-            "type": "Method"},
-        "Ember._HandlebarsBoundView.render": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.textarea": {
-            "type": "Method"},
-        "Ember.Logger.debug": {
-            "type": "Method"},
-        "Ember.TextSupport.keyPress": {
-            "type": "Method"},
-        "Ember.Observable.propertyWillChange": {
-            "type": "Method"},
-        "Ember.TestAdapter.exception": {
-            "type": "Method"},
-        "Ember.ControllerMixin.child": {
-            "type": "Method"},
-        "Ember.Enumerable.enumerableContentWillChange": {
-            "type": "Method"},
-        "Ember.Enumerable.map": {
-            "type": "Method"},
-        "Ember.Enumerable.compact": {
-            "type": "Method"},
-        "Ember.ControllerMixin.normalize": {
-            "type": "Method"},
-        "Ember.ControllerMixin.lookupFactory": {
-            "type": "Method"},
-        "Function.observes": {
-            "type": "Method"},
-        "Ember.Handlebars.compile": {
-            "type": "Method"},
-        "Ember.Route.findModel": {
-            "type": "Method"},
-        "Ember.Route.renderTemplate": {
-            "type": "Method"},
-        "Ember.CoreObject.createWithMixins": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.debugger": {
-            "type": "Method"},
-        "Ember.Enumerable.filterBy": {
-            "type": "Method"},
-        "Ember.View.willClearRender": {
-            "type": "Method"},
-        "Ember.Observable.setProperties": {
-            "type": "Method"},
-        "Ember.ControllerMixin.lookup": {
-            "type": "Method"},
-        "Ember.MapWithDefault.create": {
-            "type": "Method"},
-        "Ember.ControllerMixin.register": {
-            "type": "Method"},
-        "Ember.Handlebars.precompile": {
-            "type": "Method"},
-        "Ember.View.remove": {
-            "type": "Method"},
-        "Ember.CollectionView.arrayDidChange": {
-            "type": "Method"},
-        "Ember.TargetActionSupport.triggerAction": {
-            "type": "Method"},
-        "Ember.RenderBuffer.element": {
-            "type": "Method"},
-        "Ember.EachProxy.unknownProperty": {
-            "type": "Method"},
-        "Ember.OrderedSet.forEach": {
-            "type": "Method"},
-        "Ember.Enumerable.any": {
-            "type": "Method"},
-        "Ember.Enumerable.everyBy": {
-            "type": "Method"},
-        "Ember.Map.forEach": {
-            "type": "Method"},
-        "Ember.Map.set": {
-            "type": "Method"},
-        "Ember.Enumerable.nextObject": {
-            "type": "Method"},
-        "Ember.Route.render": {
-            "type": "Method"},
-        "Ember.CoreObject.destroy": {
-            "type": "Method"},
-        "Ember.CollectionView.createChildView": {
-            "type": "Method"},
-        "Ember.Route.transitionTo": {
-            "type": "Method"},
-        "Ember.ObjectController.destroy": {
-            "type": "Method"},
-        "Ember.Route.beforeModel": {
-            "type": "Method"},
-        "Ember.MutableEnumerable.addObjects": {
-            "type": "Method"},
-        "Ember.ControllerMixin.optionsForType": {
-            "type": "Method"},
-        "Ember.ControllerMixin.remove": {
-            "type": "Method"},
-        "Ember.Test.removeTestHelpers": {
-            "type": "Method"},
-        "Ember.RenderBuffer.removeProp": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.unbound": {
-            "type": "Method"},
-        "Ember.Set.isEqual": {
-            "type": "Method"},
-        "Ember.Enumerable.findBy": {
-            "type": "Method"},
-        "Ember.Mixin.create": {
-            "type": "Method"},
-        "Ember.ControllerMixin.injection": {
-            "type": "Method"},
-        "Ember.TestAdapter.asyncEnd": {
-            "type": "Method"},
-        "Ember.Logger.warn": {
-            "type": "Method"},
-        "Ember.Handlebars.helpers.link-to": {
-            "type": "Method"},
-        "Ember.ControllerMixin.eachLocal": {
-            "type": "Method"},
-        "Ember.Array.objectsAt": {
-            "type": "Method"},
-        "Ember.Enumerable.anyBy": {
-            "type": "Method"},
-        "Ember.Enumerable.forEach": {
-            "type": "Method"},
-        "String.htmlSafe": {
-            "type": "Method"},
-        "Ember.Route.generateController": {
-            "type": "Method"},
-        "Ember.Map.create": {
-            "type": "Method"},
-        "Ember.SubArray.removeItem": {
-            "type": "Method"},
-        "Ember.Observable.incrementProperty": {
-            "type": "Method"},
-        "Ember.Binding.from": {
-            "type": "Method"},
-        "Ember.ControllerMixin.options": {
-            "type": "Method"},
-        "Ember.View.willDestroyElement": {
-            "type": "Method"},
-        "Ember.RenderBuffer.style": {
-            "type": "Method"},
-        "Ember.OrderedSet.isEmpty": {
-            "type": "Method"},
-        "Ember.Test.findWithAssert": {
-            "type": "Method"},
-        "Ember.OrderedSet.create": {
-            "type": "Method"},
-        "Ember.MutableArray.removeAt": {
-            "type": "Method"},
-        "Ember.Copyable.copy": {
-            "type": "Method"},
-        "Ember.View.rerender": {
-            "type": "Method"}},
+            "angular": {},
+               "ember": {},
              "cordova": {
         "FileEntry.copyTo": {
             "type": "Method"},
@@ -7473,302 +4259,287 @@
             "type": "Method"},
         "capture.captureAudio": {
             "type": "Method"}},
-            "bbui": {
-        "": {
+            "backbone": {"Model.defaults": {
             "type": "Method"},
-        "bb.button.getWidth": {
+        "Model": {
             "type": "Method"},
-        "bb.slider.getWidth": {
+        "Collection.toJSON": {
             "type": "Method"},
-        "bb.scrollPanel.getPeekWidth": {
+        "Model.changed": {
+            "type": "Method"},
+        "Model.unset": {
+            "type": "Method"},
+        "on": {
+            "type": "Method"},
+        "listenToOnce": {
+            "type": "Method"},
+        "Model.toJSON": {
+            "type": "Method"},
+        "Backbone.sync": {
+            "type": "Method"},
+        "Model.cid": {
+            "type": "Method"},
+        "Router.extend": {
+            "type": "Method"},
+        "listenTo": {
+            "type": "Method"},
+        "View.extend": {
+            "type": "Method"},
+        "once": {
+            "type": "Method"},
+        "Model.sync": {
+            "type": "Method"},
+        "stopListening": {
+            "type": "Method"},
+        "Model.set": {
+            "type": "Method"},
+        "Collection.models": {
+            "type": "Method"},
+        "Model.id": {
+            "type": "Method"},
+        "Model.extend": {
+            "type": "Method"},
+        "Model.clear": {
+            "type": "Method"},
+        "Model.attributes": {
+            "type": "Method"},
+        "Router.navigate": {
+            "type": "Method"},
+        "Backbone.ajax": {
+            "type": "Method"},
+        "Model.has": {
+            "type": "Method"},
+        "Collection.sync": {
+            "type": "Method"},
+        "History": {
+            "type": "Method"},
+        "History.start": {
+            "type": "Method"},
+        "View.$el": {
+            "type": "Method"},
+        "View.attributes": {
+            "type": "Method"},
+        "Model.get": {
+            "type": "Method"},
+        "View.remove": {
+            "type": "Method"},
+        "trigger": {
+            "type": "Method"},
+        "Collection": {
+            "type": "Method"},
+        "Router.routes": {
+            "type": "Method"},
+        "Collection.extend": {
+            "type": "Method"},
+        "View.setElement": {
+            "type": "Method"},
+        "Model.save": {
+            "type": "Method"},
+        "Collection.model": {
+            "type": "Method"},
+        "Model.fetch": {
+            "type": "Method"},
+        "Backbone.emulateHTTP": {
+            "type": "Method"},
+        "Backbone.emulateJSON": {
+            "type": "Method"},
+        "Model.idAttribute": {
+            "type": "Method"},
+        "Backbone.noConflict": {
+            "type": "Method"},
+        "Router.route": {
+            "type": "Method"},
+        "View.render": {
+            "type": "Method"},
+        "off": {
+            "type": "Method"},
+        "Model.destroy": {
+            "type": "Method"},
+        "View.el": {
+            "type": "Method"},
+        "Router": {
+            "type": "Method"},
+        "Model.escape": {
+            "type": "Method"}},
+            "bbui": {"bb.guidGenerator": {
             "type": "Method"},
         "bb.progress.setMax": {
             "type": "Method"},
-        "bb.fileInput.disableGroup": {
-            "type": "Method"},
-        "bb.actionOverflow.getLeft": {
-            "type": "Method"},
-        "bb.actionBar.getCaption": {
-            "type": "Method"},
-        "bb.titleBar.setBackCaption": {
-            "type": "Method"},
-        "bb.checkbox.enableGroup": {
-            "type": "Method"},
-        "bb.scrollPanel.onscroll": {
-            "type": "Method"},
-        "bb.checkbox.setChecked": {
-            "type": "Method"},
-        "bb.imageList.getLeft": {
-            "type": "Method"},
-        "bb.radio.getWidth": {
-            "type": "Method"},
-        "bb.scrollPanel.apply": {
+        "bb.dropdown.setSelectedItem": {
             "type": "Method"},
         "bb.toggle.getOnCaption": {
             "type": "Method"},
-        "bb.pillButtons.getButtons": {
+        "bb.screen.slideRight": {
             "type": "Method"},
-        "bb.bbmBubble.getImage": {
+        "bb.clear": {
             "type": "Method"},
-        "bb.textInput.style": {
-            "type": "Method"},
-        "bb.toggle.apply": {
-            "type": "Method"},
-        "bb.scrollPanel.getWidth": {
-            "type": "Method"},
-        "bb.grid.getWidth": {
-            "type": "Method"},
-        "bb.dropdown.disable": {
-            "type": "Method"},
-        "bb.toggle.getWidth": {
+        "bb.hide": {
             "type": "Method"},
         "bb.actionBar.actionShow": {
             "type": "Method"},
         "bb.titleBar.setActionCaption": {
             "type": "Method"},
-        "bb.bbmBubble.apply": {
+        "bb.create": {
             "type": "Method"},
-        "bb.grid.hid": {
+        "bb.screen.getMenuBarHeight": {
             "type": "Method"},
-        "bb.radio.enable": {
-            "type": "Method"},
-        "bb.progress.apply": {
-            "type": "Method"},
-        "bb.actionBar.getImage": {
-            "type": "Method"},
-        "bb.activityIndicator.disableGroup": {
-            "type": "Method"},
-        "bb.getCurScreen": {
+        "bb.toggle.setOnCaption": {
             "type": "Method"},
         "bb.clearScrollers": {
             "type": "Method"},
-        "bb.checkbox.getWidth": {
+        "bb.getCurScreen": {
             "type": "Method"},
-        "bb.progress.show": {
+        "bb.getImage": {
             "type": "Method"},
         "bb.actionBar.getTabOverflowBtnWidth": {
             "type": "Method"},
-        "bb.scrollPanel.show": {
-            "type": "Method"},
-        "bb.dropdown.hide": {
-            "type": "Method"},
-        "bb.bbmBubble.getCaption": {
-            "type": "Method"},
         "bb.toggle.setChecked": {
             "type": "Method"},
-        "bb.pillButtons.show": {
+        "bb.menuBar.showMenuBar": {
+            "type": "Method"},
+        "bb.actionBar.actionHide": {
             "type": "Method"},
         "bb.menuBar.overlayTouchHandler": {
             "type": "Method"},
-        "bb.dropdown.create": {
+        "bb.imageList.getItems": {
             "type": "Method"},
-        "bb.toggle.disable": {
+        "bb.initContainer": {
             "type": "Method"},
-        "bb.radio.getPeekWidth": {
+        "bb.createScreenScroller": {
             "type": "Method"},
-        "bb.pillButtons.hide": {
+        "bb.titleBar.onactionclick": {
             "type": "Method"},
-        "bb.roundPanel.disableGroup": {
+        "bb.dropdown.setSelectedText": {
             "type": "Method"},
-        "bb.textInput.resetDot": {
+        "bb.getPeekWidth": {
             "type": "Method"},
         "bb.imageList.getAccentText": {
             "type": "Method"},
-        "bb.actionOverflow.enableGroup": {
-            "type": "Method"},
         "bb.doLoad": {
             "type": "Method"},
-        "bb.labelControlContainers.hide": {
-            "type": "Method"},
-        "bb.textInput.getPeekWidth": {
+        "bb.getWidth": {
             "type": "Method"},
         "Function.bind": {
             "type": "Method"},
-        "bb.checkbox.getLeft": {
+        "bb.imageList.insertItemBefore": {
+            "type": "Method"},
+        "bb.toggle.getOffCaption": {
             "type": "Method"},
         "bb.titleBar.getActionCaption": {
             "type": "Method"},
-        "bb.activityIndicator.getWidth": {
-            "type": "Method"},
-        "bb.activityIndicator.getPeekWidth": {
-            "type": "Method"},
-        "bb.radio.getChecked": {
+        "bb.init": {
             "type": "Method"},
         "bb.screen.slideOutLeft": {
             "type": "Method"},
-        "bb.init": {
+        "bb.radio.getChecked": {
             "type": "Method"},
-        "bb.scrollPanel.hide": {
+        "bb.scrollPanel.scrollTo": {
             "type": "Method"},
-        "bb.fileInput.getWidth": {
+        "bb.style": {
             "type": "Method"},
-        "bb.imageList.clear": {
-            "type": "Method"},
-        "bb.slider.disableGroup": {
-            "type": "Method"},
-        "bb.bbmBubble.resetDot": {
-            "type": "Method"},
-        "bb.dropdown.setCaption": {
-            "type": "Method"},
-        "bb.radio.show": {
-            "type": "Method"},
-        "bb.fileInput.getLeft": {
-            "type": "Method"},
-        "bb.bbmBubble.remove": {
+        "bb.titleBar.getAccentText": {
             "type": "Method"},
         "bb.removePreviousScreenFromDom": {
             "type": "Method"},
         "bb.radio.setChecked": {
             "type": "Method"},
-        "bb.slider.apply": {
-            "type": "Method"},
-        "bb.roundPanel.apply": {
-            "type": "Method"},
-        "bb.bbmBubble.getWidth": {
+        "bb.screen.fadeOut": {
             "type": "Method"},
         "bb.screen.slideOutUp": {
-            "type": "Method"},
-        "bb.checkbox.show": {
             "type": "Method"},
         "bb.screen.fadeIn": {
             "type": "Method"},
         "bb.actionBar.highlightAction": {
             "type": "Method"},
-        "bb.actionBar.hide": {
+        "bb.domready.fire": {
             "type": "Method"},
-        "bb.titleBar.style": {
+        "bb.getButtons": {
             "type": "Method"},
         "bb.removeLoadedScripts": {
             "type": "Method"},
-        "bb.dropdown.enable": {
+        "bb.screen.getTitleBarHeight": {
             "type": "Method"},
-        "bb.bbmBubble.getPeekWidth": {
+        "bb.setValue": {
             "type": "Method"},
-        "bb.dropdown.disableGroup": {
+        "bb.menuBar.onMenuBarClicked": {
             "type": "Method"},
-        "bb.slider.getPeekWidth": {
-            "type": "Method"},
-        "bb.actionBar.setImage": {
-            "type": "Method"},
-        "bb.pillButtons.disableGroup": {
-            "type": "Method"},
-        "bb.pillButtons.remove": {
+        "bb.menuBar.hideMenuBar": {
             "type": "Method"},
         "bb.screen.slideOutRight": {
             "type": "Method"},
-        "bb.textInput.getLeft": {
-            "type": "Method"},
-        "bb.imageList.disableGroup": {
+        "bb.actionBar.unhighlightAction": {
             "type": "Method"},
         "bb.screen.slideUp": {
             "type": "Method"},
         "bb.screen.processContext": {
             "type": "Method"},
-        "bb.grid.getLeft": {
-            "type": "Method"},
-        "bb.progress.getWidth": {
+        "bb.pushScreen": {
             "type": "Method"},
         "bb.scrollPanel.scrollToElement": {
             "type": "Method"},
-        "bb.dropdown.show": {
+        "bb.toggle.setOffCaption": {
             "type": "Method"},
-        "bb.actionOverflow.apply": {
-            "type": "Method"},
-        "bb.button.apply": {
-            "type": "Method"},
-        "bb.scrollPanel.remove": {
+        "bb.domready.fireEventsOnly": {
             "type": "Method"},
         "bb.bbmBubble.setStyle": {
             "type": "Method"},
-        "bb.tabOverflow.create": {
-            "type": "Method"},
         "bb.loadScreen": {
             "type": "Method"},
-        "bb.imageList.style": {
+        "bb.popScreen": {
             "type": "Method"},
-        "bb.imageList.hide": {
+        "bb.apply": {
             "type": "Method"},
-        "bb.checkbox.hide": {
-            "type": "Method"},
-        "bb.grid.disableGroup": {
-            "type": "Method"},
-        "bb.pillButtons.setCaption": {
-            "type": "Method"},
-        "bb.grid.resetDot": {
-            "type": "Method"},
-        "bb.radio.hide": {
+        "bb.getOrientation": {
             "type": "Method"},
         "bb.toggle.getChecked": {
             "type": "Method"},
-        "bb.checkbox.apply": {
+        "bb.setCaption": {
             "type": "Method"},
-        "bb.bbmBubble.show": {
+        "bb.resetDot": {
             "type": "Method"},
-        "bb.labelControlContainers.resetDot": {
+        "bb.menuBar.clearMenu": {
             "type": "Method"},
-        "bb.pillButtons.getLeft": {
+        "bb.screen.getActionBarHeight": {
             "type": "Method"},
-        "bb.button.style": {
-            "type": "Method"},
-        "bb.dropdown.getLeft": {
-            "type": "Method"},
-        "bb.titleBar.apply": {
+        "bb.checkbox.enable": {
             "type": "Method"},
         "bb.actionBar.getActionOverflowBtnWidth": {
             "type": "Method"},
-        "bb.dropdown.apply": {
+        "bb.actionBar.getBackBtnWidth": {
             "type": "Method"},
         "bb.actionBar.setSelectedTab": {
             "type": "Method"},
-        "bb.grid.enableGroup": {
+        "bb.setImage": {
             "type": "Method"},
-        "bb.radio.remove": {
+        "bb.enableGroup": {
+            "type": "Method"},
+        "bb.getLeft": {
+            "type": "Method"},
+        "bb.screen.slideDown": {
+            "type": "Method"},
+        "bb.menuBar.createSwipeMenu": {
             "type": "Method"},
         "bb.imageList.appendItem": {
-            "type": "Method"},
-        "bb.toggle.enable": {
             "type": "Method"},
         "bb.cutHex": {
             "type": "Method"},
         "bb.bbmBubble.getStyle": {
             "type": "Method"},
-        "bb.button.disableGroup": {
+        "bb.screen.slideOutDown": {
             "type": "Method"},
-        "bb.button.getLeft": {
+        "bb.getCaption": {
             "type": "Method"},
-        "bb.progress.getLeft": {
+        "bb.imageList.getTitle": {
             "type": "Method"},
-        "bb.progress.setValue": {
+        "bb.removeTopMostScreenFromDom": {
             "type": "Method"},
-        "bb.radio.disable": {
-            "type": "Method"},
-        "bb.roundPanel.getLeft": {
-            "type": "Method"},
-        "bb.imageList.getPeekWidth": {
-            "type": "Method"},
-        "bb.activityIndicator.style": {
-            "type": "Method"},
-        "bb.actionOverflow.style": {
-            "type": "Method"},
-        "bb.labelControlContainers.getPeekWidth": {
-            "type": "Method"},
-        "bb.bbmBubble.disableGroup": {
-            "type": "Method"},
-        "bb.radio.getLeft": {
+        "bb.disableGroup": {
             "type": "Method"},
         "bb.imageList.getDescription": {
             "type": "Method"},
+        "bb.isScrolledIntoView": {
+            "type": "Method"},
         "bb.progress.setState": {
-            "type": "Method"},
-        "bb.scrollPanel.resetDot": {
-            "type": "Method"},
-        "bb.actionBar.apply": {
-            "type": "Method"},
-        "bb.slider.resetDot": {
-            "type": "Method"},
-        "bb.bbmBubble.getLeft": {
-            "type": "Method"},
-        "bb.actionBar.setCaption": {
             "type": "Method"},
         "bb.refresh": {
             "type": "Method"},
@@ -7776,359 +4547,13 @@
             "type": "Method"},
         "bb.innerWidth": {
             "type": "Method"},
-        "bb.checkbox.remove": {
-            "type": "Method"},
-        "bb.activityIndicator.show": {
-            "type": "Method"},
-        "bb.fileInput.resetDot": {
+        "bb.menuBar.setDimensions": {
             "type": "Method"},
         "bb.innerHeight": {
             "type": "Method"},
-        "bb.checkbox.disable": {
-            "type": "Method"},
-        "bb.roundPanel.style": {
-            "type": "Method"},
-        "bb.scrollPanel.getLeft": {
-            "type": "Method"},
-        "bb.button.getPeekWidth": {
-            "type": "Method"},
-        "bb.checkbox.resetDot": {
-            "type": "Method"},
-        "bb.labelControlContainers.create": {
-            "type": "Method"},
-        "bb.guidGenerator": {
-            "type": "Method"},
-        "bb.progress.disableGroup": {
-            "type": "Method"},
-        "bb.fileInput.create": {
-            "type": "Method"},
-        "bb.checkbox.create": {
-            "type": "Method"},
-        "bb.activityIndicator.remove": {
-            "type": "Method"},
-        "bb.dropdown.setSelectedItem": {
-            "type": "Method"},
-        "bb.radio.create": {
-            "type": "Method"},
-        "bb.scrollPanel.refresh": {
-            "type": "Method"},
-        "bb.progress.remove": {
-            "type": "Method"},
-        "bb.textInput.enableGroup": {
-            "type": "Method"},
-        "bb.toggle.resetDot": {
-            "type": "Method"},
-        "bb.titleBar.setCaption": {
-            "type": "Method"},
-        "bb.screen.slideRight": {
-            "type": "Method"},
-        "bb.bbmBubble.setCaption": {
-            "type": "Method"},
-        "bb.imageList.remove": {
-            "type": "Method"},
-        "bb.radio.resetDot": {
-            "type": "Method"},
-        "bb.grid.getPeekWidth": {
-            "type": "Method"},
-        "bb.progress.resetDot": {
-            "type": "Method"},
-        "bb.radio.disableGroup": {
-            "type": "Method"},
-        "bb.labelControlContainers.remove": {
-            "type": "Method"},
-        "bb.activityIndicator.create": {
-            "type": "Method"},
-        "bb.roundPanel.resetDot": {
-            "type": "Method"},
-        "bb.dropdown.remove": {
-            "type": "Method"},
-        "bb.button.resetDot": {
-            "type": "Method"},
-        "bb.pillButtons.resetDot": {
-            "type": "Method"},
-        "bb.toggle.setOnCaption": {
-            "type": "Method"},
-        "bb.screen.getMenuBarHeight": {
-            "type": "Method"},
-        "bb.dropdown.getCaption": {
-            "type": "Method"},
-        "bb.fileInput.enableGroup": {
-            "type": "Method"},
-        "bb.actionBar.show": {
-            "type": "Method"},
-        "bb.pillButtons.getPeekWidth": {
-            "type": "Method"},
-        "bb.grid.remove": {
-            "type": "Method"},
-        "bb.activityIndicator.getLeft": {
-            "type": "Method"},
-        "bb.activityIndicator.apply": {
-            "type": "Method"},
-        "bb.fileInput.getPeekWidth": {
-            "type": "Method"},
-        "bb.progress.getPeekWidth": {
-            "type": "Method"},
-        "bb.imageList.enableGroup": {
-            "type": "Method"},
-        "bb.checkbox.disableGroup": {
-            "type": "Method"},
-        "bb.checkbox.getChecked": {
-            "type": "Method"},
-        "bb.bbmBubble.enableGroup": {
-            "type": "Method"},
-        "bb.bbmBubble.hide": {
-            "type": "Method"},
-        "bb.labelControlContainers.disableGroup": {
-            "type": "Method"},
-        "bb.menuBar.showMenuBar": {
-            "type": "Method"},
-        "bb.imageList.getItems": {
-            "type": "Method"},
-        "bb.actionBar.actionHide": {
-            "type": "Method"},
-        "bb.fileInput.style": {
-            "type": "Method"},
-        "bb.labelControlContainers.getWidth": {
-            "type": "Method"},
-        "bb.grid.apply": {
-            "type": "Method"},
-        "bb.initContainer": {
-            "type": "Method"},
-        "bb.radio.apply": {
-            "type": "Method"},
-        "bb.createScreenScroller": {
-            "type": "Method"},
-        "bb.actionOverflow.getWidth": {
-            "type": "Method"},
-        "bb.titleBar.onactionclick": {
-            "type": "Method"},
-        "bb.button.create": {
-            "type": "Method"},
-        "bb.dropdown.setSelectedText": {
-            "type": "Method"},
-        "bb.progress.enableGroup": {
-            "type": "Method"},
-        "bb.slider.setValue": {
-            "type": "Method"},
-        "bb.pillButtons.getWidth": {
-            "type": "Method"},
-        "bb.pillButtons.appendButton": {
-            "type": "Method"},
-        "bb.imageList.insertItemBefore": {
-            "type": "Method"},
-        "bb.dropdown.refresh": {
-            "type": "Method"},
-        "bb.roundPanel.getPeekWidth": {
-            "type": "Method"},
-        "bb.toggle.getOffCaption": {
-            "type": "Method"},
-        "bb.toggle.show": {
-            "type": "Method"},
-        "bb.labelControlContainers.style": {
-            "type": "Method"},
-        "bb.toggle.disableGroup": {
-            "type": "Method"},
-        "bb.textInput.apply": {
-            "type": "Method"},
-        "bb.scrollPanel.scrollTo": {
-            "type": "Method"},
-        "bb.grid.create": {
-            "type": "Method"},
-        "bb.dropdown.getWidth": {
-            "type": "Method"},
-        "bb.toggle.enableGroup": {
-            "type": "Method"},
-        "bb.imageList.getWidth": {
-            "type": "Method"},
-        "bb.style": {
-            "type": "Method"},
-        "bb.pillButtons.apply": {
-            "type": "Method"},
-        "bb.bbmBubble.style": {
-            "type": "Method"},
-        "bb.titleBar.getAccentText": {
-            "type": "Method"},
-        "bb.toggle.getPeekWidth": {
-            "type": "Method"},
-        "bb.toggle.hide": {
-            "type": "Method"},
-        "bb.progress.hide": {
-            "type": "Method"},
-        "bb.bbmBubble.setImage": {
-            "type": "Method"},
-        "bb.actionOverflow.getPeekWidth": {
-            "type": "Method"},
-        "bb.screen.fadeOut": {
-            "type": "Method"},
-        "bb.imageList.getImage": {
-            "type": "Method"},
-        "bb.domready.fire": {
-            "type": "Method"},
-        "bb.actionOverflow.disableGroup": {
-            "type": "Method"},
-        "bb.screen.getTitleBarHeight": {
-            "type": "Method"},
-        "bb.slider.getLeft": {
-            "type": "Method"},
-        "bb.activityIndicator.hide": {
-            "type": "Method"},
-        "bb.radio.style": {
-            "type": "Method"},
-        "bb.titleBar.getCaption": {
-            "type": "Method"},
-        "bb.bbmBubble.create": {
-            "type": "Method"},
-        "bb.menuBar.onMenuBarClicked": {
-            "type": "Method"},
-        "bb.menuBar.hideMenuBar": {
-            "type": "Method"},
-        "bb.actionBar.unhighlightAction": {
-            "type": "Method"},
-        "bb.menuBar.apply": {
-            "type": "Method"},
-        "bb.toggle.getLeft": {
-            "type": "Method"},
-        "bb.toggle.style": {
-            "type": "Method"},
-        "bb.roundPanel.getWidth": {
-            "type": "Method"},
-        "bb.screen.apply": {
-            "type": "Method"},
-        "bb.pillButtons.enableGroup": {
-            "type": "Method"},
-        "bb.pushScreen": {
-            "type": "Method"},
-        "bb.pillButtons.style": {
-            "type": "Method"},
-        "bb.toggle.setOffCaption": {
-            "type": "Method"},
-        "bb.slider.create": {
-            "type": "Method"},
-        "bb.tabOverflow.getWidth": {
-            "type": "Method"},
-        "bb.domready.fireEventsOnly": {
-            "type": "Method"},
-        "bb.dropdown.resetDot": {
-            "type": "Method"},
-        "bb.dropdown.enableGroup": {
-            "type": "Method"},
-        "bb.radio.enableGroup": {
-            "type": "Method"},
-        "bb.imageList.apply": {
-            "type": "Method"},
-        "bb.popScreen": {
-            "type": "Method"},
-        "bb.radio.isEnabled": {
-            "type": "Method"},
-        "bb.textInput.create": {
-            "type": "Method"},
-        "bb.activityIndicator.resetDot": {
-            "type": "Method"},
-        "bb.checkbox.style": {
-            "type": "Method"},
-        "bb.getOrientation": {
-            "type": "Method"},
-        "bb.fileInput.apply": {
-            "type": "Method"},
-        "bb.scrollPanel.create": {
-            "type": "Method"},
-        "bb.button.enableGroup": {
-            "type": "Method"},
-        "bb.checkbox.getPeekWidth": {
-            "type": "Method"},
-        "bb.actionOverflow.resetDot": {
-            "type": "Method"},
-        "bb.menuBar.clearMenu": {
-            "type": "Method"},
-        "bb.slider.style": {
-            "type": "Method"},
-        "bb.activityIndicator.enableGroup": {
-            "type": "Method"},
-        "bb.grid.style": {
-            "type": "Method"},
-        "bb.textInput.disableGroup": {
-            "type": "Method"},
-        "bb.slider.enableGroup": {
-            "type": "Method"},
-        "bb.checkbox.enable": {
-            "type": "Method"},
-        "bb.roundPanel.enableGroup": {
-            "type": "Method"},
-        "bb.screen.getActionBarHeight": {
-            "type": "Method"},
-        "bb.labelControlContainers.enableGroup": {
-            "type": "Method"},
-        "bb.roundPanel.create": {
-            "type": "Method"},
-        "bb.imageList.create": {
-            "type": "Method"},
-        "done merging": {
-            "type": "Method"},
-        "bb.pillButtons.create": {
-            "type": "Method"},
-        "bb.actionBar.getBackBtnWidth": {
-            "type": "Method"},
-        "bb.textInput.getWidth": {
-            "type": "Method"},
-        "bb.screen.slideDown": {
-            "type": "Method"},
-        "bb.scrollPanel.enableGroup": {
-            "type": "Method"},
-        "bb.progress.create": {
-            "type": "Method"},
-        "bb.imageList.show": {
-            "type": "Method"},
-        "bb.menuBar.createSwipeMenu": {
-            "type": "Method"},
-        "bb.labelControlContainers.show": {
-            "type": "Method"},
-        "bb.grid.show": {
-            "type": "Method"},
-        " ---------------------": {
-            "type": "Method"},
-        "bb.imageList.resetDot": {
-            "type": "Method"},
-        "bb.screen.slideOutDown": {
-            "type": "Method"},
-        "bb.imageList.getTitle": {
-            "type": "Method"},
-        "bb.toggle.create": {
-            "type": "Method"},
-        "bb.removeTopMostScreenFromDom": {
-            "type": "Method"},
-        "bb.dropdown.getPeekWidth": {
-            "type": "Method"},
-        "bb.pillButtons.getCaption": {
-            "type": "Method"},
-        "bb.scrollPanel.style": {
-            "type": "Method"},
-        "bb.scrollPanel.disableGroup": {
-            "type": "Method"},
-        "bb.bbmBubble.clear": {
-            "type": "Method"},
-        "bb.actionOverflow.create": {
-            "type": "Method"},
-        "bb.isScrolledIntoView": {
-            "type": "Method"},
-        "bb.progress.style": {
-            "type": "Method"},
-        "bb.titleBar.getBackCaption": {
-            "type": "Method"},
-        "bb.actionBar.setBackCaption": {
-            "type": "Method"},
-        "bb.dropdown.style": {
-            "type": "Method"},
-        "bb.labelControlContainers.apply": {
-            "type": "Method"},
-        "bb.menuBar.setDimensions": {
-            "type": "Method"},
         "bb.screen.slideLeft": {
             "type": "Method"},
-        "bb.labelControlContainers.getLeft": {
+        "bb.checkbox.disable": {
             "type": "Method"},
-        "bb.toggle.remove": {
-            "type": "Method"},
-        "bb.imageList.refresh": {
-            "type": "Method"}}
-
-        }
+        "bb.show": {
+            "type": "Method"}}}
