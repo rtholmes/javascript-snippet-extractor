@@ -16,6 +16,7 @@ function lcs(lcstest, lcstarget) {
 		}
 		if(matchfound==1){return result; break;}
 		lsclen = lsclen - 1;
+		//
 	}
 	result = "";
 	return result;
