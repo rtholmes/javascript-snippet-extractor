@@ -3,3 +3,4 @@ syntax: glob
 node_modules/*
 WebWorks-Samples/*
 *~
+BBUI_Samples/*

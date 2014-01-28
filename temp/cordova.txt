@@ -1,0 +1,102 @@
+accelerometer.getCurrentAcceleration
+accelerometer.watchAcceleration
+accelerometer.clearWatch
+camera.getPicture
+camera.cleanup
+capture.captureAudio
+capture.captureImage
+capture.captureVideo
+MediaFile.getFormatData
+compass.getCurrentHeading
+compass.watchHeading
+compass.clearWatch
+compass.watchHeadingFilter
+compass.clearWatchFilter
+contacts.create
+contacts.find
+Contact.remove
+Contact.clone
+Contact.save
+File.slice
+FileReader.abort
+FileReader.readAsDataURL
+FileReader.readAsText
+FileReader.readAsBinaryString
+FileReader.readAsArrayBuffer
+FileEntry.getMetadata
+FileEntry.setMetadata
+FileEntry.moveTo
+FileEntry.copyTo
+FileEntry.toURL
+FileEntry.remove
+FileEntry.getParent
+FileEntry.createWriter
+FileEntry.file
+DirectoryEntry.getMetadata: Look up metadata about a directory.
+DirectoryEntry.setMetadata: Set metadata on a directory.
+DirectoryEntry.moveTo: Move a directory to a different location on the file system.
+DirectoryEntry.copyTo: Copy a directory to a different location on the file system.
+DirectoryEntry.toURL: Return a URL to help locate a directory.
+DirectoryEntry.remove: Delete a directory. The directory must be empty.
+DirectoryEntry.getParent: Look up the parent directory.
+DirectoryEntry.createReader: Create a new DirectoryReader that can read entries from a directory.
+DirectoryEntry.getDirectory: Create or look up a directory.
+DirectoryEntry.getFile: Create or look up a file.
+DirectoryEntry.removeRecursively: Delete a directory and all of its contents.
+DirectoryReader.readEntries
+FileTransfer.upload
+FileTransfer.download
+FileTransfer.abort
+LocalFileSystem.requestFileSystem
+LocalFileSystem.resolveLocalFileSystemURI
+geolocation.getCurrentPosition
+geolocation.watchPosition
+geolocation.clearWatch
+globalization.getPreferredLanguage
+globalization.getLocaleName
+globalization.dateToString
+globalization.stringToDate
+globalization.getDatePattern
+globalization.getDateNames
+globalization.isDayLightSavingsTime
+globalization.getFirstDayOfWeek
+globalization.numberToString
+globalization.stringToNumber
+globalization.getNumberPattern
+globalization.getCurrencyPattern
+InAppBrowser.addEventListener
+InAppBrowser.removeEventListener
+InAppBrowser.close
+InAppBrowser.show
+InAppBrowser.executeScript
+InAppBrowser.insertCSS
+media.getCurrentPosition: Returns the current position within an audio file.
+media.getDuration: Returns the duration of an audio file.
+media.play: Start or resume playing an audio file.
+media.pause: Pause playback of an audio file.
+media.release: Releases the underlying operating system's audio resources.
+media.seekTo: Moves the position within the audio file.
+media.setVolume: Set the volume for audio playback.
+media.startRecord: Start recording an audio file.
+media.stopRecord: Stop recording an audio file.
+media.stop: Stop playing an audio file.
+notification.alert
+notification.confirm
+notification.prompt
+notification.beep
+notification.vibrate
+splashscreen.show
+splashscreen.hide
+Stroage.openDatabase
+Database.transaction
+Database.changeVersion
+SQLTransaction.executeSQL
+SQLResultSet.rowsAffected
+SQLResultSet.insertId
+SQLResultSet.rows
+SQLResultSetRowList.item
+localStorage.key
+localStorage.getItem
+localStorage.setIOtem
+localStorage.removeItem
+localStorage.clear
